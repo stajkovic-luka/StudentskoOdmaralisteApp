@@ -32,7 +32,8 @@ public class Rezervacija implements Serializable{
         this.student = student;
         this.stavkaRezervacije = stavkaRezervacije;
     }
-
+    
+    // Getteri i setteri
     public int getIdRezervacija() {
         return idRezervacija;
     }

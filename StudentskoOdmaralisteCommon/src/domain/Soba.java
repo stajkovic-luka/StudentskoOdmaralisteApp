@@ -3,6 +3,7 @@ package domain;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  *
@@ -28,7 +29,8 @@ public class Soba implements Serializable{
         this.cena = cena;
         this.stavkeRezervacije = stavkeRezervacije;
     }
-
+    
+    // Getteri i setteri
     public int getIdSoba() {
         return idSoba;
     }
@@ -75,6 +77,47 @@ public class Soba implements Serializable{
 
     public void setStavkeRezervacije(List<StavkaRezervacije> stavkeRezervacije) {
         this.stavkeRezervacije = stavkeRezervacije;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Soba other = (Soba) obj;
+        if (this.idSoba != other.idSoba) {
+            return false;
+        }
+        if (this.kapacitet != other.kapacitet) {
+            return false;
+        }
+        if (this.zauzetoMesta != other.zauzetoMesta) {
+            return false;
+        }
+        if (this.sprat != other.sprat) {
+            return false;
+        }
+        if (Double.doubleToLongBits(this.cena) != Double.doubleToLongBits(other.cena)) {
+            return false;
+        }
+        return Objects.equals(this.stavkeRezervacije, other.stavkeRezervacije);
+    }
+
+    @Override
+    public String toString() {
+        return "Soba{" + "idSoba=" + idSoba + ", kapacitet=" + kapacitet + ", zauzetoMesta=" + zauzetoMesta + ", sprat=" + sprat + ", cena=" + cena + ", stavkeRezervacije=" + stavkeRezervacije + '}';
     }
 
     

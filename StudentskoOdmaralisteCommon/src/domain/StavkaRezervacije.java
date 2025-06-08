@@ -3,6 +3,7 @@ package domain;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Date;
+import java.util.Objects;
 
 /**
  *
@@ -23,7 +24,7 @@ public class StavkaRezervacije implements Serializable{
     public StavkaRezervacije() {
         
     }
-
+    
     public StavkaRezervacije(int rb, String nazivSmestaja, int brSobe, LocalDate datumVazenjaOd, LocalDate datumVazenjaDo, int brojDana, double cena, double iznos, Rezervacija rezervacija, Soba soba) {
         this.rb = rb;
         this.nazivSmestaja = nazivSmestaja;
@@ -37,6 +38,7 @@ public class StavkaRezervacije implements Serializable{
         this.soba = soba;
     }
 
+    // Getteri i setteri
     public int getRb() {
         return rb;
     }
@@ -115,6 +117,59 @@ public class StavkaRezervacije implements Serializable{
 
     public void setSoba(Soba soba) {
         this.soba = soba;
+    }
+
+    @Override
+    public String toString() {
+        return "StavkaRezervacije{" + "rb=" + rb + ", nazivSmestaja=" + nazivSmestaja + ", brSobe=" + brSobe + ", datumVazenjaOd=" + datumVazenjaOd + ", datumVazenjaDo=" + datumVazenjaDo + ", brojDana=" + brojDana + ", cena=" + cena + ", iznos=" + iznos + ", rezervacija=" + rezervacija + ", soba=" + soba + '}';
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final StavkaRezervacije other = (StavkaRezervacije) obj;
+        if (this.rb != other.rb) {
+            return false;
+        }
+        if (this.brSobe != other.brSobe) {
+            return false;
+        }
+        if (this.brojDana != other.brojDana) {
+            return false;
+        }
+        if (Double.doubleToLongBits(this.cena) != Double.doubleToLongBits(other.cena)) {
+            return false;
+        }
+        if (Double.doubleToLongBits(this.iznos) != Double.doubleToLongBits(other.iznos)) {
+            return false;
+        }
+        if (!Objects.equals(this.nazivSmestaja, other.nazivSmestaja)) {
+            return false;
+        }
+        if (!Objects.equals(this.datumVazenjaOd, other.datumVazenjaOd)) {
+            return false;
+        }
+        if (!Objects.equals(this.datumVazenjaDo, other.datumVazenjaDo)) {
+            return false;
+        }
+        if (!Objects.equals(this.rezervacija, other.rezervacija)) {
+            return false;
+        }
+        return Objects.equals(this.soba, other.soba);
     }
 
    

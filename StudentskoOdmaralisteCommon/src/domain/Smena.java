@@ -3,6 +3,7 @@ package domain;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  *
@@ -27,7 +28,8 @@ public class Smena implements Serializable {
         this.tipSmene = tipSmene;
         this.sluzbenikSmena = sluzbenikSmena;
     }
-
+    
+    // Getteri i setteri
     public int getIdSmena() {
         return idSmena;
     }
@@ -68,4 +70,43 @@ public class Smena implements Serializable {
         this.sluzbenikSmena = sluzbenikSmena;
     }
 
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Smena other = (Smena) obj;
+        if (this.idSmena != other.idSmena) {
+            return false;
+        }
+        if (!Objects.equals(this.prostorija, other.prostorija)) {
+            return false;
+        }
+        if (!Objects.equals(this.komentar, other.komentar)) {
+            return false;
+        }
+        if (this.tipSmene != other.tipSmene) {
+            return false;
+        }
+        return Objects.equals(this.sluzbenikSmena, other.sluzbenikSmena);
+    }
+
+    @Override
+    public String toString() {
+        return "Smena{" + "idSmena=" + idSmena + ", prostorija=" + prostorija + ", komentar=" + komentar + ", tipSmene=" + tipSmene + ", sluzbenikSmena=" + sluzbenikSmena + '}';
+    }
+    
+    
 }

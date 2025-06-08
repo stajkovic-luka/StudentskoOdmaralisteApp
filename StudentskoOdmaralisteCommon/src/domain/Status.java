@@ -8,6 +8,7 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  *
@@ -33,7 +34,8 @@ public class Status implements Serializable{
         this.datumVazenjaDo = datumVazenjaDo;
         this.studenti = studenti;
     }
-
+    
+    // Getteri i setteri
     public int getIdStatus() {
         return idStatus;
     }
@@ -80,6 +82,47 @@ public class Status implements Serializable{
 
     public void setStudenti(List<Student> studenti) {
         this.studenti = studenti;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Status other = (Status) obj;
+        if (this.idStatus != other.idStatus) {
+            return false;
+        }
+        if (this.godinaStudija != other.godinaStudija) {
+            return false;
+        }
+        if (this.budzet != other.budzet) {
+            return false;
+        }
+        if (!Objects.equals(this.datumVazenjaOd, other.datumVazenjaOd)) {
+            return false;
+        }
+        if (!Objects.equals(this.datumVazenjaDo, other.datumVazenjaDo)) {
+            return false;
+        }
+        return Objects.equals(this.studenti, other.studenti);
+    }
+
+    @Override
+    public String toString() {
+        return "Status{" + "idStatus=" + idStatus + ", godinaStudija=" + godinaStudija + ", budzet=" + budzet + ", datumVazenjaOd=" + datumVazenjaOd + ", datumVazenjaDo=" + datumVazenjaDo + ", studenti=" + studenti + '}';
     }
 
    

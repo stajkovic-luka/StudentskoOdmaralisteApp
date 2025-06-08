@@ -7,6 +7,7 @@ package domain;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  *
@@ -35,7 +36,8 @@ public class Sluzbenik implements Serializable{
         this.sluzbenikSmena = sluzbenikSmena;
         this.rezervacije = rezervacije;
     }
-
+    
+    // Getteri i setteri
     public int getIdSluzbenik() {
         return idSluzbenik;
     }
@@ -90,6 +92,50 @@ public class Sluzbenik implements Serializable{
 
     public void setRezervacije(List<Rezervacija> rezervacije) {
         this.rezervacije = rezervacije;
+    }
+
+    @Override
+    public String toString() {
+        return "Sluzbenik{" + "idSluzbenik=" + idSluzbenik + ", ime=" + ime + ", prezime=" + prezime + ", korisnickoIme=" + korisnickoIme + ", lozinka=" + lozinka + ", sluzbenikSmena=" + sluzbenikSmena + ", rezervacije=" + rezervacije + '}';
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Sluzbenik other = (Sluzbenik) obj;
+        if (this.idSluzbenik != other.idSluzbenik) {
+            return false;
+        }
+        if (!Objects.equals(this.ime, other.ime)) {
+            return false;
+        }
+        if (!Objects.equals(this.prezime, other.prezime)) {
+            return false;
+        }
+        if (!Objects.equals(this.korisnickoIme, other.korisnickoIme)) {
+            return false;
+        }
+        if (!Objects.equals(this.lozinka, other.lozinka)) {
+            return false;
+        }
+        if (!Objects.equals(this.sluzbenikSmena, other.sluzbenikSmena)) {
+            return false;
+        }
+        return Objects.equals(this.rezervacije, other.rezervacije);
     }
 
     
