@@ -2,16 +2,19 @@ package form;
 
 import java.awt.Color;
 import java.awt.Image;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
-import threads.Server;
+import threads.ServerThread;
 
 /**
  *
  * @author lukas
  */
 public class ServerskaForma extends javax.swing.JFrame {
-    private Server server;
+    private ServerThread server;
     /**
      * Creates new form ServerskaForma
      */
@@ -87,15 +90,30 @@ public class ServerskaForma extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonStartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonStartActionPerformed
-        
+        try {
+            server = new ServerThread();
+            server.start();
+            
+        } catch (IOException ex) {
+            Logger.getLogger(ServerskaForma.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
         jButtonStart.setEnabled(false);
         jButtonStop.setEnabled(true);
     }//GEN-LAST:event_jButtonStartActionPerformed
 
     private void jButtonStopActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonStopActionPerformed
-        // TODO validacija da li je zaustavljen server ovde
-        
+        try {
+            if(server != null){
+                server.stopServer();
+                server.join();
+            }
+
+        } catch (IOException ex) {
+            Logger.getLogger(ServerskaForma.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(ServerskaForma.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
         jButtonStop.setEnabled(false);
         jButtonStart.setEnabled(true);

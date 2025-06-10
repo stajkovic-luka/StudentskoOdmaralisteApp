@@ -11,10 +11,10 @@ public class DBConnection {
 
     private DBConnection() throws SQLException {
         connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/studentsko_odmaraliste", "root", "");
-        logger.log(Logger.Level.INFO, "Uspesno uspostavljena konekcija sa bazom!");
+        System.out.println("Uspesno uspostavljena konekcija sa bazom!");
         
         connection.setAutoCommit(false);
-
+        
     }
 
     public static DBConnection getInstance() throws SQLException {

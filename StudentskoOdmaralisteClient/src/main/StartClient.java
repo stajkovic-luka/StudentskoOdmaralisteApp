@@ -1,10 +1,11 @@
 package main;
 
-import forms.LogInForma;
+import form.LogInForma;
 
 
-public class Main {
+public class StartClient {
     public static void main(String[] args) {
+        // Pokretanje login forme
         LogInForma loginForma = new LogInForma();
         loginForma.setVisible(true);
     }

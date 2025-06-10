@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 
-
+// Handler za slanje kroz
 public class Sender {
     private Socket socket;
 
@@ -13,7 +13,7 @@ public class Sender {
     }
 
     // Slanje objekta kroz socket
-    private void send(Object obj) throws IOException{
+    public void send(Object obj) throws IOException{
         ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
         oos.writeObject(obj);
         oos.flush();

@@ -1,10 +1,11 @@
-package forms;
+package form;
 
 import java.awt.Color;
 import java.awt.Image;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import controller.Controller;
 
 /**
  *
@@ -112,6 +113,10 @@ public class LogInForma extends javax.swing.JFrame {
         String username = jTextFieldKorisnickoIme.getText();
         String password = String.valueOf(jPasswordField.getPassword());
 
+        // Izvrsava se SO Login...
+        //TODO
+        
+        Controller.getInstance().test();
         
     }//GEN-LAST:event_jButtonLogInActionPerformed
 
