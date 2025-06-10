@@ -6,6 +6,8 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import controller.Controller;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -25,14 +27,32 @@ public class LogInForma extends javax.swing.JFrame {
     }
 
     private void dodajStil() {
-        this.setLocationRelativeTo(null);
-        getContentPane().setBackground(new Color(173, 216, 230));
-        jButtonLogIn.setBackground(new Color(255, 140, 0));
-        jButtonLogIn.setForeground(Color.WHITE);
+    this.setLocationRelativeTo(null);
 
-        setTitle("Rezervacija odmora");
+    // Pozadina
+    getContentPane().setBackground(new Color(173, 216, 230)); 
 
-    }
+    // Dugme
+    jButtonLogIn.setBackground(new Color(255, 140, 0)); 
+    jButtonLogIn.setForeground(Color.WHITE);
+    jButtonLogIn.setFont(jButtonLogIn.getFont().deriveFont(java.awt.Font.BOLD, 16f));
+    jButtonLogIn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+    jButtonLogIn.setBorder(javax.swing.BorderFactory.createEmptyBorder(8, 20, 8, 20));
+    jButtonLogIn.setOpaque(true);
+
+    // Labele
+    Color bojaLabele = new Color(30, 60, 90);
+    jLabelKorisnickoIme.setForeground(bojaLabele);
+    jLabelKorisnickoIme.setFont(jLabelKorisnickoIme.getFont().deriveFont(java.awt.Font.BOLD, 18f));
+    jLabelSifra.setForeground(bojaLabele);
+    jLabelSifra.setFont(jLabelSifra.getFont().deriveFont(java.awt.Font.BOLD, 18f));
+
+    
+    
+    // Naslov forme
+    setTitle("Sluzbenik Login");
+}
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -44,7 +64,7 @@ public class LogInForma extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabelKorisnickoIme = new javax.swing.JLabel();
-        jLabelKorisnickoIme1 = new javax.swing.JLabel();
+        jLabelSifra = new javax.swing.JLabel();
         jTextFieldKorisnickoIme = new javax.swing.JTextField();
         jPasswordField = new javax.swing.JPasswordField();
         jButtonLogIn = new javax.swing.JButton();
@@ -54,8 +74,8 @@ public class LogInForma extends javax.swing.JFrame {
         jLabelKorisnickoIme.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabelKorisnickoIme.setText("Korisnicko ime:");
 
-        jLabelKorisnickoIme1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabelKorisnickoIme1.setText("Sifra:");
+        jLabelSifra.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabelSifra.setText("Sifra:");
 
         jTextFieldKorisnickoIme.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jTextFieldKorisnickoIme.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
@@ -82,7 +102,7 @@ public class LogInForma extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(34, 34, 34)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabelKorisnickoIme1, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabelSifra, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabelKorisnickoIme, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -99,7 +119,7 @@ public class LogInForma extends javax.swing.JFrame {
                     .addComponent(jTextFieldKorisnickoIme, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabelKorisnickoIme1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelSifra, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(35, 35, 35)
                 .addComponent(jButtonLogIn, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -113,10 +133,14 @@ public class LogInForma extends javax.swing.JFrame {
         String username = jTextFieldKorisnickoIme.getText();
         String password = String.valueOf(jPasswordField.getPassword());
 
-        // Izvrsava se SO Login...
-        //TODO
-        
-        Controller.getInstance().test();
+        try {
+            // Izvrsava se SO Login...
+            //TODO
+
+            Controller.getInstance().test();
+        } catch (Exception ex) {
+            Logger.getLogger(LogInForma.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
     }//GEN-LAST:event_jButtonLogInActionPerformed
 
@@ -124,7 +148,7 @@ public class LogInForma extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonLogIn;
     private javax.swing.JLabel jLabelKorisnickoIme;
-    private javax.swing.JLabel jLabelKorisnickoIme1;
+    private javax.swing.JLabel jLabelSifra;
     private javax.swing.JPasswordField jPasswordField;
     private javax.swing.JTextField jTextFieldKorisnickoIme;
     // End of variables declaration//GEN-END:variables

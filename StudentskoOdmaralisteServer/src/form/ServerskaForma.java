@@ -106,7 +106,7 @@ public class ServerskaForma extends javax.swing.JFrame {
         try {
             if(server != null){
                 server.stopServer();
-                server.join();
+                
             }
 
         } catch (IOException ex) {
@@ -130,19 +130,34 @@ public class ServerskaForma extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private void stilizuj() {
-        getContentPane().setBackground(new Color(173, 216, 230));
-        jButtonStart.setBackground(new Color(255, 140, 0));
-        jButtonStart.setForeground(Color.WHITE);
-        jButtonStop.setBackground(new Color(255, 140, 0));
-        jButtonStop.setForeground(Color.WHITE);
-        
-        Icon i = jLabelLogo.getIcon();
+    this.setLocationRelativeTo(null);
+
+    getContentPane().setBackground(new Color(173, 216, 230));
+
+    // Dugmad START i STOP
+    jButtonStart.setBackground(new Color(255, 140, 0));
+    jButtonStart.setForeground(Color.WHITE);
+    jButtonStart.setFont(jButtonStart.getFont().deriveFont(java.awt.Font.BOLD, 16f));
+    jButtonStart.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+    jButtonStart.setBorder(javax.swing.BorderFactory.createEmptyBorder(8, 20, 8, 20));
+
+    jButtonStop.setBackground(new Color(255, 140, 0));
+    jButtonStop.setForeground(Color.WHITE);
+    jButtonStop.setFont(jButtonStop.getFont().deriveFont(java.awt.Font.BOLD, 16f));
+    jButtonStop.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+    jButtonStop.setBorder(javax.swing.BorderFactory.createEmptyBorder(8, 20, 8, 20));
+
+    // Ikonica
+    Icon i = jLabelLogo.getIcon();
+    if (i instanceof ImageIcon) {
         ImageIcon icon = (ImageIcon) i;
         Image imageScale = icon.getImage().getScaledInstance(jLabelLogo.getWidth(), jLabelLogo.getHeight(), Image.SCALE_SMOOTH);
         ImageIcon scaledIcon = new ImageIcon(imageScale);
         jLabelLogo.setIcon(scaledIcon);
-        this.setLocationRelativeTo(null);
-        setTitle("SERVER");
-       
     }
+
+    setTitle("SERVER");
+}
+    
+    
 }
