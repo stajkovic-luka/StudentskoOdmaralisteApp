@@ -1,5 +1,9 @@
 package repository;
 
 public class DBBroker {
-    // CRUD
+    // Ne zaboravi da vracas konekcija nakon upita kroz finally.
+    
+    // TODO
+    
+    
 }

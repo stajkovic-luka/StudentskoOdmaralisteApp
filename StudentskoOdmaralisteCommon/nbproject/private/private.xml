@@ -3,10 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/Neki%20projekti/PS%20projekat/StudentskoOdmaralisteCommon/src/transfer/Receiver.java</file>
-            <file>file:/D:/Neki%20projekti/PS%20projekat/StudentskoOdmaralisteCommon/src/domain/DomenskiModel.java</file>
-            <file>file:/D:/Neki%20projekti/PS%20projekat/StudentskoOdmaralisteCommon/src/transfer/Operation.java</file>
-            <file>file:/D:/Neki%20projekti/PS%20projekat/StudentskoOdmaralisteCommon/src/transfer/Response.java</file>
+            <file>file:/D:/Neki%20projekti/PS%20projekat/StudentskoOdmaralisteCommon/src/transfer/Sender.java</file>
         </group>
     </open-files>
 </project-private>

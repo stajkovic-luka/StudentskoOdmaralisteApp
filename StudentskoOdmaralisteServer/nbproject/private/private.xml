@@ -3,12 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/D:/Neki%20projekti/PS%20projekat/StudentskoOdmaralisteServer/src/main/StartServer.java</file>
             <file>file:/D:/Neki%20projekti/PS%20projekat/StudentskoOdmaralisteServer/src/form/ServerskaForma.java</file>
-            <file>file:/D:/Neki%20projekti/PS%20projekat/StudentskoOdmaralisteServer/src/repository/DBBroker.java</file>
             <file>file:/D:/Neki%20projekti/PS%20projekat/StudentskoOdmaralisteServer/src/controller/Controller.java</file>
-            <file>file:/D:/Neki%20projekti/PS%20projekat/StudentskoOdmaralisteServer/src/repository/DBConnection.java</file>
             <file>file:/D:/Neki%20projekti/PS%20projekat/StudentskoOdmaralisteServer/src/threads/ClientThread.java</file>
-            <file>file:/D:/Neki%20projekti/PS%20projekat/StudentskoOdmaralisteServer/src/main/Main.java</file>
             <file>file:/D:/Neki%20projekti/PS%20projekat/StudentskoOdmaralisteServer/src/threads/ServerThread.java</file>
         </group>
     </open-files>
