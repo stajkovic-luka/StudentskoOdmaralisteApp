@@ -16,26 +16,53 @@ CREATE DATABASE /*!32312 IF NOT EXISTS*/`studentsko_odmaraliste` /*!40100 DEFAUL
 
 USE `studentsko_odmaraliste`;
 
-/*Table structure for table `rezervacija` */
+/*Table structure for table `fakturaodmora` */
 
-DROP TABLE IF EXISTS `rezervacija`;
+DROP TABLE IF EXISTS `fakturaodmora`;
 
-CREATE TABLE `rezervacija` (
-  `idRezervacija` bigint(20) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `fakturaodmora` (
+  `idFakturaOdmora` bigint(20) NOT NULL AUTO_INCREMENT,
+  `datumIzdavanja` date NOT NULL,
   `popust` double NOT NULL,
-  `cenaNakonPopusta` double NOT NULL,
+  `iznosNakonPopusta` double NOT NULL,
   `ukupanIznos` double NOT NULL,
-  `napomenaStudenta` varchar(50) NOT NULL,
-  `idSluzbenik` bigint(20) DEFAULT NULL,
-  `idStudent` bigint(20) DEFAULT NULL,
-  PRIMARY KEY (`idRezervacija`),
+  `napomena` varchar(200) DEFAULT NULL,
+  `idSluzbenik` bigint(20) NOT NULL,
+  `idStudent` bigint(20) NOT NULL,
+  PRIMARY KEY (`idFakturaOdmora`),
   KEY `idSluzbenik` (`idSluzbenik`),
   KEY `idStudent` (`idStudent`),
-  CONSTRAINT `rezervacija_ibfk_1` FOREIGN KEY (`idSluzbenik`) REFERENCES `sluzbenik` (`idSluzbenik`),
-  CONSTRAINT `rezervacija_ibfk_2` FOREIGN KEY (`idStudent`) REFERENCES `student` (`idStudent`)
+  CONSTRAINT `fakturaodmora_ibfk_1` FOREIGN KEY (`idSluzbenik`) REFERENCES `sluzbenik` (`idSluzbenik`),
+  CONSTRAINT `fakturaodmora_ibfk_2` FOREIGN KEY (`idStudent`) REFERENCES `student` (`idStudent`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-/*Data for the table `rezervacija` */
+/*Data for the table `fakturaodmora` */
+
+/*Table structure for table `fakultet` */
+
+DROP TABLE IF EXISTS `fakultet`;
+
+CREATE TABLE `fakultet` (
+  `idFakultet` bigint(20) NOT NULL AUTO_INCREMENT,
+  `naziv` varchar(100) NOT NULL,
+  `mesto` varchar(100) NOT NULL,
+  PRIMARY KEY (`idFakultet`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+/*Data for the table `fakultet` */
+
+/*Table structure for table `nocenje` */
+
+DROP TABLE IF EXISTS `nocenje`;
+
+CREATE TABLE `nocenje` (
+  `idNocenje` bigint(20) NOT NULL AUTO_INCREMENT,
+  `cena` double NOT NULL,
+  `opis` varchar(100) NOT NULL,
+  PRIMARY KEY (`idNocenje`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+/*Data for the table `nocenje` */
 
 /*Table structure for table `sluzbenik` */
 
@@ -62,7 +89,7 @@ CREATE TABLE `sluzbeniksmena` (
   `idSmena` bigint(20) NOT NULL,
   `datumSmene` date NOT NULL,
   PRIMARY KEY (`idSluzbenik`,`idSmena`,`datumSmene`),
-  KEY `sluzbeniksmena_ibfk_2` (`idSmena`),
+  KEY `idSmena` (`idSmena`),
   CONSTRAINT `sluzbeniksmena_ibfk_1` FOREIGN KEY (`idSluzbenik`) REFERENCES `sluzbenik` (`idSluzbenik`),
   CONSTRAINT `sluzbeniksmena_ibfk_2` FOREIGN KEY (`idSmena`) REFERENCES `smena` (`idSmena`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -76,65 +103,34 @@ DROP TABLE IF EXISTS `smena`;
 CREATE TABLE `smena` (
   `idSmena` bigint(20) NOT NULL AUTO_INCREMENT,
   `prostorija` varchar(50) NOT NULL,
-  `komentar` varchar(200) NOT NULL,
-  `tipSmene` enum('JUTARNJA','POPODNEVNA') DEFAULT NULL,
+  `komentar` varchar(200) DEFAULT NULL,
+  `tipSmene` enum('JUTARNJA','POPODNEVNA') NOT NULL,
   PRIMARY KEY (`idSmena`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 /*Data for the table `smena` */
 
-/*Table structure for table `soba` */
+/*Table structure for table `stavkafakture` */
 
-DROP TABLE IF EXISTS `soba`;
+DROP TABLE IF EXISTS `stavkafakture`;
 
-CREATE TABLE `soba` (
-  `idSoba` bigint(20) NOT NULL AUTO_INCREMENT,
-  `kapacitet` int(11) NOT NULL,
-  `zauzetoMesta` int(11) DEFAULT 0,
-  `sprat` int(20) NOT NULL,
-  `cena` double NOT NULL,
-  PRIMARY KEY (`idSoba`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
-/*Data for the table `soba` */
-
-/*Table structure for table `status` */
-
-DROP TABLE IF EXISTS `status`;
-
-CREATE TABLE `status` (
-  `idStatus` bigint(20) NOT NULL AUTO_INCREMENT,
-  `godinaStudija` bigint(20) DEFAULT NULL,
-  `budzet` tinyint(1) DEFAULT NULL,
-  `datumVazenjaOd` date DEFAULT NULL,
-  `datumVazenjaDo` date DEFAULT NULL,
-  PRIMARY KEY (`idStatus`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
-/*Data for the table `status` */
-
-/*Table structure for table `stavkarezervacije` */
-
-DROP TABLE IF EXISTS `stavkarezervacije`;
-
-CREATE TABLE `stavkarezervacije` (
-  `idRezervacije` bigint(20) NOT NULL,
+CREATE TABLE `stavkafakture` (
+  `idFakturaOdmora` bigint(20) NOT NULL,
   `rb` int(11) NOT NULL,
-  `nazivSmestaja` varchar(100) NOT NULL,
-  `brSobe` int(11) NOT NULL,
-  `datumVazenjaOd` date NOT NULL,
-  `datumVazenjaDo` date NOT NULL,
-  `brojDana` bigint(20) DEFAULT NULL,
+  `idNocenje` bigint(20) NOT NULL,
+  `datumOd` date NOT NULL,
+  `datumDo` date NOT NULL,
+  `brojDana` int(11) NOT NULL,
+  `dorucakUkljucen` tinyint(1) NOT NULL DEFAULT 0,
   `cena` double NOT NULL,
   `iznos` double NOT NULL,
-  `idSoba` bigint(20) NOT NULL,
-  PRIMARY KEY (`idRezervacije`,`rb`),
-  KEY `idSoba` (`idSoba`),
-  CONSTRAINT `stavkarezervacije_ibfk_1` FOREIGN KEY (`idRezervacije`) REFERENCES `rezervacija` (`idRezervacija`) ON DELETE CASCADE,
-  CONSTRAINT `stavkarezervacije_ibfk_2` FOREIGN KEY (`idSoba`) REFERENCES `soba` (`idSoba`)
+  PRIMARY KEY (`idFakturaOdmora`,`rb`),
+  KEY `idNocenje` (`idNocenje`),
+  CONSTRAINT `stavkafakture_ibfk_1` FOREIGN KEY (`idFakturaOdmora`) REFERENCES `fakturaodmora` (`idFakturaOdmora`) ON DELETE CASCADE,
+  CONSTRAINT `stavkafakture_ibfk_2` FOREIGN KEY (`idNocenje`) REFERENCES `nocenje` (`idNocenje`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-/*Data for the table `stavkarezervacije` */
+/*Data for the table `stavkafakture` */
 
 /*Table structure for table `student` */
 
@@ -144,12 +140,11 @@ CREATE TABLE `student` (
   `idStudent` bigint(20) NOT NULL AUTO_INCREMENT,
   `ime` varchar(50) NOT NULL,
   `prezime` varchar(50) NOT NULL,
-  `brTelefona` bigint(20) NOT NULL,
-  `fakultet` varchar(50) NOT NULL,
-  `idStatus` bigint(20) NOT NULL,
+  `brTelefona` varchar(20) NOT NULL,
+  `idFakultet` bigint(20) NOT NULL,
   PRIMARY KEY (`idStudent`),
-  KEY `idStatus` (`idStatus`),
-  CONSTRAINT `student_ibfk_1` FOREIGN KEY (`idStatus`) REFERENCES `status` (`idStatus`)
+  KEY `idFakultet` (`idFakultet`),
+  CONSTRAINT `student_ibfk_1` FOREIGN KEY (`idFakultet`) REFERENCES `fakultet` (`idFakultet`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 /*Data for the table `student` */
