@@ -26,7 +26,12 @@ public class Sluzbenik implements Serializable, DomainObject {
 
     public Sluzbenik() {
     }
-
+    
+    public Sluzbenik(String korisnickoIme, String lozinka){
+        this.korisnickoIme = korisnickoIme;
+        this.lozinka = lozinka;
+    }
+    
     public Sluzbenik(int idSluzbenik, String ime, String prezime, String korisnickoIme, String lozinka) {
         this.idSluzbenik = idSluzbenik;
         this.ime = ime;
@@ -125,7 +130,7 @@ public class Sluzbenik implements Serializable, DomainObject {
 
     @Override
     public String getSelectWhereClause() {
-        return "username=? AND password=?";
+        return "korisnickoIme=? AND lozinka=?";
     }
 
     @Override
@@ -151,8 +156,8 @@ public class Sluzbenik implements Serializable, DomainObject {
 
     @Override
     public void setParamsForSelect(PreparedStatement ps) throws SQLException {
-        ps.setString(1, "korisnickoIme");
-        ps.setString(2, "lozinka");
+        ps.setString(1, this.getKorisnickoIme());
+        ps.setString(2, this.getLozinka());
 
     }
 

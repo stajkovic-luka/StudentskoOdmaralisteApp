@@ -15,7 +15,7 @@ public abstract class AbstractSO {
     public void execute(Object object) throws SQLException, Exception{
         try {
             validate(object); // Proveri koji je objekat
-            execute(object); // Izvrsi trazenu operaciju
+            executeOperation(object); // Izvrsi trazenu operaciju
             commit();
             DBConnection.getInstance().returnToPool(dbb.getConnection());
         } catch (Exception e) {

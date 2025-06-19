@@ -134,10 +134,8 @@ public class LogInForma extends javax.swing.JFrame {
         String password = String.valueOf(jPasswordField.getPassword());
 
         try {
-            // Izvrsava se SO Login...
-            //TODO
 
-            Controller.getInstance().test();
+            Controller.getInstance().login(username,password);
         } catch (Exception ex) {
             Logger.getLogger(LogInForma.class.getName()).log(Level.SEVERE, null, ex);
         }

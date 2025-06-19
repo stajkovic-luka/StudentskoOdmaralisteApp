@@ -9,6 +9,8 @@ import transfer.Receiver;
 import transfer.Request;
 import transfer.Response;
 import transfer.Sender;
+import transfer.Operation;
+import controller.Controller;
 
 public class ClientThread extends Thread {
 
@@ -26,7 +28,7 @@ public class ClientThread extends Thread {
         this.klijentskiSocket = klijentskiSocket;
         sender = new Sender(klijentskiSocket); // Klijenta salje zahtev serveru
         receiver = new Receiver(klijentskiSocket); // Klijent prima odgovor servera
-        
+
         controller = new Controller();
     }
 
@@ -40,18 +42,24 @@ public class ClientThread extends Thread {
                 Response response = new Response();
 
                 try {
-                    // SK implementacije operacija
-                    System.out.println(this.getId());
-                    System.out.println(request.getArgument());
-                    System.out.println("TEST...TODO");
-                    this.terminateThread();
-                    // -----
-                    
+                    switch (request.getOperation()) {
+                        case LOGIN -> {
+                            Sluzbenik sluzbenik = (Sluzbenik) request.getArgument();
+                            response.setServerResponse(controller.login(sluzbenik));
+                        }
+                        default -> {
+                            throw new Exception("Nepoznata operacija!");
+                        }
+
+                    }
+
                 } catch (Exception e) {
                     e.printStackTrace();
                     response.setException(e);
                     break;
-                } 
+                }
+                
+                sender.send(response);
             }
         } catch (IOException ioe) {
             ioe.printStackTrace();
@@ -62,7 +70,7 @@ public class ClientThread extends Thread {
     public Sluzbenik getUlogovaniSluzbenik() {
         return sluzbenik;
     }
-    
+
     // Zatvori soket
     public void terminateThread() throws IOException {
         isOn = false;
