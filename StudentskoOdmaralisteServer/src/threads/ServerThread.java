@@ -1,6 +1,8 @@
 package threads;
 
 import controller.Controller;
+import domain.Sluzbenik;
+import form.ServerskaForma;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -12,6 +14,7 @@ import java.util.logging.Logger;
 
 public class ServerThread extends Thread {
 
+    private ServerskaForma serverForm;
     private List<ClientThread> listaKlijenata;
 
     //ON pri kreiranju
@@ -75,7 +78,25 @@ public class ServerThread extends Thread {
     public List<ClientThread> getListaKlijenata() {
         return listaKlijenata;
     }
-    
-    
+
+    public void setForma(ServerskaForma serverForm) {
+        this.serverForm = serverForm;
+    }
+
+    void osveziFormu() {
+        if (serverForm != null) {
+            List<Sluzbenik> trenutnoUlogovani = new ArrayList<>();
+
+            for (ClientThread klijent : listaKlijenata) {
+                trenutnoUlogovani.add(klijent.getUlogovaniSluzbenik());
+            }
+            serverForm.osveziTabelu(trenutnoUlogovani);
+        }
+
+    }
+
+    void izbaciIzUlogovanih(ClientThread klijent) {
+        listaKlijenata.remove(klijent);
+    }
 
 }

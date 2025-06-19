@@ -123,6 +123,7 @@ public class ServerskaForma extends javax.swing.JFrame {
         try {
             server = new ServerThread();
             server.start();
+            server.setForma(this);
             
         } catch (IOException ex) {
             Logger.getLogger(ServerskaForma.class.getName()).log(Level.SEVERE, null, ex);
@@ -204,6 +205,12 @@ public class ServerskaForma extends javax.swing.JFrame {
 //        }
 //        
         jTable1.setModel(new ServerTableModel(listaSluzbenika));
+    }
+
+    public void osveziTabelu(List<Sluzbenik> trenutnoUlogovani) {
+        
+        ServerTableModel model = (ServerTableModel) jTable1.getModel();
+        model.setListaSluzbenik(trenutnoUlogovani);
     }
     
     

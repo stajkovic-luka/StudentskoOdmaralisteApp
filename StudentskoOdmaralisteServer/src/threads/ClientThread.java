@@ -11,9 +11,11 @@ import transfer.Response;
 import transfer.Sender;
 import transfer.Operation;
 import controller.Controller;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class ClientThread extends Thread {
-    
+
     private final Sender sender;
     private final Receiver receiver;
     private final Controller controller;
@@ -37,39 +39,52 @@ public class ClientThread extends Thread {
     public void run() {
         try {
             while (!klijentskiSocket.isClosed()) {
-                
+
                 Request request = (Request) receiver.receive();
                 Response response = new Response();
-                
+
                 try {
                     switch (request.getOperation()) {
+                        // TODO: Proveri da li je korisnik vec ulogovan, ako jeste, baci gresku sa klijentske strane
+                        // Ne treba na Serverskoj tabeli da se dva puta prikaze isti sluzbenik da je ulogovan
                         case LOGIN -> {
-                            
+
                             sluzbenik = (Sluzbenik) request.getArgument();
-                            response.setServerResponse(controller.login(sluzbenik));
                             
-                            
+                            Sluzbenik sluzbenikIzBaze = controller.login(sluzbenik);
+
+                            response.setServerResponse(sluzbenikIzBaze);
+
+                            // Podesavanje ulogovanog sluzbenika i refresh serverske tabele
+                            sluzbenik = sluzbenikIzBaze;
+                            server.osveziFormu();
                         }
                         default -> {
                             throw new Exception("Nepoznata operacija!");
                         }
-                        
+
                     }
-                    
+
                 } catch (Exception e) {
                     e.printStackTrace();
                     response.setException(e);
                     break;
                 }
-                
+
                 sender.send(response);
             }
         } catch (IOException ioe) {
             ioe.printStackTrace();
+        } finally {
+            try {
+                terminateThread();
+            } catch (IOException ex) {
+                Logger.getLogger(ClientThread.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
-        
+
     }
-    
+
     public Sluzbenik getUlogovaniSluzbenik() {
         return sluzbenik;
     }
@@ -78,5 +93,9 @@ public class ClientThread extends Thread {
     public void terminateThread() throws IOException {
         isOn = false;
         klijentskiSocket.close();
+
+        server.izbaciIzUlogovanih(this);
+        server.osveziFormu();
+
     }
 }
