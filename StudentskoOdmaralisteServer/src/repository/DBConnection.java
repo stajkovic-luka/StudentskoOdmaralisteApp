@@ -1,27 +1,41 @@
 package repository;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.*;
 import java.lang.System.Logger;
 import java.util.LinkedList;
+import java.util.Properties;
 
 // Uspostavljanje konekcije sa bazom
 public class DBConnection {
 
     private Logger logger;
-    private Connection connection;
     private static DBConnection instance;
-    private final String conUsername = "root";
-    private final String conPassword = "";
-    private String conUrl = "jdbc:mysql://localhost:3306/studentsko_odmaraliste";
     private LinkedList<Connection> pool = new LinkedList<>();
     private final int MAX_CONNECTIONS = 20; // Velicina pool-a
 
     private DBConnection() throws SQLException {
         // Inicijalizacija connection pool-a
         for (int i = 0; i < MAX_CONNECTIONS; i++) {
-            connection = DriverManager.getConnection(conUrl, conUsername, conPassword);
+            // Ucitavanje kredencijala za bazu iz properties fajla
+            InputStream input = DBConnection.class.getResourceAsStream("/db.properties");
+            Properties properties = new Properties();
+
+            try {
+                properties.load(input);
+            } catch (IOException ex) {
+                java.util.logging.Logger.getLogger(DBConnection.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
+            }
+            String url = properties.getProperty("database.url");
+            String user = properties.getProperty("database.user");
+            String password = properties.getProperty("database.password");
+
+            Connection connection = DriverManager.getConnection(url, user, password);
             addToPool(connection);
 
+            // Transakcije
             connection.setAutoCommit(false);
         }
         System.out.println("Connection pool kreiran.");
@@ -34,17 +48,15 @@ public class DBConnection {
         return instance;
     }
 
-    public synchronized Connection getConnection() throws SQLException {
-
-        return fetchConnection();
-    }
-
-    private synchronized Connection fetchConnection() throws SQLException {
+    public synchronized Connection fetchConnection() throws SQLException {
         if (pool.size() == 0) {
             throw new SQLException("Nema slobodnih konekcija.");
         }
 
-        return pool.removeFirst();
+        Connection connection = pool.removeFirst();
+        System.out.println("Uzeta konekcija, ostalo: " + pool.size());
+        return connection;
+
     }
 
     public synchronized void returnToPool(Connection con) throws SQLException {
