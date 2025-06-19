@@ -30,7 +30,7 @@ public class Controller {
         return instance;
     }
 
-    public void login(String username, String password) throws IOException {
+    public Sluzbenik login(String username, String password) throws IOException {
         Sluzbenik sluzbenik = new Sluzbenik(username, password);
         System.out.println("DEBUG: "+username+" "+password);
         
@@ -41,6 +41,9 @@ public class Controller {
         
         System.out.println("------");
         System.out.println("PRIMLJENO:" + response.getServerResponse());
+        
+        return (Sluzbenik) response.getServerResponse();
+        
         
 
     }

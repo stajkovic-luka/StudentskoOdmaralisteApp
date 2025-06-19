@@ -6,6 +6,7 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import controller.Controller;
+import domain.Sluzbenik;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -130,12 +131,23 @@ public class LogInForma extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonLogInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLogInActionPerformed
+        if(jTextFieldKorisnickoIme.getText().isEmpty() || String.valueOf(jPasswordField.getPassword()).isEmpty()){
+            JOptionPane.showMessageDialog(this, "Polja za login ne smeju biti prazna.", "Greska", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
         String username = jTextFieldKorisnickoIme.getText();
         String password = String.valueOf(jPasswordField.getPassword());
 
         try {
-
-            Controller.getInstance().login(username,password);
+            Sluzbenik ulogovaniSluzbenik = Controller.getInstance().login(username,password);
+                    
+            if(ulogovaniSluzbenik instanceof Sluzbenik){
+                MainForma mf = new MainForma(ulogovaniSluzbenik);
+                mf.setVisible(true);
+                
+                this.dispose();
+            }
+            
         } catch (Exception ex) {
             Logger.getLogger(LogInForma.class.getName()).log(Level.SEVERE, null, ex);
         }

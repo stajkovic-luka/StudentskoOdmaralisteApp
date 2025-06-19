@@ -1,12 +1,17 @@
 package form;
 
+import domain.Sluzbenik;
 import java.awt.Color;
 import java.awt.Image;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import table.ServerTableModel;
+import threads.ClientThread;
 import threads.ServerThread;
 
 /**
@@ -22,6 +27,7 @@ public class ServerskaForma extends javax.swing.JFrame {
         initComponents();
         jButtonStop.setEnabled(false);
         stilizuj();
+        inicijalizujTabelu();
         
         
         
@@ -181,9 +187,24 @@ public class ServerskaForma extends javax.swing.JFrame {
         ImageIcon scaledIcon = new ImageIcon(imageScale);
         jLabelLogo.setIcon(scaledIcon);
     }
+    
+    
 
     setTitle("SERVER");
 }
+
+    private void inicijalizujTabelu() {
+        List<Sluzbenik> listaSluzbenika = new ArrayList<>();
+       
+        
+//        List<ClientThread> listaKlijenata = server.getListaKlijenata();
+//        
+//        for (ClientThread klijent : listaKlijenata) {
+//            listaSluzbenika.add(klijent.getUlogovaniSluzbenik());
+//        }
+//        
+        jTable1.setModel(new ServerTableModel(listaSluzbenika));
+    }
     
     
 }

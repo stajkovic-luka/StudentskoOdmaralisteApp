@@ -40,6 +40,7 @@ public class ServerThread extends Thread {
                 Socket klijentskiSocket = serverSocket.accept();
                 System.out.println("Klijent se konektovao.");
 
+                //Dodavanje klijentske niti u listu svih ulogovanih klijenata
                 ClientThread klijentskaNit = new ClientThread(klijentskiSocket, this);
                 listaKlijenata.add(klijentskaNit);
                 klijentskaNit.start();
@@ -63,7 +64,6 @@ public class ServerThread extends Thread {
         for (ClientThread klijent : listaKlijenata) {
             if (!klijent.klijentskiSocket.isClosed()) {
                 klijent.terminateThread();
-                System.out.println("Tu sam");
             }
         }
 
@@ -71,5 +71,11 @@ public class ServerThread extends Thread {
         System.out.println("Server ugasen!");
 
     }
+
+    public List<ClientThread> getListaKlijenata() {
+        return listaKlijenata;
+    }
+    
+    
 
 }

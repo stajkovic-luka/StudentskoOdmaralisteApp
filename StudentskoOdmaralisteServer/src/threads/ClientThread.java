@@ -13,7 +13,7 @@ import transfer.Operation;
 import controller.Controller;
 
 public class ClientThread extends Thread {
-
+    
     private final Sender sender;
     private final Receiver receiver;
     private final Controller controller;
@@ -37,22 +37,25 @@ public class ClientThread extends Thread {
     public void run() {
         try {
             while (!klijentskiSocket.isClosed()) {
-
+                
                 Request request = (Request) receiver.receive();
                 Response response = new Response();
-
+                
                 try {
                     switch (request.getOperation()) {
                         case LOGIN -> {
-                            Sluzbenik sluzbenik = (Sluzbenik) request.getArgument();
+                            
+                            sluzbenik = (Sluzbenik) request.getArgument();
                             response.setServerResponse(controller.login(sluzbenik));
+                            
+                            
                         }
                         default -> {
                             throw new Exception("Nepoznata operacija!");
                         }
-
+                        
                     }
-
+                    
                 } catch (Exception e) {
                     e.printStackTrace();
                     response.setException(e);
@@ -64,9 +67,9 @@ public class ClientThread extends Thread {
         } catch (IOException ioe) {
             ioe.printStackTrace();
         }
-
+        
     }
-
+    
     public Sluzbenik getUlogovaniSluzbenik() {
         return sluzbenik;
     }

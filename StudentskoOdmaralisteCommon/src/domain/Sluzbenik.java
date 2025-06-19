@@ -32,6 +32,12 @@ public class Sluzbenik implements Serializable, DomainObject {
         this.lozinka = lozinka;
     }
     
+    public Sluzbenik(String ime, String prezime, String korisnickoIme){
+        this.ime = ime;
+        this.prezime = prezime;
+        this.korisnickoIme = korisnickoIme;
+    }
+    
     public Sluzbenik(int idSluzbenik, String ime, String prezime, String korisnickoIme, String lozinka) {
         this.idSluzbenik = idSluzbenik;
         this.ime = ime;
