@@ -18,7 +18,7 @@ public class DBConnection {
     private DBConnection() throws SQLException {
         // Inicijalizacija connection pool-a
         for (int i = 0; i < MAX_CONNECTIONS; i++) {
-            // Ucitavanje kredencijala za bazu iz properties fajla
+            // Ucitavanje kredencijala za bazu iz .properties fajla
             InputStream input = DBConnection.class.getResourceAsStream("/db.properties");
             Properties properties = new Properties();
 

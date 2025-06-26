@@ -47,9 +47,17 @@ CREATE TABLE `fakultet` (
   `naziv` varchar(100) NOT NULL,
   `mesto` varchar(100) NOT NULL,
   PRIMARY KEY (`idFakultet`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 /*Data for the table `fakultet` */
+
+insert  into `fakultet`(`idFakultet`,`naziv`,`mesto`) values 
+(1,'Fakultet Organizacionih Nauka','Beograd'),
+(2,'Elektrotehnicki fakultet','Beograd'),
+(3,'Elektronski fakultet','Nis'),
+(4,'Pravni fakultet','Beograd'),
+(5,'Pravni fakultet','Nis'),
+(6,'Ekonomski fakultet','Kragujevac');
 
 /*Table structure for table `nocenje` */
 
@@ -76,9 +84,14 @@ CREATE TABLE `sluzbenik` (
   `lozinka` varchar(100) NOT NULL,
   PRIMARY KEY (`idSluzbenik`),
   UNIQUE KEY `korisnickoIme` (`korisnickoIme`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 /*Data for the table `sluzbenik` */
+
+insert  into `sluzbenik`(`idSluzbenik`,`ime`,`prezime`,`korisnickoIme`,`lozinka`) values 
+(1,'Luka','Stajkovic','lule','lule123'),
+(2,'Marko','Markovic','marko','marko123'),
+(3,'Stefan','Stefanovic','stef','stef123');
 
 /*Table structure for table `sluzbeniksmena` */
 

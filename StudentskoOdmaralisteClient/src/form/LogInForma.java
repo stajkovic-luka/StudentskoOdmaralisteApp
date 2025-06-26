@@ -7,6 +7,9 @@ import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import controller.Controller;
 import domain.Sluzbenik;
+import java.io.EOFException;
+import java.io.IOException;
+import java.net.SocketException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -28,32 +31,29 @@ public class LogInForma extends javax.swing.JFrame {
     }
 
     private void dodajStil() {
-    this.setLocationRelativeTo(null);
+        this.setLocationRelativeTo(null);
 
-    // Pozadina
-    getContentPane().setBackground(new Color(173, 216, 230)); 
+        // Pozadina
+        getContentPane().setBackground(new Color(173, 216, 230));
 
-    // Dugme
-    jButtonLogIn.setBackground(new Color(255, 140, 0)); 
-    jButtonLogIn.setForeground(Color.WHITE);
-    jButtonLogIn.setFont(jButtonLogIn.getFont().deriveFont(java.awt.Font.BOLD, 16f));
-    jButtonLogIn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-    jButtonLogIn.setBorder(javax.swing.BorderFactory.createEmptyBorder(8, 20, 8, 20));
-    jButtonLogIn.setOpaque(true);
+        // Dugme
+        jButtonLogIn.setBackground(new Color(255, 140, 0));
+        jButtonLogIn.setForeground(Color.WHITE);
+        jButtonLogIn.setFont(jButtonLogIn.getFont().deriveFont(java.awt.Font.BOLD, 16f));
+        jButtonLogIn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonLogIn.setBorder(javax.swing.BorderFactory.createEmptyBorder(8, 20, 8, 20));
+        jButtonLogIn.setOpaque(true);
 
-    // Labele
-    Color bojaLabele = new Color(30, 60, 90);
-    jLabelKorisnickoIme.setForeground(bojaLabele);
-    jLabelKorisnickoIme.setFont(jLabelKorisnickoIme.getFont().deriveFont(java.awt.Font.BOLD, 18f));
-    jLabelSifra.setForeground(bojaLabele);
-    jLabelSifra.setFont(jLabelSifra.getFont().deriveFont(java.awt.Font.BOLD, 18f));
+        // Labele
+        Color bojaLabele = new Color(30, 60, 90);
+        jLabelKorisnickoIme.setForeground(bojaLabele);
+        jLabelKorisnickoIme.setFont(jLabelKorisnickoIme.getFont().deriveFont(java.awt.Font.BOLD, 18f));
+        jLabelSifra.setForeground(bojaLabele);
+        jLabelSifra.setFont(jLabelSifra.getFont().deriveFont(java.awt.Font.BOLD, 18f));
 
-    
-    
-    // Naslov forme
-    setTitle("Sluzbenik Login");
-}
-
+        // Naslov forme
+        setTitle("Sluzbenik Login");
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -131,7 +131,7 @@ public class LogInForma extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonLogInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLogInActionPerformed
-        if(jTextFieldKorisnickoIme.getText().isEmpty() || String.valueOf(jPasswordField.getPassword()).isEmpty()){
+        if (jTextFieldKorisnickoIme.getText().isEmpty() || String.valueOf(jPasswordField.getPassword()).isEmpty()) {
             JOptionPane.showMessageDialog(this, "Polja za login ne smeju biti prazna.", "Greska", JOptionPane.ERROR_MESSAGE);
             return;
         }
@@ -139,19 +139,32 @@ public class LogInForma extends javax.swing.JFrame {
         String password = String.valueOf(jPasswordField.getPassword());
 
         try {
-            Sluzbenik ulogovaniSluzbenik = Controller.getInstance().login(username,password);
-                    
-            if(ulogovaniSluzbenik instanceof Sluzbenik){
+            Sluzbenik ulogovaniSluzbenik = Controller.getInstance().login(username, password);
+
+            if (ulogovaniSluzbenik instanceof Sluzbenik) {
+                JOptionPane.showMessageDialog(this, "Korisnicko ime i sifra su ispravni.", "Operacija uspesna", JOptionPane.INFORMATION_MESSAGE);
                 MainForma mf = new MainForma(ulogovaniSluzbenik);
                 mf.setVisible(true);
-                
+
                 this.dispose();
             }
-            
-        } catch (Exception ex) {
-            Logger.getLogger(LogInForma.class.getName()).log(Level.SEVERE, null, ex);
+
+        } catch (EOFException eofex) {
+            eofex.printStackTrace();
+            jTextFieldKorisnickoIme.setText("");
+            jPasswordField.setText("");
+            JOptionPane.showMessageDialog(this, "Korisnicko ime i sifra nisu ispravni", "Operacija neuspesna", JOptionPane.ERROR_MESSAGE);
+
+        } catch (SocketException sockex) {
+            sockex.printStackTrace();
+            jTextFieldKorisnickoIme.setText("");
+            jPasswordField.setText("");
+            JOptionPane.showMessageDialog(this, "Server nije pokrenut", "Operacija neuspesna", JOptionPane.ERROR_MESSAGE);
+
+        } catch (Exception ex){
+            ex.printStackTrace();
         }
-        
+
     }//GEN-LAST:event_jButtonLogInActionPerformed
 
 
