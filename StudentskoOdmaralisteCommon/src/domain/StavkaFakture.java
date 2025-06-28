@@ -14,4 +14,5 @@ public class StavkaFakture implements Serializable{
     private double iznos;
     private double dodatniTroskovi;
     private Nocenje nocenje;
+    private FakturaOdmora fakturaOdmora;
 }

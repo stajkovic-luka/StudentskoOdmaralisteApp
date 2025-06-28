@@ -3,17 +3,20 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/Projekti/PS%20projekat/StudentskoOdmaralisteCommon/src/domain/DomainObject.java</file>
             <file>file:/D:/Projekti/PS%20projekat/StudentskoOdmaralisteCommon/src/domain/FakturaOdmora.java</file>
+            <file>file:/D:/Projekti/PS%20projekat/StudentskoOdmaralisteCommon/src/domain/Student.java</file>
             <file>file:/D:/Projekti/PS%20projekat/StudentskoOdmaralisteCommon/src/domain/Sluzbenik.java</file>
             <file>file:/D:/Projekti/PS%20projekat/StudentskoOdmaralisteCommon/src/transfer/Request.java</file>
-            <file>file:/D:/Projekti/PS%20projekat/StudentskoOdmaralisteCommon/src/domain/Nocenje.java</file>
             <file>file:/D:/Projekti/PS%20projekat/StudentskoOdmaralisteCommon/src/domain/TipSmene.java</file>
-            <file>file:/D:/Projekti/PS%20projekat/StudentskoOdmaralisteCommon/src/transfer/Operation.java</file>
-            <file>file:/D:/Projekti/PS%20projekat/StudentskoOdmaralisteCommon/src/transfer/Receiver.java</file>
             <file>file:/D:/Projekti/PS%20projekat/StudentskoOdmaralisteCommon/src/transfer/Response.java</file>
             <file>file:/D:/Projekti/PS%20projekat/StudentskoOdmaralisteCommon/src/domain/SluzbenikSmena.java</file>
             <file>file:/D:/Projekti/PS%20projekat/StudentskoOdmaralisteCommon/src/domain/Fakultet.java</file>
+            <file>file:/D:/Projekti/PS%20projekat/StudentskoOdmaralisteCommon/src/domain/DomainObject.java</file>
+            <file>file:/D:/Projekti/PS%20projekat/StudentskoOdmaralisteCommon/src/domain/StavkaFakture.java</file>
+            <file>file:/D:/Projekti/PS%20projekat/StudentskoOdmaralisteCommon/src/domain/Nocenje.java</file>
+            <file>file:/D:/Projekti/PS%20projekat/StudentskoOdmaralisteCommon/src/domain/Smena.java</file>
+            <file>file:/D:/Projekti/PS%20projekat/StudentskoOdmaralisteCommon/src/transfer/Operation.java</file>
+            <file>file:/D:/Projekti/PS%20projekat/StudentskoOdmaralisteCommon/src/transfer/Receiver.java</file>
         </group>
     </open-files>
 </project-private>

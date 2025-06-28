@@ -19,7 +19,9 @@ import threads.ServerThread;
  * @author lukas
  */
 public class ServerskaForma extends javax.swing.JFrame {
+
     private ServerThread server;
+
     /**
      * Creates new form ServerskaForma
      */
@@ -28,9 +30,7 @@ public class ServerskaForma extends javax.swing.JFrame {
         jButtonStop.setEnabled(false);
         stilizuj();
         inicijalizujTabelu();
-        
-        
-        
+
     }
 
     /**
@@ -48,6 +48,9 @@ public class ServerskaForma extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
+        jMenuBar = new javax.swing.JMenuBar();
+        jMenu = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -85,6 +88,21 @@ public class ServerskaForma extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel1.setText("Trenutno ulogovani:");
 
+        jMenu.setText("KONFIGURACIJA");
+
+        jMenuItem1.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        jMenuItem1.setText("Izmeni konfiguraciju servera");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu.add(jMenuItem1);
+
+        jMenuBar.add(jMenu);
+
+        setJMenuBar(jMenuBar);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -92,18 +110,18 @@ public class ServerskaForma extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(47, 47, 47)
+                        .addGap(24, 24, 24)
+                        .addComponent(jLabelLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 394, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(77, 77, 77)
                         .addComponent(jButtonStart, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(30, 30, 30)
-                        .addComponent(jButtonStop, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(24, 24, 24)
-                        .addComponent(jLabelLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+                        .addComponent(jButtonStop, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 480, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 429, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(42, 42, 42))
+                .addGap(25, 25, 25))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -111,10 +129,10 @@ public class ServerskaForma extends javax.swing.JFrame {
                 .addGap(31, 31, 31)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(12, 12, 12)
                         .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(12, 12, 12))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabelLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 406, Short.MAX_VALUE)
                         .addGap(18, 18, 18)
@@ -132,20 +150,20 @@ public class ServerskaForma extends javax.swing.JFrame {
             server = new ServerThread();
             server.start();
             server.setForma(this);
-            
+
         } catch (IOException ex) {
             Logger.getLogger(ServerskaForma.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         jButtonStart.setEnabled(false);
         jButtonStop.setEnabled(true);
     }//GEN-LAST:event_jButtonStartActionPerformed
 
     private void jButtonStopActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonStopActionPerformed
         try {
-            if(server != null){
+            if (server != null) {
                 server.stopServer();
-                
+
             }
 
         } catch (IOException ex) {
@@ -153,13 +171,17 @@ public class ServerskaForma extends javax.swing.JFrame {
         } catch (InterruptedException ex) {
             Logger.getLogger(ServerskaForma.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         jButtonStop.setEnabled(false);
         jButtonStart.setEnabled(true);
-        
+
     }//GEN-LAST:event_jButtonStopActionPerformed
 
-    
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        KonfiguracionaForma kf = new KonfiguracionaForma(this, true);
+        kf.setVisible(true);
+        kf.setResizable(false);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -167,46 +189,59 @@ public class ServerskaForma extends javax.swing.JFrame {
     private javax.swing.JButton jButtonStop;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabelLogo;
+    private javax.swing.JMenu jMenu;
+    private javax.swing.JMenuBar jMenuBar;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 
     private void stilizuj() {
-    this.setLocationRelativeTo(null);
+        this.setLocationRelativeTo(null);
 
-    getContentPane().setBackground(new Color(173, 216, 230));
+        getContentPane().setBackground(new Color(173, 216, 230));
 
-    // Dugmad START i STOP
-    jButtonStart.setBackground(new Color(255, 140, 0));
-    jButtonStart.setForeground(Color.WHITE);
-    jButtonStart.setFont(jButtonStart.getFont().deriveFont(java.awt.Font.BOLD, 16f));
-    jButtonStart.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-    jButtonStart.setBorder(javax.swing.BorderFactory.createEmptyBorder(8, 20, 8, 20));
+        // Dugmad START i STOP
+        jButtonStart.setBackground(new Color(255, 140, 0));
+        jButtonStart.setForeground(Color.WHITE);
+        jButtonStart.setFont(jButtonStart.getFont().deriveFont(java.awt.Font.BOLD, 16f));
+        jButtonStart.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonStart.setBorder(javax.swing.BorderFactory.createEmptyBorder(8, 20, 8, 20));
 
-    jButtonStop.setBackground(new Color(255, 140, 0));
-    jButtonStop.setForeground(Color.WHITE);
-    jButtonStop.setFont(jButtonStop.getFont().deriveFont(java.awt.Font.BOLD, 16f));
-    jButtonStop.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-    jButtonStop.setBorder(javax.swing.BorderFactory.createEmptyBorder(8, 20, 8, 20));
+        jButtonStop.setBackground(new Color(255, 140, 0));
+        jButtonStop.setForeground(Color.WHITE);
+        jButtonStop.setFont(jButtonStop.getFont().deriveFont(java.awt.Font.BOLD, 16f));
+        jButtonStop.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonStop.setBorder(javax.swing.BorderFactory.createEmptyBorder(8, 20, 8, 20));
 
-    // Ikonica
-    Icon i = jLabelLogo.getIcon();
-    if (i instanceof ImageIcon) {
-        ImageIcon icon = (ImageIcon) i;
-        Image imageScale = icon.getImage().getScaledInstance(jLabelLogo.getWidth(), jLabelLogo.getHeight(), Image.SCALE_SMOOTH);
-        ImageIcon scaledIcon = new ImageIcon(imageScale);
-        jLabelLogo.setIcon(scaledIcon);
+        // Ikonica logo
+        Icon i = jLabelLogo.getIcon();
+        if (i instanceof ImageIcon) {
+            ImageIcon icon = (ImageIcon) i;
+            Image imageScale = icon.getImage().getScaledInstance(jLabelLogo.getWidth(), jLabelLogo.getHeight(), Image.SCALE_SMOOTH);
+            ImageIcon scaledIcon = new ImageIcon(imageScale);
+            jLabelLogo.setIcon(scaledIcon);
+        }
+
+        // Ikonica menu bar
+        ImageIcon originalIcon = new ImageIcon(getClass().getResource("/image/GearIcon.png"));
+        int novaSirina = 25;
+        int novaVisina = 25; 
+        Image skaliranaSlika = originalIcon.getImage().getScaledInstance(
+                novaSirina,
+                novaVisina,
+                Image.SCALE_SMOOTH
+        );
+        ImageIcon scaledIcon = new ImageIcon(skaliranaSlika);
+        jMenuItem1.setIcon(scaledIcon);
+        
+        // Naslove forme
+        setTitle("SERVER");
     }
-    
-    
-
-    setTitle("SERVER");
-}
 
     private void inicijalizujTabelu() {
         List<Sluzbenik> listaSluzbenika = new ArrayList<>();
-       
-        
+
 //        List<ClientThread> listaKlijenata = server.getListaKlijenata();
 //        
 //        for (ClientThread klijent : listaKlijenata) {
@@ -217,10 +252,9 @@ public class ServerskaForma extends javax.swing.JFrame {
     }
 
     public void osveziTabelu(List<Sluzbenik> trenutnoUlogovani) {
-        
+
         ServerTableModel model = (ServerTableModel) jTable1.getModel();
         model.setListaSluzbenik(trenutnoUlogovani);
     }
-    
-    
+
 }
