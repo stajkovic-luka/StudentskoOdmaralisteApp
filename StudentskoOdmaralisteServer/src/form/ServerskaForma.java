@@ -90,7 +90,7 @@ public class ServerskaForma extends javax.swing.JFrame {
 
         jMenu.setText("KONFIGURACIJA");
 
-        jMenuItem1.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        jMenuItem1.setFont(new java.awt.Font("Segoe UI", 1, 11)); // NOI18N
         jMenuItem1.setText("Izmeni konfiguraciju servera");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

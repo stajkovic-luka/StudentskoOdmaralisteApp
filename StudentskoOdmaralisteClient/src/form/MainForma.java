@@ -3,8 +3,11 @@ package form;
 import domain.Sluzbenik;
 import java.awt.Color;
 import java.awt.Image;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.Timer;
 
 /**
  *
@@ -32,38 +35,99 @@ public class MainForma extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jLabelUlogovan = new javax.swing.JLabel();
         jLabelUlogovaniSluzbenik = new javax.swing.JLabel();
         jLabelLogo = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jButtonUgasi = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jLabelVreme = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
+        jMenuOperacije = new javax.swing.JMenu();
+        jMenuDokumenti = new javax.swing.JMenu();
+        jMenuItemFaktura = new javax.swing.JMenuItem();
+        jMenuPruzalacUsluge = new javax.swing.JMenu();
+        jMenuItemSluzbenik = new javax.swing.JMenuItem();
+        jMenuPrimalacUsluge = new javax.swing.JMenu();
+        jMenuItemStudent = new javax.swing.JMenuItem();
+        jMenuSifranici = new javax.swing.JMenu();
+        jMenuItemNocenje = new javax.swing.JMenuItem();
+        jMenuItemSmena = new javax.swing.JMenuItem();
+        jMenuItemFakultet = new javax.swing.JMenuItem();
+
+        jMenuItem1.setText("jMenuItem1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("Ulogovan:");
+        jLabelUlogovan.setText("Ulogovan:");
 
-        jLabelUlogovaniSluzbenik.setText("...");
+        jLabelUlogovaniSluzbenik.setBackground(new java.awt.Color(0, 0, 0));
+        jLabelUlogovaniSluzbenik.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabelUlogovaniSluzbenik.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         jLabelLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/logo.png"))); // NOI18N
         jLabelLogo.setText("jLabel2");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+        jButtonUgasi.setText("Ugasi program");
+        jButtonUgasi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonUgasiActionPerformed(evt);
             }
-        ));
-        jScrollPane1.setViewportView(jTable1);
+        });
 
-        jMenu1.setText("OPERACIJE");
-        jMenuBar1.add(jMenu1);
+        jLabel2.setText("Vreme:");
+
+        jLabelVreme.setBackground(new java.awt.Color(0, 0, 0));
+        jLabelVreme.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabelVreme.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+
+        jMenuOperacije.setText("OPERACIJE");
+
+        jMenuDokumenti.setText("Dokumenti");
+
+        jMenuItemFaktura.setText("Faktura");
+        jMenuItemFaktura.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemFakturaActionPerformed(evt);
+            }
+        });
+        jMenuDokumenti.add(jMenuItemFaktura);
+
+        jMenuOperacije.add(jMenuDokumenti);
+
+        jMenuPruzalacUsluge.setText("Pruzalac Usluge");
+
+        jMenuItemSluzbenik.setText("Sluzbenik");
+        jMenuPruzalacUsluge.add(jMenuItemSluzbenik);
+
+        jMenuOperacije.add(jMenuPruzalacUsluge);
+
+        jMenuPrimalacUsluge.setText("Primalac Usluge");
+
+        jMenuItemStudent.setText("Student");
+        jMenuPrimalacUsluge.add(jMenuItemStudent);
+
+        jMenuOperacije.add(jMenuPrimalacUsluge);
+
+        jMenuSifranici.setText("Šifarnici");
+
+        jMenuItemNocenje.setText("Noćenje");
+        jMenuItemNocenje.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemNocenjeActionPerformed(evt);
+            }
+        });
+        jMenuSifranici.add(jMenuItemNocenje);
+
+        jMenuItemSmena.setText("Smena");
+        jMenuSifranici.add(jMenuItemSmena);
+
+        jMenuItemFakultet.setText("Fakultet");
+        jMenuSifranici.add(jMenuItemFakultet);
+
+        jMenuOperacije.add(jMenuSifranici);
+
+        jMenuBar1.add(jMenuOperacije);
 
         setJMenuBar(jMenuBar1);
 
@@ -71,39 +135,58 @@ public class MainForma extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabelUlogovan, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabelUlogovaniSluzbenik, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabelLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(16, 16, 16))
+                        .addComponent(jLabelUlogovaniSluzbenik, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 703, Short.MAX_VALUE)
-                        .addContainerGap())))
+                        .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabelVreme, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabelLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonUgasi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(14, 14, 14))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap(19, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabelLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(9, 9, 9)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabelUlogovaniSluzbenik))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(21, 21, 21))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jButtonUgasi, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabelLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(19, 19, 19))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jLabelVreme, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabelUlogovan, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+                            .addComponent(jLabelUlogovaniSluzbenik, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap())))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButtonUgasiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonUgasiActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_jButtonUgasiActionPerformed
+
+    private void jMenuItemFakturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemFakturaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItemFakturaActionPerformed
+
+    private void jMenuItemNocenjeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemNocenjeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItemNocenjeActionPerformed
 
     private void stilizuj() {
         this.setLocationRelativeTo(null);
@@ -111,7 +194,17 @@ public class MainForma extends javax.swing.JFrame {
 
         getContentPane().setBackground(new Color(173, 216, 230));
 
+        Timer timer = new Timer(1000, e -> {
+            LocalTime curTime = LocalTime.now();
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
+            
+            String formattedTime = curTime.format(formatter);
+            
+            jLabelVreme.setText(formattedTime);
+        }
+        );
         
+        timer.start();
         
         // Ikonica
     Icon i = jLabelLogo.getIcon();
@@ -127,12 +220,24 @@ public class MainForma extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton jButtonUgasi;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabelLogo;
+    private javax.swing.JLabel jLabelUlogovan;
     private javax.swing.JLabel jLabelUlogovaniSluzbenik;
-    private javax.swing.JMenu jMenu1;
+    private javax.swing.JLabel jLabelVreme;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JMenu jMenuDokumenti;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItemFaktura;
+    private javax.swing.JMenuItem jMenuItemFakultet;
+    private javax.swing.JMenuItem jMenuItemNocenje;
+    private javax.swing.JMenuItem jMenuItemSluzbenik;
+    private javax.swing.JMenuItem jMenuItemSmena;
+    private javax.swing.JMenuItem jMenuItemStudent;
+    private javax.swing.JMenu jMenuOperacije;
+    private javax.swing.JMenu jMenuPrimalacUsluge;
+    private javax.swing.JMenu jMenuPruzalacUsluge;
+    private javax.swing.JMenu jMenuSifranici;
     // End of variables declaration//GEN-END:variables
 }

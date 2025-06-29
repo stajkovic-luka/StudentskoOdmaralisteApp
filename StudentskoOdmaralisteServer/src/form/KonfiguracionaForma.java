@@ -283,29 +283,32 @@ public class KonfiguracionaForma extends javax.swing.JDialog {
         String noviUrl = "jdbc:mysql://localhost:" + noviPort + "/" + noviNazivBaze;
         System.out.println(noviUrl);
         System.out.println(noviKorisnik + " " + novaLozinka);
-        
+
         properties.setProperty("database.url", noviUrl);
         properties.setProperty("database.password", novaLozinka);
         properties.setProperty("database.user", noviKorisnik);
 
         try {
             BufferedWriter writer = new BufferedWriter(new FileWriter("config/db.properties"));
-            writer.write("# Azurirano: "+ LocalDateTime.now());
+            writer.write("# Azurirano: " + LocalDateTime.now());
             writer.newLine();
-            
-            for(String key: properties.stringPropertyNames()){
+
+            for (String key : properties.stringPropertyNames()) {
                 String value = properties.getProperty(key);
                 writer.write(key + "=" + value);
                 writer.newLine();
             }
             writer.close();
-            
+
             JOptionPane.showMessageDialog(this, "Podaci uspesno azurirani", "Uspesna operacija", JOptionPane.INFORMATION_MESSAGE);
+
         } catch (Exception ex) {
             ex.printStackTrace();
             JOptionPane.showMessageDialog(this, "Podaci nisu azurirani, doslo je do greske.", "Greska", JOptionPane.ERROR_MESSAGE);
-
         }
+        this.dispose();
+
+
     }//GEN-LAST:event_jButtonActionPerformed
 
 
@@ -356,14 +359,14 @@ public class KonfiguracionaForma extends javax.swing.JDialog {
 
     private void postaviPlaceholder(JTextField field, String text) {
         field.setText(text);
-        field.setForeground(Color.WHITE);
-        field.setBackground(Color.LIGHT_GRAY);
+        field.setForeground(new Color(140, 140, 140));
+        field.setBackground(new Color(245, 245, 245));
     }
 
     private void postaviPlaceholder(JPasswordField pwField, String password) {
         pwField.setText(password);
-        pwField.setForeground(Color.WHITE);
-        pwField.setBackground(Color.LIGHT_GRAY);
+        pwField.setForeground(new Color(140, 140, 140));
+        pwField.setBackground(new Color(245, 245, 245));
     }
 
     private void stilizuj() {

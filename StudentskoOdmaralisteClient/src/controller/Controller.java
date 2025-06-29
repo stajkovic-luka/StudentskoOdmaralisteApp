@@ -32,19 +32,13 @@ public class Controller {
 
     public Sluzbenik login(String username, String password) throws IOException {
         Sluzbenik sluzbenik = new Sluzbenik(username, password);
-        System.out.println("DEBUG: "+username+" "+password);
-        
+
         Request request = new Request(Operation.LOGIN, sluzbenik);
         sender.send(request);
-        
+
         Response response = (Response) receiver.receive();
-        
-        System.out.println("------");
-        System.out.println("PRIMLJENO:" + response.getServerResponse());
-        
+
         return (Sluzbenik) response.getServerResponse();
-        
-        
 
     }
 }

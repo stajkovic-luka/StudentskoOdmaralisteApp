@@ -1,11 +1,14 @@
 package repository;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.*;
 import java.lang.System.Logger;
 import java.util.LinkedList;
 import java.util.Properties;
+import java.util.logging.Level;
 
 // Uspostavljanje konekcije sa bazom
 public class DBConnection {
@@ -18,25 +21,34 @@ public class DBConnection {
     private DBConnection() throws SQLException {
         // Inicijalizacija connection pool-a
         for (int i = 0; i < MAX_CONNECTIONS; i++) {
-            // Ucitavanje kredencijala za bazu iz .properties fajla
-            InputStream input = DBConnection.class.getResourceAsStream("/db.properties");
-            Properties properties = new Properties();
-
+            FileInputStream input = null;
             try {
-                properties.load(input);
-            } catch (IOException ex) {
-                java.util.logging.Logger.getLogger(DBConnection.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+                // Ucitavanje kredencijala za bazu iz .properties fajla
+                input = new FileInputStream("config/db.properties");
+                Properties properties = new Properties();
+                try {
+                    properties.load(input);
+                } catch (IOException ex) {
+                    java.util.logging.Logger.getLogger(DBConnection.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+                    
+                }
+                String url = properties.getProperty("database.url");
+                String user = properties.getProperty("database.user");
+                String password = properties.getProperty("database.password");
+                Connection connection = DriverManager.getConnection(url, user, password);
+                addToPool(connection);
+                // Transakcije
+                connection.setAutoCommit(false);
+            } catch (FileNotFoundException ex) {
+                java.util.logging.Logger.getLogger(DBConnection.class.getName()).log(Level.SEVERE, null, ex);
 
+            } finally {
+                try {
+                    input.close();
+                } catch (IOException ex) {
+                    java.util.logging.Logger.getLogger(DBConnection.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
-            String url = properties.getProperty("database.url");
-            String user = properties.getProperty("database.user");
-            String password = properties.getProperty("database.password");
-
-            Connection connection = DriverManager.getConnection(url, user, password);
-            addToPool(connection);
-
-            // Transakcije
-            connection.setAutoCommit(false);
         }
         System.out.println("Connection pool kreiran.");
     }
