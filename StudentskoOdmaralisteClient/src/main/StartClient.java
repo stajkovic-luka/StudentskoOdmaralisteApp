@@ -1,12 +1,21 @@
 package main;
 
+import com.formdev.flatlaf.FlatIntelliJLaf;
 import form.LogInForma;
-
+import javax.swing.SwingUtilities;
+import javax.swing.UIManager;
 
 public class StartClient {
+
     public static void main(String[] args) {
-        // Pokretanje login forme
-        LogInForma loginForma = new LogInForma();
-        loginForma.setVisible(true);
+        SwingUtilities.invokeLater(() -> {
+            try {
+                UIManager.setLookAndFeel(new FlatIntelliJLaf());
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            LogInForma loginForma = new LogInForma();
+            loginForma.setVisible(true);
+        });
     }
 }

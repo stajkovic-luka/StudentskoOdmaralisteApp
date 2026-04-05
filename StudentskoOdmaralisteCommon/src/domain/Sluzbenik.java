@@ -18,7 +18,7 @@ import java.util.Objects;
  */
 public class Sluzbenik implements Serializable, DomainObject {
 
-    private int idSluzbenik;
+    private long idSluzbenik;
     private String ime;
     private String prezime;
     private String korisnickoIme;
@@ -46,7 +46,7 @@ public class Sluzbenik implements Serializable, DomainObject {
         this.lozinka = lozinka;
     }
 
-    public int getIdSluzbenik() {
+    public long getIdSluzbenik() {
         return idSluzbenik;
     }
 

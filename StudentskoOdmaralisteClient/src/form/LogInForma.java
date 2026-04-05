@@ -1,17 +1,17 @@
 package form;
 
-import java.awt.Color;
-import java.awt.Image;
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
-import javax.swing.JOptionPane;
 import controller.Controller;
 import domain.Sluzbenik;
+import java.awt.Color;
+import java.awt.Image;
 import java.io.EOFException;
 import java.io.IOException;
 import java.net.SocketException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -27,29 +27,45 @@ public class LogInForma extends javax.swing.JFrame {
     public LogInForma() {
         initComponents();
         dodajStil();
-
     }
 
     private void dodajStil() {
         this.setLocationRelativeTo(null);
 
         // Pozadina
-        getContentPane().setBackground(new Color(173, 216, 230));
+        getContentPane().setBackground(new Color(0x1C2B3A));
 
         // Dugme
-        jButtonLogIn.setBackground(new Color(255, 140, 0));
+        jButtonLogIn.setBackground(new Color(0xE07B00));
         jButtonLogIn.setForeground(Color.WHITE);
-        jButtonLogIn.setFont(jButtonLogIn.getFont().deriveFont(java.awt.Font.BOLD, 16f));
-        jButtonLogIn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButtonLogIn.setBorder(javax.swing.BorderFactory.createEmptyBorder(8, 20, 8, 20));
+        jButtonLogIn.setFont(
+            jButtonLogIn.getFont().deriveFont(java.awt.Font.BOLD, 15f)
+        );
+        jButtonLogIn.setCursor(
+            new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR)
+        );
+        jButtonLogIn.putClientProperty("JButton.buttonType", "roundRect");
         jButtonLogIn.setOpaque(true);
 
         // Labele
-        Color bojaLabele = new Color(30, 60, 90);
-        jLabelKorisnickoIme.setForeground(bojaLabele);
-        jLabelKorisnickoIme.setFont(jLabelKorisnickoIme.getFont().deriveFont(java.awt.Font.BOLD, 18f));
-        jLabelSifra.setForeground(bojaLabele);
-        jLabelSifra.setFont(jLabelSifra.getFont().deriveFont(java.awt.Font.BOLD, 18f));
+        jLabelKorisnickoIme.setForeground(Color.WHITE);
+        jLabelKorisnickoIme.setFont(
+            jLabelKorisnickoIme.getFont().deriveFont(java.awt.Font.BOLD, 15f)
+        );
+        jLabelSifra.setForeground(Color.WHITE);
+        jLabelSifra.setFont(
+            jLabelSifra.getFont().deriveFont(java.awt.Font.BOLD, 15f)
+        );
+
+        // Placeholder tekst u poljima
+        jTextFieldKorisnickoIme.putClientProperty(
+            "JTextField.placeholderText",
+            "Unesite korisnicko ime..."
+        );
+        jPasswordField.putClientProperty(
+            "JTextField.placeholderText",
+            "Unesite sifru..."
+        );
 
         // Naslov forme
         setTitle("Sluzbenik Login");
@@ -72,16 +88,16 @@ public class LogInForma extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabelKorisnickoIme.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabelKorisnickoIme.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabelKorisnickoIme.setText("Korisnicko ime:");
 
-        jLabelSifra.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabelSifra.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabelSifra.setText("Sifra:");
 
-        jTextFieldKorisnickoIme.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jTextFieldKorisnickoIme.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jTextFieldKorisnickoIme.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
 
-        jPasswordField.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jPasswordField.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
         jButtonLogIn.setText("ULOGUJ SE");
         jButtonLogIn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -105,7 +121,7 @@ public class LogInForma extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabelSifra, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabelKorisnickoIme, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jTextFieldKorisnickoIme, javax.swing.GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE)
                             .addComponent(jPasswordField))))
@@ -114,7 +130,7 @@ public class LogInForma extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(74, Short.MAX_VALUE)
+                .addContainerGap(72, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelKorisnickoIme, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextFieldKorisnickoIme, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -130,43 +146,65 @@ public class LogInForma extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButtonLogInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLogInActionPerformed
-        if (jTextFieldKorisnickoIme.getText().isEmpty() || String.valueOf(jPasswordField.getPassword()).isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Polja za login ne smeju biti prazna.", "Greska", JOptionPane.ERROR_MESSAGE);
+    private void jButtonLogInActionPerformed(java.awt.event.ActionEvent evt) {
+//GEN-FIRST:event_jButtonLogInActionPerformed
+        if (
+            jTextFieldKorisnickoIme.getText().isEmpty() ||
+            String.valueOf(jPasswordField.getPassword()).isEmpty()
+        ) {
+            JOptionPane.showMessageDialog(
+                this,
+                "Polja za login ne smeju biti prazna.",
+                "Greska",
+                JOptionPane.ERROR_MESSAGE
+            );
             return;
         }
         String username = jTextFieldKorisnickoIme.getText();
         String password = String.valueOf(jPasswordField.getPassword());
 
         try {
-            Sluzbenik ulogovaniSluzbenik = Controller.getInstance().login(username, password);
+            Sluzbenik ulogovaniSluzbenik = Controller.getInstance().login(
+                username,
+                password
+            );
 
             if (ulogovaniSluzbenik instanceof Sluzbenik) {
-                JOptionPane.showMessageDialog(this, "Korisnicko ime i sifra su ispravni.", "Operacija uspesna", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(
+                    this,
+                    "Korisnicko ime i sifra su ispravni.",
+                    "Operacija uspesna",
+                    JOptionPane.INFORMATION_MESSAGE
+                );
                 MainForma mf = new MainForma(ulogovaniSluzbenik);
                 mf.setVisible(true);
 
                 this.dispose();
             }
-
         } catch (EOFException eofex) {
             eofex.printStackTrace();
             jTextFieldKorisnickoIme.setText("");
             jPasswordField.setText("");
-            JOptionPane.showMessageDialog(this, "Korisnicko ime i sifra nisu ispravni", "Operacija neuspesna", JOptionPane.ERROR_MESSAGE);
-
+            JOptionPane.showMessageDialog(
+                this,
+                "Korisnicko ime i sifra nisu ispravni",
+                "Operacija neuspesna",
+                JOptionPane.ERROR_MESSAGE
+            );
         } catch (SocketException sockex) {
             sockex.printStackTrace();
             jTextFieldKorisnickoIme.setText("");
             jPasswordField.setText("");
-            JOptionPane.showMessageDialog(this, "Server nije pokrenut", "Operacija neuspesna", JOptionPane.ERROR_MESSAGE);
-
-        } catch (Exception ex){
+            JOptionPane.showMessageDialog(
+                this,
+                "Server nije pokrenut",
+                "Operacija neuspesna",
+                JOptionPane.ERROR_MESSAGE
+            );
+        } catch (Exception ex) {
             ex.printStackTrace();
         }
-
     }//GEN-LAST:event_jButtonLogInActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonLogIn;

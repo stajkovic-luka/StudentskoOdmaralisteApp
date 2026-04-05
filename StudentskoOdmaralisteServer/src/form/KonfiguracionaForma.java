@@ -40,7 +40,6 @@ public class KonfiguracionaForma extends javax.swing.JDialog {
      * Creates new form KonfiguracionaForma
      */
     public KonfiguracionaForma(java.awt.Frame parent, boolean modal) {
-
         super(parent, modal);
         initComponents();
         stilizuj();
@@ -85,7 +84,8 @@ public class KonfiguracionaForma extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Izmena podataka o serverskoj konekciji:");
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -152,27 +152,25 @@ public class KonfiguracionaForma extends javax.swing.JDialog {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(58, 58, 58)
-                .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(42, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jButton)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextFieldNazivBaze)
-                            .addComponent(jTextFieldPort)
-                            .addComponent(jTextFieldUsername)
-                            .addComponent(jPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jTextFieldConnectionInfo, javax.swing.GroupLayout.Alignment.LEADING))
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(jButton)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGap(18, 18, 18)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jTextFieldNazivBaze)
+                                .addComponent(jTextFieldPort)
+                                .addComponent(jTextFieldUsername)
+                                .addComponent(jPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jTextFieldConnectionInfo, javax.swing.GroupLayout.Alignment.LEADING)))
                 .addGap(28, 28, 28))
         );
         layout.setVerticalGroup(
@@ -206,7 +204,8 @@ public class KonfiguracionaForma extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextFieldNazivBazeFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldNazivBazeFocusGained
+    private void jTextFieldNazivBazeFocusGained(java.awt.event.FocusEvent evt) {
+//GEN-FIRST:event_jTextFieldNazivBazeFocusGained
         if (showingPlaceholderNaziv) {
             jTextFieldNazivBaze.setText("");
             jTextFieldNazivBaze.setBackground(Color.white);
@@ -216,14 +215,16 @@ public class KonfiguracionaForma extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_jTextFieldNazivBazeFocusGained
 
-    private void jTextFieldNazivBazeFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldNazivBazeFocusLost
+    private void jTextFieldNazivBazeFocusLost(java.awt.event.FocusEvent evt) {
+//GEN-FIRST:event_jTextFieldNazivBazeFocusLost
         if (jTextFieldNazivBaze.getText().isEmpty()) {
             postaviPlaceholder(jTextFieldNazivBaze, dbName);
             showingPlaceholderNaziv = true;
         }
     }//GEN-LAST:event_jTextFieldNazivBazeFocusLost
 
-    private void jTextFieldPortFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldPortFocusGained
+    private void jTextFieldPortFocusGained(java.awt.event.FocusEvent evt) {
+//GEN-FIRST:event_jTextFieldPortFocusGained
         if (showingPlaceholderPort) {
             jTextFieldPort.setText("");
             jTextFieldPort.setBackground(Color.WHITE);
@@ -233,32 +234,35 @@ public class KonfiguracionaForma extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_jTextFieldPortFocusGained
 
-    private void jTextFieldPortFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldPortFocusLost
+    private void jTextFieldPortFocusLost(java.awt.event.FocusEvent evt) {
+//GEN-FIRST:event_jTextFieldPortFocusLost
         if (jTextFieldPort.getText().isEmpty()) {
             postaviPlaceholder(jTextFieldPort, port);
             showingPlaceholderPort = true;
         }
     }//GEN-LAST:event_jTextFieldPortFocusLost
 
-    private void jTextFieldUsernameFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldUsernameFocusGained
+    private void jTextFieldUsernameFocusGained(java.awt.event.FocusEvent evt) {
+//GEN-FIRST:event_jTextFieldUsernameFocusGained
         if (showingPlaceholderKorisnik) {
             jTextFieldUsername.setText("");
             jTextFieldUsername.setBackground(Color.WHITE);
             jTextFieldUsername.setForeground(Color.BLACK);
 
             showingPlaceholderKorisnik = false;
-
         }
     }//GEN-LAST:event_jTextFieldUsernameFocusGained
 
-    private void jTextFieldUsernameFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldUsernameFocusLost
+    private void jTextFieldUsernameFocusLost(java.awt.event.FocusEvent evt) {
+//GEN-FIRST:event_jTextFieldUsernameFocusLost
         if (jTextFieldUsername.getText().isEmpty()) {
             postaviPlaceholder(jTextFieldUsername, curUser);
             showingPlaceholderKorisnik = true;
         }
     }//GEN-LAST:event_jTextFieldUsernameFocusLost
 
-    private void jPasswordFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jPasswordFieldFocusGained
+    private void jPasswordFieldFocusGained(java.awt.event.FocusEvent evt) {
+//GEN-FIRST:event_jPasswordFieldFocusGained
         if (showingPlaceholderLozinka) {
             jPasswordField.setText("");
             jPasswordField.setBackground(Color.WHITE);
@@ -267,20 +271,23 @@ public class KonfiguracionaForma extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_jPasswordFieldFocusGained
 
-    private void jPasswordFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jPasswordFieldFocusLost
+    private void jPasswordFieldFocusLost(java.awt.event.FocusEvent evt) {
+//GEN-FIRST:event_jPasswordFieldFocusLost
         if (jPasswordField.getPassword().length == 0) {
             postaviPlaceholder(jPasswordField, curPassword);
             showingPlaceholderLozinka = true;
         }
     }//GEN-LAST:event_jPasswordFieldFocusLost
 
-    private void jButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonActionPerformed
+    private void jButtonActionPerformed(java.awt.event.ActionEvent evt) {
+//GEN-FIRST:event_jButtonActionPerformed
         String noviNazivBaze = jTextFieldNazivBaze.getText();
         String noviPort = jTextFieldPort.getText();
         String noviKorisnik = jTextFieldUsername.getText();
         String novaLozinka = String.valueOf(jPasswordField.getPassword());
 
-        String noviUrl = "jdbc:mysql://localhost:" + noviPort + "/" + noviNazivBaze;
+        String noviUrl =
+            "jdbc:mysql://localhost:" + noviPort + "/" + noviNazivBaze;
         System.out.println(noviUrl);
         System.out.println(noviKorisnik + " " + novaLozinka);
 
@@ -289,7 +296,9 @@ public class KonfiguracionaForma extends javax.swing.JDialog {
         properties.setProperty("database.user", noviKorisnik);
 
         try {
-            BufferedWriter writer = new BufferedWriter(new FileWriter("config/db.properties"));
+            BufferedWriter writer = new BufferedWriter(
+                new FileWriter("config/db.properties")
+            );
             writer.write("# Azurirano: " + LocalDateTime.now());
             writer.newLine();
 
@@ -300,17 +309,23 @@ public class KonfiguracionaForma extends javax.swing.JDialog {
             }
             writer.close();
 
-            JOptionPane.showMessageDialog(this, "Podaci uspesno azurirani", "Uspesna operacija", JOptionPane.INFORMATION_MESSAGE);
-
+            JOptionPane.showMessageDialog(
+                this,
+                "Podaci uspesno azurirani",
+                "Uspesna operacija",
+                JOptionPane.INFORMATION_MESSAGE
+            );
         } catch (Exception ex) {
             ex.printStackTrace();
-            JOptionPane.showMessageDialog(this, "Podaci nisu azurirani, doslo je do greske.", "Greska", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(
+                this,
+                "Podaci nisu azurirani, doslo je do greske.",
+                "Greska",
+                JOptionPane.ERROR_MESSAGE
+            );
         }
         this.dispose();
-
-
     }//GEN-LAST:event_jButtonActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton;
@@ -327,7 +342,6 @@ public class KonfiguracionaForma extends javax.swing.JDialog {
     // End of variables declaration//GEN-END:variables
 
     private void popuniPodaciOKonekciji() {
-
         FileInputStream input;
         properties = new Properties();
 
@@ -337,11 +351,18 @@ public class KonfiguracionaForma extends javax.swing.JDialog {
             try {
                 properties.load(input);
             } catch (IOException ex) {
-                Logger.getLogger(KonfiguracionaForma.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(KonfiguracionaForma.class.getName()).log(
+                    Level.SEVERE,
+                    null,
+                    ex
+                );
             }
-
         } catch (FileNotFoundException ex) {
-            Logger.getLogger(KonfiguracionaForma.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(KonfiguracionaForma.class.getName()).log(
+                Level.SEVERE,
+                null,
+                ex
+            );
         }
 
         curPassword = properties.getProperty("database.password");
@@ -372,16 +393,26 @@ public class KonfiguracionaForma extends javax.swing.JDialog {
     private void stilizuj() {
         setLocationRelativeTo(null);
 
-        getContentPane().setBackground(new Color(173, 216, 230));
+        // Pozadina
+        getContentPane().setBackground(new Color(0x1C2B3A));
 
-        jButton.setBackground(new Color(255, 140, 0));
+        // Dugme
+        jButton.setBackground(new Color(0xE07B00));
         jButton.setForeground(Color.WHITE);
         jButton.setFont(jButton.getFont().deriveFont(java.awt.Font.BOLD, 14f));
         jButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton.setBorder(javax.swing.BorderFactory.createEmptyBorder(8, 20, 8, 20));
+        jButton.putClientProperty("JButton.buttonType", "roundRect");
+        jButton.setOpaque(true);
+
+        // Labele
+        jLabel1.setForeground(Color.WHITE);
+        jLabel1.setFont(jLabel1.getFont().deriveFont(java.awt.Font.BOLD, 14f));
+        jLabel2.setForeground(Color.WHITE);
+        jLabel3.setForeground(Color.WHITE);
+        jLabel4.setForeground(Color.WHITE);
+        jLabel5.setForeground(Color.WHITE);
 
         // Naslov forme
         setTitle("Konfiguracija konekcije");
     }
-
 }

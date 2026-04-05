@@ -17,6 +17,39 @@ public class SluzbenikSmena implements Serializable{
     private Smena smena;
     private LocalDate datumSmene;
 
+    public SluzbenikSmena() {
+    }
+
+    public SluzbenikSmena(Sluzbenik sluzbenik, Smena smena, LocalDate datumSmene) {
+        this.sluzbenik = sluzbenik;
+        this.smena = smena;
+        this.datumSmene = datumSmene;
+    }
+
+    public Sluzbenik getSluzbenik() {
+        return sluzbenik;
+    }
+
+    public void setSluzbenik(Sluzbenik sluzbenik) {
+        this.sluzbenik = sluzbenik;
+    }
+
+    public Smena getSmena() {
+        return smena;
+    }
+
+    public void setSmena(Smena smena) {
+        this.smena = smena;
+    }
+
+    public LocalDate getDatumSmene() {
+        return datumSmene;
+    }
+
+    public void setDatumSmene(LocalDate datumSmene) {
+        this.datumSmene = datumSmene;
+    }
+
    
     
     

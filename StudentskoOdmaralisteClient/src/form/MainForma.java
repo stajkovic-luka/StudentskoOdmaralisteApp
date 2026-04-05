@@ -14,7 +14,9 @@ import javax.swing.Timer;
  * @author lukas
  */
 public class MainForma extends javax.swing.JFrame {
+
     private Sluzbenik ulogovaniSluzbenik;
+
     /**
      * Creates new form MainForma
      */
@@ -22,7 +24,7 @@ public class MainForma extends javax.swing.JFrame {
         initComponents();
 
         this.ulogovaniSluzbenik = ulogovaniSluzbenik;
-        
+
         stilizuj();
     }
 
@@ -176,47 +178,82 @@ public class MainForma extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButtonUgasiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonUgasiActionPerformed
+    private void jButtonUgasiActionPerformed(java.awt.event.ActionEvent evt) {
+//GEN-FIRST:event_jButtonUgasiActionPerformed
         this.dispose();
     }//GEN-LAST:event_jButtonUgasiActionPerformed
 
-    private void jMenuItemFakturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemFakturaActionPerformed
+    private void jMenuItemFakturaActionPerformed(
+        java.awt.event.ActionEvent evt
+    ) {
+//GEN-FIRST:event_jMenuItemFakturaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItemFakturaActionPerformed
 
-    private void jMenuItemNocenjeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemNocenjeActionPerformed
+    private void jMenuItemNocenjeActionPerformed(
+        java.awt.event.ActionEvent evt
+    ) {
+//GEN-FIRST:event_jMenuItemNocenjeActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItemNocenjeActionPerformed
 
     private void stilizuj() {
         this.setLocationRelativeTo(null);
-        jLabelUlogovaniSluzbenik.setText(ulogovaniSluzbenik.getIme()+" "+ulogovaniSluzbenik.getPrezime());
+        jLabelUlogovaniSluzbenik.setText(
+            ulogovaniSluzbenik.getIme() + " " + ulogovaniSluzbenik.getPrezime()
+        );
 
-        getContentPane().setBackground(new Color(173, 216, 230));
+        // Pozadina
+        getContentPane().setBackground(new Color(0x1C2B3A));
 
+        // Dugme Ugasi - opasna akcija
+        jButtonUgasi.setBackground(new Color(0xC0392B));
+        jButtonUgasi.setForeground(Color.WHITE);
+        jButtonUgasi.setFont(
+            jButtonUgasi.getFont().deriveFont(java.awt.Font.BOLD, 14f)
+        );
+        jButtonUgasi.setCursor(
+            new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR)
+        );
+        jButtonUgasi.putClientProperty("JButton.buttonType", "roundRect");
+        jButtonUgasi.setOpaque(true);
+
+        // Labele
+        jLabelUlogovan.setForeground(Color.WHITE);
+        jLabelUlogovan.setFont(
+            jLabelUlogovan.getFont().deriveFont(java.awt.Font.BOLD, 14f)
+        );
+        jLabelUlogovaniSluzbenik.setForeground(new Color(0xE07B00));
+        jLabel2.setForeground(Color.WHITE);
+        jLabel2.setFont(jLabel2.getFont().deriveFont(java.awt.Font.BOLD, 14f));
+        jLabelVreme.setForeground(new Color(0xE07B00));
+
+        // Timer za vreme
         Timer timer = new Timer(1000, e -> {
             LocalTime curTime = LocalTime.now();
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
-            
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern(
+                "HH:mm:ss"
+            );
             String formattedTime = curTime.format(formatter);
-            
             jLabelVreme.setText(formattedTime);
-        }
-        );
-        
+        });
         timer.start();
-        
-        // Ikonica
-    Icon i = jLabelLogo.getIcon();
-    if (i instanceof ImageIcon) {
-        ImageIcon icon = (ImageIcon) i;
-        Image imageScale = icon.getImage().getScaledInstance(jLabelLogo.getWidth(), jLabelLogo.getHeight(), Image.SCALE_SMOOTH);
-        ImageIcon scaledIcon = new ImageIcon(imageScale);
-        jLabelLogo.setIcon(scaledIcon);
-    }
-    
-        setTitle("Glavni meni");
 
+        // Ikonica
+        Icon i = jLabelLogo.getIcon();
+        if (i instanceof ImageIcon) {
+            ImageIcon icon = (ImageIcon) i;
+            Image imageScale = icon
+                .getImage()
+                .getScaledInstance(
+                    jLabelLogo.getWidth(),
+                    jLabelLogo.getHeight(),
+                    Image.SCALE_SMOOTH
+                );
+            jLabelLogo.setIcon(new ImageIcon(imageScale));
+        }
+
+        setTitle("Glavni meni");
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
