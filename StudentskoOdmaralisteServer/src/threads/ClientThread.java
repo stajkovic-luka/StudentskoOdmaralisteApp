@@ -23,6 +23,7 @@ public class ClientThread extends Thread {
     private boolean isOn = true; // flag
     private Sluzbenik sluzbenik; // Svaki klijent ulogovan pod nekim sluzbenikom
     Socket klijentskiSocket;
+    private Boolean vecUlogovan = false;
 
     // Postavljanje klijentskog soketa (za svakog klijenta koji se konektuje) i serverske niti
     public ClientThread(Socket klijentskiSocket, ServerThread server) {
@@ -45,32 +46,44 @@ public class ClientThread extends Thread {
 
                 try {
                     switch (request.getOperation()) {
-                        // TODO: Proveri da li je korisnik vec ulogovan, ako jeste, baci gresku sa klijentske strane
-                        // Ne treba na Serverskoj tabeli da se dva puta prikaze isti sluzbenik da je ulogovan
+                        
                         case LOGIN -> {
-
-                            sluzbenik = (Sluzbenik) request.getArgument();
+                            Sluzbenik tempSluzbenik = (Sluzbenik) request.getArgument();
+                            vecUlogovan = server.getListaKlijenata().stream().anyMatch(thread -> { 
+                                Sluzbenik s = thread.getUlogovaniSluzbenik(); 
+                                return s != null && s.getKorisnickoIme().equals(tempSluzbenik.getKorisnickoIme()); 
+                            }); 
+                                    
+                            if (vecUlogovan) {
+                                throw new Exception("Korisnik je vec ulogovan!");
+                            }
                             
-                            Sluzbenik sluzbenikIzBaze = controller.login(sluzbenik);
+                            Sluzbenik sluzbenikIzBaze = controller.login(tempSluzbenik);
 
                             response.setServerResponse(sluzbenikIzBaze);
 
-                            // Podesavanje ulogovanog sluzbenika i refresh serverske tabele
+                           
                             sluzbenik = sluzbenikIzBaze;
                             server.osveziFormu();
+                        }
+                        case LOGOUT -> {
+                            if (Operation.LOGOUT.equals(request.getOperation())) {
+                                terminateThread();
+                                return;
+                            }
                         }
                         default -> {
                             throw new Exception("Nepoznata operacija!");
                         }
 
                     }
-
+                    // Slanje exception-a klijentu u slucaju greske
                 } catch (Exception e) {
                     e.printStackTrace();
                     response.setException(e);
-                    break;
                 }
-
+                
+                // Salji odgovor
                 sender.send(response);
             }
         } catch (IOException ioe) {

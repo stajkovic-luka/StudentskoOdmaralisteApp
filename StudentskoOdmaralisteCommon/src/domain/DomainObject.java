@@ -1,22 +1,27 @@
 package domain;
 
+import java.io.Serializable;
 import java.sql.*;
 import java.util.List;
 
-public interface DomainObject {
+public abstract class DomainObject implements Serializable {
 
-    // TBL
-    String getTableName();
+    // Iz koje tabele citamo podatke
+    public abstract String tableName();
 
-    // SELECT
-    String getColumnsForSelect();
+    // Koje kolone vracamo u SELECT delu
+    public abstract String selectColumns();
 
-    List<DomainObject> getResultParamsForSelectMultiple(ResultSet rs) throws SQLException;
+    // Mapiranje vise redova iz ResultSet-a
+    public abstract List<DomainObject> mapMany(ResultSet rs) throws SQLException;
 
-    DomainObject getResultParamsForSelectOne(ResultSet rs) throws SQLException;
+    // Mapiranje jednog reda iz ResultSet-a
+    public abstract DomainObject mapOne(ResultSet rs) throws SQLException;
 
-    String getSelectWhereClause();
+    // WHERE deo za SELECT upit
+    public abstract String selectWhereClause();
 
-    void setParamsForSelect(PreparedStatement ps) throws SQLException;
+    // Popunjavanje parametara za PreparedStatement
+    public abstract void bindSelectParams(PreparedStatement ps) throws SQLException;
 
 }

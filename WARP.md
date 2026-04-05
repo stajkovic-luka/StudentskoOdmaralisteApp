@@ -21,9 +21,9 @@ The project is organized as three NetBeans/Ant-based Java modules:
 **Domain and persistence abstraction**
 
 - `domain.DomainObject` defines how domain entities map to SQL operations:
-  - `getTableName()`, `getColumnsForSelect()`
-  - `getSelectWhereClause()` and `setParamsForSelect(PreparedStatement)`
-  - `getResultParamsForSelectOne(ResultSet)` / `getResultParamsForSelectMultiple(ResultSet)`
+  - `tableName()`, `selectColumns()`
+  - `selectWhereClause()` and `bindSelectParams(PreparedStatement)`
+  - `mapOne(ResultSet)` / `mapMany(ResultSet)`
 - Concrete domain classes (`Student`, `Fakultet`, `Sluzbenik`, `Nocenje`, `FakturaOdmora`, `StavkaFakture`, `Smena`, `SluzbenikSmena`) typically implement `DomainObject` and encapsulate both data and SQL-mapping logic.
 
 **Network transfer layer**

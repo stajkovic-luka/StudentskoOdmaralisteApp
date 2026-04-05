@@ -16,6 +16,7 @@ public class ServerThread extends Thread {
 
     private ServerskaForma serverForm;
     private List<ClientThread> listaKlijenata;
+    private List<Sluzbenik> ulogovaniSluzbenici = new ArrayList<>();
 
     //ON pri kreiranju
     private boolean isOn = true;
@@ -88,7 +89,10 @@ public class ServerThread extends Thread {
             List<Sluzbenik> trenutnoUlogovani = new ArrayList<>();
 
             for (ClientThread klijent : listaKlijenata) {
-                trenutnoUlogovani.add(klijent.getUlogovaniSluzbenik());
+                Sluzbenik s = klijent.getUlogovaniSluzbenik(); 
+                if (s != null) { 
+                    trenutnoUlogovani.add(s); 
+                } 
             }
             serverForm.osveziTabelu(trenutnoUlogovani);
         }
@@ -99,4 +103,13 @@ public class ServerThread extends Thread {
         listaKlijenata.remove(klijent);
     }
 
+    public List<Sluzbenik> getUlogovaniSluzbenici() {
+        return ulogovaniSluzbenici;
+    }
+
+    public void setUlogovaniSluzbenici(List<Sluzbenik> ulogovaniSluzbenici) {
+        this.ulogovaniSluzbenici = ulogovaniSluzbenici;
+    }
+    
+    
 }

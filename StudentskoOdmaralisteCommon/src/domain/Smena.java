@@ -1,15 +1,16 @@
 package domain;
 
-import java.io.Serializable;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 /**
  *
  * @author lukas
  */
-public class Smena implements Serializable {
+public class Smena extends DomainObject {
 
     private long idSmena;
     private String prostorija;
@@ -58,6 +59,54 @@ public class Smena implements Serializable {
         this.tipSmene = tipSmene;
     }
 
-    
-    
+    @Override
+    public String tableName() {
+        return "smena";
+    }
+
+    @Override
+    public String selectColumns() {
+        return "idSmena, prostorija, komentar, tipSmene";
+    }
+
+    @Override
+    public List<DomainObject> mapMany(ResultSet rs) throws SQLException {
+        List<DomainObject> smene = new ArrayList<>();
+        while (rs.next()) {
+            smene.add(mapSmena(rs));
+        }
+        return smene;
+    }
+
+    @Override
+    public DomainObject mapOne(ResultSet rs) throws SQLException {
+        if (rs.next()) {
+            return mapSmena(rs);
+        }
+        return null;
+    }
+
+    @Override
+    public String selectWhereClause() {
+        return "idSmena=?";
+    }
+
+    @Override
+    public void bindSelectParams(PreparedStatement ps) throws SQLException {
+        ps.setLong(1, idSmena);
+    }
+
+    private Smena mapSmena(ResultSet rs) throws SQLException {
+        Smena smena = new Smena();
+        smena.setIdSmena(rs.getLong("idSmena"));
+        smena.setProstorija(rs.getString("prostorija"));
+        smena.setKomentar(rs.getString("komentar"));
+
+        String tipSmeneVrednost = rs.getString("tipSmene");
+        if (tipSmeneVrednost != null) {
+            smena.setTipSmene(TipSmene.valueOf(tipSmeneVrednost));
+        }
+
+        return smena;
+    }
 }

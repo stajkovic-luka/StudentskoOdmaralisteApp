@@ -17,18 +17,18 @@ public class DBBroker {
 
     public DomainObject getSingleInstance(DomainObject domainObject) throws SQLException {
         try {
-            String query = "SELECT " + domainObject.getColumnsForSelect()
-                    + " FROM " + domainObject.getTableName()
-                    + " WHERE " + domainObject.getSelectWhereClause();
+            String query = "SELECT " + domainObject.selectColumns()
+                    + " FROM " + domainObject.tableName()
+                    + " WHERE " + domainObject.selectWhereClause();
 
             PreparedStatement ps = connection.prepareStatement(query);
-            domainObject.setParamsForSelect(ps);
+            domainObject.bindSelectParams(ps);
 
             System.out.println("QUERY: " + ps.toString());
 
             ResultSet rs = ps.executeQuery();
 
-            DomainObject domainObject2 = domainObject.getResultParamsForSelectOne(rs);
+            DomainObject domainObject2 = domainObject.mapOne(rs);
             System.out.println("DBB: Uspesno ucitan objekat iz baze");
 
             ps.close();

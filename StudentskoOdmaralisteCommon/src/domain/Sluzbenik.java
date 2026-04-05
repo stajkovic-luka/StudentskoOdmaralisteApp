@@ -4,7 +4,6 @@
  */
 package domain;
 
-import java.io.Serializable;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -16,7 +15,7 @@ import java.util.Objects;
  *
  * @author lukas
  */
-public class Sluzbenik implements Serializable, DomainObject {
+public class Sluzbenik extends DomainObject {
 
     private long idSluzbenik;
     private String ime;
@@ -125,22 +124,22 @@ public class Sluzbenik implements Serializable, DomainObject {
     }
 
     @Override
-    public String getTableName() {
+    public String tableName() {
         return "sluzbenik";
     }
 
     @Override
-    public String getColumnsForSelect() {
+    public String selectColumns() {
         return "idSluzbenik, ime, prezime, korisnickoIme, lozinka";
     }
 
     @Override
-    public String getSelectWhereClause() {
+    public String selectWhereClause() {
         return "korisnickoIme=? AND lozinka=?";
     }
 
     @Override
-    public DomainObject getResultParamsForSelectOne(ResultSet rs) throws SQLException {
+    public DomainObject mapOne(ResultSet rs) throws SQLException {
 
         Sluzbenik sluzbenik = new Sluzbenik();
 
@@ -161,15 +160,27 @@ public class Sluzbenik implements Serializable, DomainObject {
     }
 
     @Override
-    public void setParamsForSelect(PreparedStatement ps) throws SQLException {
+    public void bindSelectParams(PreparedStatement ps) throws SQLException {
         ps.setString(1, this.getKorisnickoIme());
         ps.setString(2, this.getLozinka());
 
     }
 
     @Override
-    public List<DomainObject> getResultParamsForSelectMultiple(ResultSet rs) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public List<DomainObject> mapMany(ResultSet rs) throws SQLException {
+        List<DomainObject> sluzbenici = new ArrayList<>();
+
+        while (rs.next()) {
+            Sluzbenik sluzbenikIzBaze = new Sluzbenik();
+            sluzbenikIzBaze.setIdSluzbenik(rs.getInt("idSluzbenik"));
+            sluzbenikIzBaze.setIme(rs.getString("ime"));
+            sluzbenikIzBaze.setPrezime(rs.getString("prezime"));
+            sluzbenikIzBaze.setKorisnickoIme(rs.getString("korisnickoIme"));
+            sluzbenikIzBaze.setLozinka(rs.getString("lozinka"));
+            sluzbenici.add(sluzbenikIzBaze);
+        }
+
+        return sluzbenici;
     }
 
 }

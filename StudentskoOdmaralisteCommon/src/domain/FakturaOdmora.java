@@ -1,11 +1,13 @@
 package domain;
 
-import java.io.Serializable;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 
-public class FakturaOdmora implements Serializable{
+public class FakturaOdmora extends DomainObject{
     private long idFaktura;
     private double popust;
     private double iznosNakonPopusta;
@@ -93,6 +95,61 @@ public class FakturaOdmora implements Serializable{
     public void setStavkeFakture(List<StavkaFakture> stavkeFakture) {
         this.stavkeFakture = stavkeFakture;
     }
-    
-    
+
+    @Override
+    public String tableName() {
+        return "fakturaodmora";
+    }
+
+    @Override
+    public String selectColumns() {
+        return "idFaktura, popust, iznosNakonPopusta, ukupanIznos, napomena, idSluzbenik, idStudent";
+    }
+
+    @Override
+    public List<DomainObject> mapMany(ResultSet rs) throws SQLException {
+        List<DomainObject> fakture = new ArrayList<>();
+        while (rs.next()) {
+            fakture.add(mapFakturaOdmora(rs));
+        }
+        return fakture;
+    }
+
+    @Override
+    public DomainObject mapOne(ResultSet rs) throws SQLException {
+        if (rs.next()) {
+            return mapFakturaOdmora(rs);
+        }
+        return null;
+    }
+
+    @Override
+    public String selectWhereClause() {
+        return "idFaktura=?";
+    }
+
+    @Override
+    public void bindSelectParams(PreparedStatement ps) throws SQLException {
+        ps.setLong(1, idFaktura);
+    }
+
+    private FakturaOdmora mapFakturaOdmora(ResultSet rs) throws SQLException {
+        FakturaOdmora faktura = new FakturaOdmora();
+        faktura.setIdFaktura(rs.getLong("idFaktura"));
+        faktura.setPopust(rs.getDouble("popust"));
+        faktura.setIznosNakonPopusta(rs.getDouble("iznosNakonPopusta"));
+        faktura.setUkupanIznos(rs.getDouble("ukupanIznos"));
+        faktura.setNapomena(rs.getString("napomena"));
+
+        Sluzbenik fakturaSluzbenik = new Sluzbenik();
+        fakturaSluzbenik.setIdSluzbenik(rs.getInt("idSluzbenik"));
+        faktura.setSluzbenik(fakturaSluzbenik);
+
+        Student fakturaStudent = new Student();
+        fakturaStudent.setIdStudent(rs.getLong("idStudent"));
+        faktura.setStudent(fakturaStudent);
+
+        return faktura;
+    }
+
 }
