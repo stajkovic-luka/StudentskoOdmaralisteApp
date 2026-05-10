@@ -98,16 +98,19 @@ public class Smena extends DomainObject {
 
     @Override
     public String insertColumns() {
-        return "";
+        return "prostorija, komentar, tipSmene";
     }
 
     @Override
     public String insertValuesClause() {
-        return "";
+        return "?, ?, ?";
     }
 
     @Override
     public void bindInsertParams(PreparedStatement ps) throws SQLException {
+        ps.setString(1, prostorija);
+        ps.setString(2, komentar);
+        ps.setString(3, tipSmene.name());
     }
 
     @Override

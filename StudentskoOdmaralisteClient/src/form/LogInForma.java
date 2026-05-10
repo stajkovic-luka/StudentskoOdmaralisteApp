@@ -174,7 +174,7 @@ public class LogInForma extends javax.swing.JFrame {
                         "Operacija uspesna",
                         JOptionPane.INFORMATION_MESSAGE
                 );
-                MainForma mf = new MainForma(ulogovaniSluzbenik);
+                MainForm mf = new MainForm(ulogovaniSluzbenik);
                 mf.setVisible(true);
 
                 this.dispose();
