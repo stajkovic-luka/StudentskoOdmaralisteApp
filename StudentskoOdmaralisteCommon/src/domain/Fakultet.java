@@ -92,6 +92,74 @@ public class Fakultet extends DomainObject{
         ps.setInt(1, idFakultet);
     }
 
+    @Override
+    public String insertColumns() {
+        return "";
+    }
+
+    @Override
+    public String insertValuesClause() {
+        return "";
+    }
+
+    @Override
+    public void bindInsertParams(PreparedStatement ps) throws SQLException {
+    }
+
+    @Override
+    public String updateSetClause() {
+        return "";
+    }
+
+    @Override
+    public String updateWhereClause() {
+        return "";
+    }
+
+    @Override
+    public void bindUpdateParams(PreparedStatement ps) throws SQLException {
+    }
+
+    @Override
+    public String deleteWhereClause() {
+        return selectWhereClause();
+    }
+
+    @Override
+    public void bindDeleteParams(PreparedStatement ps) throws SQLException {
+        bindSelectParams(ps);
+    }
+
+    @Override
+    public String searchWhereClause() {
+        return selectWhereClause();
+    }
+
+    @Override
+    public void bindSearchParams(PreparedStatement ps) throws SQLException {
+        bindSelectParams(ps);
+    }
+
+    @Override
+    public String joinFromClause() {
+        return tableName();
+    }
+
+    @Override
+    public String joinWhereClause() {
+        return searchWhereClause();
+    }
+
+    @Override
+    public void bindJoinParams(PreparedStatement ps) throws SQLException {
+        bindSearchParams(ps);
+    }
+
+    @Override
+    public List<DomainObject> mapJoined(ResultSet rs) throws SQLException {
+        return mapMany(rs);
+    }
+
     private Fakultet mapFakultet(ResultSet rs) throws SQLException {
         Fakultet fakultet = new Fakultet();
         fakultet.setIdFakultet(rs.getInt("idFakultet"));

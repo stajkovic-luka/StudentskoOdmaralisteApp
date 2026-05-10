@@ -161,6 +161,74 @@ public class StavkaFakture extends DomainObject{
         ps.setInt(2, rb);
     }
 
+    @Override
+    public String insertColumns() {
+        return "";
+    }
+
+    @Override
+    public String insertValuesClause() {
+        return "";
+    }
+
+    @Override
+    public void bindInsertParams(PreparedStatement ps) throws SQLException {
+    }
+
+    @Override
+    public String updateSetClause() {
+        return "";
+    }
+
+    @Override
+    public String updateWhereClause() {
+        return "";
+    }
+
+    @Override
+    public void bindUpdateParams(PreparedStatement ps) throws SQLException {
+    }
+
+    @Override
+    public String deleteWhereClause() {
+        return selectWhereClause();
+    }
+
+    @Override
+    public void bindDeleteParams(PreparedStatement ps) throws SQLException {
+        bindSelectParams(ps);
+    }
+
+    @Override
+    public String searchWhereClause() {
+        return selectWhereClause();
+    }
+
+    @Override
+    public void bindSearchParams(PreparedStatement ps) throws SQLException {
+        bindSelectParams(ps);
+    }
+
+    @Override
+    public String joinFromClause() {
+        return tableName();
+    }
+
+    @Override
+    public String joinWhereClause() {
+        return searchWhereClause();
+    }
+
+    @Override
+    public void bindJoinParams(PreparedStatement ps) throws SQLException {
+        bindSearchParams(ps);
+    }
+
+    @Override
+    public List<DomainObject> mapJoined(ResultSet rs) throws SQLException {
+        return mapMany(rs);
+    }
+
     private StavkaFakture mapStavkaFakture(ResultSet rs) throws SQLException {
         StavkaFakture stavka = new StavkaFakture();
         stavka.setRb(rs.getInt("rb"));
