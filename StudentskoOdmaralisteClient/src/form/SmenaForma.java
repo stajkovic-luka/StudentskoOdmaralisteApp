@@ -1,8 +1,16 @@
 package form;
 
+import controller.Controller;
+import domain.DomainObject;
+import domain.Smena;
 import java.awt.Color;
 import java.awt.Cursor;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.JTableHeader;
+import table.model.TableModelSmena;
+import table.model.TableUtils;
 
 public class SmenaForma extends javax.swing.JDialog {
 
@@ -11,6 +19,7 @@ public class SmenaForma extends javax.swing.JDialog {
         initComponents();
         setLocationRelativeTo(parent);
         dodajStil();
+        popuniTabeluSmene();
     }
 
     @SuppressWarnings("unchecked")
@@ -29,25 +38,7 @@ public class SmenaForma extends javax.swing.JDialog {
         jLabelNaslov.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabelNaslov.setText("Pregled smena");
 
-        jTableSmene.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "ID", "Prostorija", "Komentar", "Tip smene"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
+        jTableSmene.setModel(new TableModelSmena());
         jScrollPane1.setViewportView(jTableSmene);
 
         jButtonDodajSmenu.setText("Dodaj smenu");
@@ -103,11 +94,28 @@ public class SmenaForma extends javax.swing.JDialog {
     private void jButtonDodajSmenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDodajSmenuActionPerformed
         NovaSmenaForma forma = new NovaSmenaForma((java.awt.Frame) getParent(), true);
         forma.setVisible(true);
+        popuniTabeluSmene();
     }//GEN-LAST:event_jButtonDodajSmenuActionPerformed
 
     private void jButtonNazadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNazadActionPerformed
         dispose();
     }//GEN-LAST:event_jButtonNazadActionPerformed
+
+    private void popuniTabeluSmene() {
+        try {
+            List<DomainObject> list = Controller.getInstance().getAllShifts();
+            List<Smena> smene = new ArrayList<>();
+            for (DomainObject d : list) {
+                smene.add((Smena) d);
+            }
+
+            TableModelSmena model = (TableModelSmena) jTableSmene.getModel();
+            model.setSmene(smene);
+            TableUtils.autoResizeTable(jTableSmene);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Sistem ne moze da ucita smene.", "Greska", JOptionPane.ERROR_MESSAGE);
+        }
+    }
 
     private void dodajStil() {
         getContentPane().setBackground(new Color(0x1C2B3A));

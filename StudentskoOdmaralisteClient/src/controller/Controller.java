@@ -1,9 +1,12 @@
 package controller;
 
+import domain.DomainObject;
 import domain.Sluzbenik;
+import domain.Smena;
+import domain.TipSmene;
 import java.io.IOException;
 import java.net.Socket;
-import javax.swing.JOptionPane;
+import java.util.List;
 import transfer.Operation;
 import transfer.Receiver;
 import transfer.Request;
@@ -44,7 +47,6 @@ public class Controller {
         }
         
         return (Sluzbenik) response.getServerResponse();
-
     }
 
     public void logout() {
@@ -55,7 +57,34 @@ public class Controller {
         } catch (IOException ex) {
             System.getLogger(Controller.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
         }
-        
-        
+    }
+
+    public List<DomainObject> getAllShifts() throws Exception {
+        Request request = new Request(Operation.GET_ALL_SHIFT, null);
+        sender.send(request);
+
+        Response response = (Response) receiver.receive();
+
+        if (response.getException() != null) {
+            throw response.getException();
+        }
+
+        return (List<DomainObject>) response.getServerResponse();
+    }
+
+    public void addShift(String prostorija, String komentar, TipSmene tipSmene) throws Exception {
+        Smena smena = new Smena();
+        smena.setProstorija(prostorija);
+        smena.setKomentar(komentar);
+        smena.setTipSmene(tipSmene);
+
+        Request request = new Request(Operation.INSERT_SHIFT, smena);
+        sender.send(request);
+
+        Response response = (Response) receiver.receive();
+
+        if (response.getException() != null) {
+            throw response.getException();
+        }
     }
 }

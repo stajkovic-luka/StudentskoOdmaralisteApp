@@ -1,5 +1,6 @@
 package form;
 
+import controller.Controller;
 import domain.TipSmene;
 import java.awt.Color;
 import java.awt.Cursor;
@@ -109,19 +110,21 @@ public class NovaSmenaForma extends javax.swing.JDialog {
     private void jButtonSacuvajActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSacuvajActionPerformed
         String prostorija = jTextFieldProstorija.getText().trim();
         String komentar = jTextFieldKomentar.getText().trim();
+        String tipStr = (String) jComboBoxTipSmene.getSelectedItem();
 
-        if (prostorija.isEmpty() || komentar.isEmpty()) {
+        if (prostorija.isEmpty() || komentar.isEmpty() || tipStr == null) {
             JOptionPane.showMessageDialog(this, "Sva polja su obavezna.", "Greska", JOptionPane.ERROR_MESSAGE);
             return;
         }
 
-        JOptionPane.showMessageDialog(
-                this,
-                "Podaci su ispravno uneti. Cuvanje smene trenutno nije dostupno.",
-                "Informacija",
-                JOptionPane.INFORMATION_MESSAGE
-        );
-        dispose();
+        try {
+            TipSmene tipSmene = TipSmene.valueOf(tipStr);
+            Controller.getInstance().addShift(prostorija, komentar, tipSmene);
+            JOptionPane.showMessageDialog(this, "Sistem je kreirao novu smenu.", "Uspeh", JOptionPane.INFORMATION_MESSAGE);
+            dispose();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Sistem ne moze da kreira novu smenu.\n" + e.getMessage(), "Greska", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_jButtonSacuvajActionPerformed
 
     private void jButtonOdustaniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOdustaniActionPerformed

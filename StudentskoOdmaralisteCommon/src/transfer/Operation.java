@@ -8,5 +8,6 @@ public enum Operation {
     CREATE_STUDENT,
     FIND_STUDENT,
     DELETE_STUDENT,
-    INSERT_SHIFT;
+    INSERT_SHIFT,
+    GET_ALL_SHIFT;
 }
