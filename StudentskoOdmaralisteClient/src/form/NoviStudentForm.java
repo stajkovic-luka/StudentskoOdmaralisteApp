@@ -1,10 +1,16 @@
 package form;
 
+import controller.Controller;
+import domain.Fakultet;
 import java.awt.Color;
 import java.awt.Cursor;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 public class NoviStudentForm extends javax.swing.JDialog {
+
+    private List<Fakultet> fakulteti = new ArrayList<>();
 
     public NoviStudentForm(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -32,6 +38,7 @@ public class NoviStudentForm extends javax.swing.JDialog {
         jButtonOdustani = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
         setTitle("Novi student");
 
         jLabelNaslov.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -44,12 +51,6 @@ public class NoviStudentForm extends javax.swing.JDialog {
         jLabelTelefon.setText("Broj telefona:");
 
         jLabelFakultet.setText("Fakultet:");
-
-        jComboBoxFakultet.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBoxFakultetActionPerformed(evt);
-            }
-        });
 
         jCheckBoxBudzet.setText("Budzet");
 
@@ -147,28 +148,45 @@ public class NoviStudentForm extends javax.swing.JDialog {
             return;
         }
 
-        JOptionPane.showMessageDialog(
-                this,
-                "Podaci su ispravno uneti. Cuvanje studenta trenutno nije dostupno.",
-                "Informacija",
-                JOptionPane.INFORMATION_MESSAGE
-        );
-        dispose();
+        int selected = jComboBoxFakultet.getSelectedIndex();
+        if (selected < 0 || selected >= fakulteti.size()) {
+            JOptionPane.showMessageDialog(this, "Izaberite fakultet.", "Greska", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        try {
+            domain.Student student = new domain.Student();
+            student.setIme(ime);
+            student.setPrezime(prezime);
+            student.setBrTelefona(Long.parseLong(telefon));
+            student.setBudzet(jCheckBoxBudzet.isSelected());
+            student.setFakultet(fakulteti.get(selected));
+
+            Controller.getInstance().addStudent(student);
+            JOptionPane.showMessageDialog(this, "Sistem je kreirao novog studenta.", "Uspeh", JOptionPane.INFORMATION_MESSAGE);
+            dispose();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Sistem ne moze da kreira novog studenta.\n" + e.getMessage(), "Greska", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_jButtonSacuvajActionPerformed
 
     private void jButtonOdustaniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOdustaniActionPerformed
         dispose();
     }//GEN-LAST:event_jButtonOdustaniActionPerformed
 
-    private void jComboBoxFakultetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxFakultetActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBoxFakultetActionPerformed
-
     private void initFakulteti() {
-        jComboBoxFakultet.removeAllItems();
-        jComboBoxFakultet.addItem("FON - Beograd");
-        jComboBoxFakultet.addItem("ETF - Beograd");
-        jComboBoxFakultet.addItem("MATF - Beograd");
+        try {
+            List<domain.DomainObject> list = Controller.getInstance().getAllFaculties();
+            jComboBoxFakultet.removeAllItems();
+            fakulteti.clear();
+            for (domain.DomainObject d : list) {
+                Fakultet f = (Fakultet) d;
+                fakulteti.add(f);
+                jComboBoxFakultet.addItem(f.toString());
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Sistem ne moze da ucita fakultete.", "Greska", JOptionPane.ERROR_MESSAGE);
+        }
     }
 
     private void dodajStil() {
@@ -203,7 +221,7 @@ public class NoviStudentForm extends javax.swing.JDialog {
     private javax.swing.JButton jButtonOdustani;
     private javax.swing.JButton jButtonSacuvaj;
     private javax.swing.JCheckBox jCheckBoxBudzet;
-    private javax.swing.JComboBox jComboBoxFakultet;
+    private javax.swing.JComboBox<String> jComboBoxFakultet;
     private javax.swing.JLabel jLabelFakultet;
     private javax.swing.JLabel jLabelIme;
     private javax.swing.JLabel jLabelNaslov;

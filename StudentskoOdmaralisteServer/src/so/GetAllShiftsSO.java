@@ -1,5 +1,6 @@
 package so;
 
+// SK21
 import domain.DomainObject;
 import domain.Smena;
 import java.util.List;

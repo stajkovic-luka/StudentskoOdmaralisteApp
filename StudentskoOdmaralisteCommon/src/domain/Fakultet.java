@@ -56,6 +56,11 @@ public class Fakultet extends DomainObject{
     }
 
     @Override
+    public String toString() {
+        return naziv + " - " + mesto;
+    }
+
+    @Override
     public String tableName() {
         return "fakultet";
     }

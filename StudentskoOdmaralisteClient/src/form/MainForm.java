@@ -61,6 +61,7 @@ public class MainForm extends javax.swing.JFrame {
         jMenuItem1.setText("jMenuItem1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         jLabelUlogovan.setText("Ulogovan:");
 

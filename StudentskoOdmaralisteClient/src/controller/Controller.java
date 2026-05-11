@@ -1,8 +1,10 @@
 package controller;
 
 import domain.DomainObject;
+import domain.Fakultet;
 import domain.Sluzbenik;
 import domain.Smena;
+import domain.Student;
 import domain.TipSmene;
 import java.io.IOException;
 import java.net.Socket;
@@ -34,6 +36,7 @@ public class Controller {
         return instance;
     }
 
+    // SK8
     public Sluzbenik login(String username, String password) throws Exception {
         Sluzbenik sluzbenik = new Sluzbenik(username, password);
 
@@ -49,6 +52,7 @@ public class Controller {
         return (Sluzbenik) response.getServerResponse();
     }
 
+    // SK8
     public void logout() {
         try {
             Request request = new Request(Operation.LOGOUT, null);
@@ -59,6 +63,7 @@ public class Controller {
         }
     }
 
+    // SK21
     public List<DomainObject> getAllShifts() throws Exception {
         Request request = new Request(Operation.GET_ALL_SHIFT, null);
         sender.send(request);
@@ -72,6 +77,7 @@ public class Controller {
         return (List<DomainObject>) response.getServerResponse();
     }
 
+    // SK21
     public void addShift(String prostorija, String komentar, TipSmene tipSmene) throws Exception {
         Smena smena = new Smena();
         smena.setProstorija(prostorija);
@@ -86,5 +92,45 @@ public class Controller {
         if (response.getException() != null) {
             throw response.getException();
         }
+    }
+
+    // SK4
+    public List<DomainObject> getAllFaculties() throws Exception {
+        Request request = new Request(Operation.GET_ALL_FACULTIES, null);
+        sender.send(request);
+
+        Response response = (Response) receiver.receive();
+
+        if (response.getException() != null) {
+            throw response.getException();
+        }
+
+        return (List<DomainObject>) response.getServerResponse();
+    }
+
+    // SK4
+    public void addStudent(Student student) throws Exception {
+        Request request = new Request(Operation.CREATE_STUDENT, student);
+        sender.send(request);
+
+        Response response = (Response) receiver.receive();
+
+        if (response.getException() != null) {
+            throw response.getException();
+        }
+    }
+
+    // SK4, SK5, SK6, SK7
+    public List<DomainObject> getAllStudents() throws Exception {
+        Request request = new Request(Operation.GET_ALL_STUDENTS, null);
+        sender.send(request);
+
+        Response response = (Response) receiver.receive();
+
+        if (response.getException() != null) {
+            throw response.getException();
+        }
+
+        return (List<DomainObject>) response.getServerResponse();
     }
 }

@@ -1,17 +1,27 @@
 package form;
 
+import controller.Controller;
+import domain.DomainObject;
+import domain.Student;
 import java.awt.Color;
 import java.awt.Cursor;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.JTableHeader;
+import table.model.TableModelStudent;
+import table.model.TableUtils;
 
 public class StudentForm extends javax.swing.JDialog {
+
+    private List<Student> students = new ArrayList<>();
 
     public StudentForm(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(parent);
         dodajStil();
+        popuniTabeluStudenti();
     }
 
     @SuppressWarnings("unchecked")
@@ -28,6 +38,7 @@ public class StudentForm extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Studenti");
+        setResizable(false);
 
         jLabelNaslov.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabelNaslov.setText("Pregled studenata");
@@ -88,16 +99,23 @@ public class StudentForm extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addGap(22, 22, 22)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabelNaslov, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 612, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButtonNoviStudent, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButtonIzmeniStudenta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButtonObrisiStudenta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addComponent(jButtonNazad))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabelNaslov, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButtonNazad))
+                        .addContainerGap())
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 756, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(12, 12, 12)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jButtonIzmeniStudenta, javax.swing.GroupLayout.DEFAULT_SIZE, 144, Short.MAX_VALUE)
+                                    .addComponent(jButtonNoviStudent, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(16, 16, 16))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jButtonObrisiStudenta, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -124,6 +142,7 @@ public class StudentForm extends javax.swing.JDialog {
     private void jButtonNoviStudentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNoviStudentActionPerformed
         NoviStudentForm forma = new NoviStudentForm((java.awt.Frame) getParent(), true);
         forma.setVisible(true);
+        popuniTabeluStudenti();
     }//GEN-LAST:event_jButtonNoviStudentActionPerformed
 
     private void jButtonNazadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNazadActionPerformed
@@ -142,9 +161,11 @@ public class StudentForm extends javax.swing.JDialog {
             return;
         }
 
-        IzmeniStudent forma = new IzmeniStudent((java.awt.Frame) getParent(), true);
+        Student selektovani = students.get(selektovaniRed);
+        IzmeniStudent forma = new IzmeniStudent((java.awt.Frame) getParent(), true, selektovani);
         forma.setLocationRelativeTo(this);
         forma.setVisible(true);
+        popuniTabeluStudenti();
     }//GEN-LAST:event_jButtonIzmeniStudentaActionPerformed
 
     private void jButtonObrisiStudentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonObrisiStudentaActionPerformed
@@ -167,14 +188,31 @@ public class StudentForm extends javax.swing.JDialog {
         );
 
         if (potvrda == JOptionPane.YES_OPTION) {
+            // TODO: SK5 - implementirati brisanje studenta
             JOptionPane.showMessageDialog(
                     this,
-                    "Brisanje studenta trenutno nije dostupno.",
-                    "Informacija",
+                    "TODO",
+                    "TODO",
                     JOptionPane.INFORMATION_MESSAGE
             );
         }
     }//GEN-LAST:event_jButtonObrisiStudentaActionPerformed
+
+    private void popuniTabeluStudenti() {
+        try {
+            List<DomainObject> list = Controller.getInstance().getAllStudents();
+            students = new ArrayList<>();
+            for (DomainObject d : list) {
+                students.add((Student) d);
+            }
+
+            TableModelStudent model = (TableModelStudent) jTableStudenti.getModel();
+            model.setStudents(students);
+            TableUtils.autoResizeTable(jTableStudenti);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Sistem ne moze da ucita studente.", "Greska", JOptionPane.ERROR_MESSAGE);
+        }
+    }
 
     private void dodajStil() {
         getContentPane().setBackground(new Color(0x1C2B3A));

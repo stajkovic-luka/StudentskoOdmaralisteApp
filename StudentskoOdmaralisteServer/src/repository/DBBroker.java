@@ -163,7 +163,7 @@ public class DBBroker {
 
     public List<DomainObject> getAllJoinTables(DomainObject domainObject) throws SQLException {
         try {
-            String query = "SELECT " + domainObject.selectColumns()
+            String query = "SELECT " + domainObject.selectJoinColumns()
                     + " FROM " + domainObject.joinFromClause();
 
             try (PreparedStatement ps = connection.prepareStatement(query)) {
@@ -184,7 +184,7 @@ public class DBBroker {
     public List<DomainObject> getAllJoinTablesWhere(DomainObject domainObject) throws SQLException {
         try {
             String whereClause = domainObject.joinWhereClause();
-            String query = "SELECT " + domainObject.selectColumns()
+            String query = "SELECT " + domainObject.selectJoinColumns()
                     + " FROM " + domainObject.joinFromClause();
 
             boolean hasWhere = whereClause != null && !whereClause.isBlank();

@@ -84,6 +84,11 @@ public class Student extends DomainObject {
     }
 
     @Override
+    public String toString() {
+        return ime + " " + prezime;
+    }
+
+    @Override
     public String tableName() {
         return "student";
     }
@@ -91,6 +96,11 @@ public class Student extends DomainObject {
     @Override
     public String selectColumns() {
         return "idStudent, ime, prezime, brTelefona, budzet, idFakultet";
+    }
+
+    @Override
+    public String selectJoinColumns() {
+        return "s.idStudent, s.ime, s.prezime, s.brTelefona, s.budzet, s.idFakultet, f.naziv AS fNaziv, f.mesto AS fMesto, f.akreditovan AS fAkreditovan";
     }
 
     @Override
@@ -122,16 +132,21 @@ public class Student extends DomainObject {
 
     @Override
     public String insertColumns() {
-        return "";
+        return "ime, prezime, brTelefona, budzet, idFakultet";
     }
 
     @Override
     public String insertValuesClause() {
-        return "";
+        return "?, ?, ?, ?, ?";
     }
 
     @Override
     public void bindInsertParams(PreparedStatement ps) throws SQLException {
+        ps.setString(1, ime);
+        ps.setString(2, prezime);
+        ps.setLong(3, brTelefona);
+        ps.setBoolean(4, budzet);
+        ps.setLong(5, fakultet.getIdFakultet());
     }
 
     @Override
@@ -170,7 +185,7 @@ public class Student extends DomainObject {
 
     @Override
     public String joinFromClause() {
-        return tableName();
+        return "student s JOIN fakultet f ON s.idFakultet = f.idFakultet";
     }
 
     @Override
@@ -185,7 +200,11 @@ public class Student extends DomainObject {
 
     @Override
     public List<DomainObject> mapJoined(ResultSet rs) throws SQLException {
-        return mapMany(rs);
+        List<DomainObject> studenti = new ArrayList<>();
+        while (rs.next()) {
+            studenti.add(mapStudentJoined(rs));
+        }
+        return studenti;
     }
 
     private Student mapStudent(ResultSet rs) throws SQLException {
@@ -198,6 +217,24 @@ public class Student extends DomainObject {
 
         Fakultet studentFakultet = new Fakultet();
         studentFakultet.setIdFakultet(rs.getInt("idFakultet"));
+        student.setFakultet(studentFakultet);
+
+        return student;
+    }
+
+    private Student mapStudentJoined(ResultSet rs) throws SQLException {
+        Student student = new Student();
+        student.setIdStudent(rs.getLong("idStudent"));
+        student.setIme(rs.getString("ime"));
+        student.setPrezime(rs.getString("prezime"));
+        student.setBrTelefona(rs.getLong("brTelefona"));
+        student.setBudzet(rs.getBoolean("budzet"));
+
+        Fakultet studentFakultet = new Fakultet();
+        studentFakultet.setIdFakultet(rs.getInt("idFakultet"));
+        studentFakultet.setNaziv(rs.getString("fNaziv"));
+        studentFakultet.setMesto(rs.getString("fMesto"));
+        studentFakultet.setAkreditovan(rs.getBoolean("fAkreditovan"));
         student.setFakultet(studentFakultet);
 
         return student;

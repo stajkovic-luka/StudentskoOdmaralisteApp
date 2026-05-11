@@ -4,6 +4,9 @@
  */
 package form;
 
+import domain.Student;
+import java.awt.Frame;
+
 /**
  *
  * @author lule
@@ -13,7 +16,7 @@ public class IzmeniStudent extends javax.swing.JDialog {
     /**
      * Creates new form IzmeniStudent
      */
-    public IzmeniStudent(java.awt.Frame parent, boolean modal) {
+    public IzmeniStudent(Frame parent, boolean modal, Student selektovani) {
         super(parent, modal);
         initComponents();
     }
@@ -28,6 +31,7 @@ public class IzmeniStudent extends javax.swing.JDialog {
     private void initComponents() {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

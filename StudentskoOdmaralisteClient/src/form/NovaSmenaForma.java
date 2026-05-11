@@ -31,6 +31,7 @@ public class NovaSmenaForma extends javax.swing.JDialog {
         jButtonOdustani = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
         setTitle("Nova smena");
 
         jLabelNaslov.setFont(new java.awt.Font("Segoe UI", 0, 18));

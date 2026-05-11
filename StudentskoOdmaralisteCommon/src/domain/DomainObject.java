@@ -54,6 +54,11 @@ public abstract class DomainObject implements Serializable {
     // Popunjavanje parametara za SEARCH
     public abstract void bindSearchParams(PreparedStatement ps) throws SQLException;
 
+    // Koje kolone vracamo u SELECT delu kada se radi JOIN (podrazumevano isto kao selectColumns)
+    public String selectJoinColumns() {
+        return selectColumns();
+    }
+
     // FROM deo kada se radi JOIN (podrazumevano ista tabela)
     public abstract String joinFromClause();
 

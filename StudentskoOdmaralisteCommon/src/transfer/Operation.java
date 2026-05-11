@@ -9,5 +9,7 @@ public enum Operation {
     FIND_STUDENT,
     DELETE_STUDENT,
     INSERT_SHIFT,
-    GET_ALL_SHIFT;
+    GET_ALL_SHIFT,
+    GET_ALL_FACULTIES,
+    GET_ALL_STUDENTS;
 }

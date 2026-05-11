@@ -4,6 +4,7 @@ import controller.Controller;
 import domain.DomainObject;
 import domain.Sluzbenik;
 import domain.Smena;
+import domain.Student;
 import java.io.IOException;
 import java.net.Socket;
 import java.util.List;
@@ -46,6 +47,7 @@ public class ClientThread extends Thread {
                 try {
                     switch (request.getOperation()) {
                         
+                        // SK8
                         case LOGIN -> {
                             Sluzbenik tempSluzbenik = (Sluzbenik) request.getArgument();
                             vecUlogovan = server.getListaKlijenata().stream().anyMatch(thread -> { 
@@ -65,21 +67,67 @@ public class ClientThread extends Thread {
                             sluzbenik = sluzbenikIzBaze;
                             server.osveziFormu();
                         }
+                        
+                        // SK8
                         case LOGOUT -> {
                             if (Operation.LOGOUT.equals(request.getOperation())) {
                                 terminateThread();
                                 return;
                             }
                         }
+                        
+                        // SK21
                         case GET_ALL_SHIFT -> {
                             List<DomainObject> shifts = controller.getAllShifts();
                             response.setServerResponse(shifts);
                         }
+                        
+                        // SK21
                         case INSERT_SHIFT -> {
                             Smena smena = (Smena) request.getArgument();
                             controller.addShift(smena);
                             response.setServerResponse("Sistem je kreirao novu smenu.");
                         }
+                        
+                        // SK4
+                        case GET_ALL_FACULTIES -> {
+                            List<DomainObject> faculties = controller.getAllFaculties();
+                            response.setServerResponse(faculties);
+                        }
+                        
+                        // SK4
+                        case CREATE_STUDENT -> {
+                            Student student = (Student) request.getArgument();
+                            controller.addStudent(student);
+                            response.setServerResponse("Sistem je kreirao novog studenta.");
+                        }
+                        
+                        // SK4, SK5, SK6, SK7
+                        case GET_ALL_STUDENTS -> {
+                            List<DomainObject> students = controller.getAllStudents();
+                            response.setServerResponse(students);
+                        }
+                        
+                        // TODO: SK5
+                        case DELETE_STUDENT -> {
+                            throw new Exception("Operacija nije implementirana.");
+                        }
+                        
+                        // TODO: SK7
+                        case FIND_STUDENT -> {
+                            throw new Exception("Operacija nije implementirana.");
+                        }
+                        
+                        // TODO: SK1
+                        case CREATE_RESERVATION -> {
+                            throw new Exception("Operacija nije implementirana.");
+                        }
+                        
+                        // TODO: SK3
+                        case FIND_RESERVATION -> {
+                            throw new Exception("Operacija nije implementirana.");
+                        }
+                        
                         default -> {
                             throw new Exception("Nepoznata operacija!");
                         }

@@ -14,6 +14,8 @@ import table.model.TableUtils;
 
 public class SmenaForma extends javax.swing.JDialog {
 
+    private List<Smena> smene = new ArrayList<>();
+
     public SmenaForma(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
@@ -34,6 +36,7 @@ public class SmenaForma extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Smene");
+        setResizable(false);
 
         jLabelNaslov.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabelNaslov.setText("Pregled smena");
@@ -104,7 +107,7 @@ public class SmenaForma extends javax.swing.JDialog {
     private void popuniTabeluSmene() {
         try {
             List<DomainObject> list = Controller.getInstance().getAllShifts();
-            List<Smena> smene = new ArrayList<>();
+            smene = new ArrayList<>();
             for (DomainObject d : list) {
                 smene.add((Smena) d);
             }
