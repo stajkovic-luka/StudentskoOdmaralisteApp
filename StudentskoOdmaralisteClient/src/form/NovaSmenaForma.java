@@ -26,15 +26,14 @@ public class NovaSmenaForma extends javax.swing.JDialog {
         jLabelTipSmene = new javax.swing.JLabel();
         jTextFieldProstorija = new javax.swing.JTextField();
         jTextFieldKomentar = new javax.swing.JTextField();
-        jComboBoxTipSmene = new javax.swing.JComboBox<>();
+        jComboBoxTipSmene = new javax.swing.JComboBox();
         jButtonSacuvaj = new javax.swing.JButton();
         jButtonOdustani = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setResizable(false);
         setTitle("Nova smena");
 
-        jLabelNaslov.setFont(new java.awt.Font("Segoe UI", 0, 18));
+        jLabelNaslov.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabelNaslov.setText("Kreiraj smenu");
 
         jLabelProstorija.setText("Prostorija:");
@@ -79,7 +78,7 @@ public class NovaSmenaForma extends javax.swing.JDialog {
                         .addComponent(jButtonSacuvaj, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jButtonOdustani, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addGap(30, 30, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -98,7 +97,7 @@ public class NovaSmenaForma extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelTipSmene)
                     .addComponent(jComboBoxTipSmene, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonSacuvaj)
                     .addComponent(jButtonOdustani))
@@ -167,7 +166,7 @@ public class NovaSmenaForma extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonOdustani;
     private javax.swing.JButton jButtonSacuvaj;
-    private javax.swing.JComboBox<String> jComboBoxTipSmene;
+    private javax.swing.JComboBox jComboBoxTipSmene;
     private javax.swing.JLabel jLabelKomentar;
     private javax.swing.JLabel jLabelNaslov;
     private javax.swing.JLabel jLabelProstorija;

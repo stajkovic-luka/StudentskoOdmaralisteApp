@@ -179,14 +179,44 @@ public class Student extends DomainObject {
         bindSelectParams(ps);
     }
 
+    private String searchKriterijum;
+    private String searchVrednost;
+
+    public String getSearchKriterijum() {
+        return searchKriterijum;
+    }
+
+    public void setSearchKriterijum(String searchKriterijum) {
+        this.searchKriterijum = searchKriterijum;
+    }
+
+    public String getSearchVrednost() {
+        return searchVrednost;
+    }
+
+    public void setSearchVrednost(String searchVrednost) {
+        this.searchVrednost = searchVrednost;
+    }
+
     @Override
     public String searchWhereClause() {
-        return selectWhereClause();
+        if (searchKriterijum == null || searchVrednost == null || searchVrednost.isBlank()) {
+            return "";
+        }
+        return switch (searchKriterijum) {
+            case "Ime" -> "s.ime LIKE ?";
+            case "Prezime" -> "s.prezime LIKE ?";
+            case "Broj telefona" -> "CAST(s.brTelefona AS CHAR) LIKE ?";
+            case "Fakultet" -> "f.naziv LIKE ?";
+            default -> "";
+        };
     }
 
     @Override
     public void bindSearchParams(PreparedStatement ps) throws SQLException {
-        bindSelectParams(ps);
+        if (searchKriterijum != null && searchVrednost != null && !searchVrednost.isBlank()) {
+            ps.setString(1, "%" + searchVrednost + "%");
+        }
     }
 
     @Override

@@ -12,6 +12,7 @@ import so.GetAllFacultiesSO;
 import so.GetAllShiftsSO;
 import so.GetAllStudentsSO;
 import so.LoginSO;
+import so.SearchStudentsSO;
 import so.UpdateStudentSO;
 
 
@@ -57,7 +58,7 @@ public class Controller {
         return so.getStudents();
     }
 
-    // SK5
+    // SK7
     public void deleteStudent(Student student) throws Exception {
         DeleteStudentSO so = new DeleteStudentSO();
         so.execute(student);
@@ -67,5 +68,12 @@ public class Controller {
     public void updateStudent(Student student) throws Exception {
         UpdateStudentSO so = new UpdateStudentSO();
         so.execute(student);
+    }
+
+    // SK5
+    public List<DomainObject> searchStudents(Student student) throws Exception {
+        SearchStudentsSO so = new SearchStudentsSO();
+        so.execute(student);
+        return so.getStudents();
     }
 }

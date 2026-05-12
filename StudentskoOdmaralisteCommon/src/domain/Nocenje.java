@@ -6,8 +6,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+public class Nocenje extends DomainObject {
 
-public class Nocenje extends DomainObject{
     private long idNocenje;
     private double cena;
     private String opis;
@@ -43,6 +43,11 @@ public class Nocenje extends DomainObject{
 
     public void setOpis(String opis) {
         this.opis = opis;
+    }
+
+    @Override
+    public String toString() {
+        return opis + " (" + cena + " RSD)";
     }
 
     @Override

@@ -60,6 +60,11 @@ public class Smena extends DomainObject {
     }
 
     @Override
+    public String toString() {
+        return prostorija + " - " + tipSmene;
+    }
+
+    @Override
     public String tableName() {
         return "smena";
     }

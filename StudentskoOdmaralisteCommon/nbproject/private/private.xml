@@ -14,20 +14,8 @@
             <file>file:/Users/lule/Developer/StudentskoOdmaralisteApp/StudentskoOdmaralisteCommon/src/domain/Sluzbenik.java</file>
         </group>
         <group>
-            <file>file:/Users/lule/Developer/StudentskoOdmaralisteApp/StudentskoOdmaralisteCommon/src/transfer/Operation.java</file>
-            <file>file:/Users/lule/Developer/StudentskoOdmaralisteApp/StudentskoOdmaralisteCommon/src/domain/DomainObject.java</file>
-            <file>file:/Users/lule/Developer/StudentskoOdmaralisteApp/StudentskoOdmaralisteCommon/src/transfer/Response.java</file>
-            <file>file:/Users/lule/Developer/StudentskoOdmaralisteApp/StudentskoOdmaralisteCommon/src/transfer/Sender.java</file>
-            <file>file:/Users/lule/Developer/StudentskoOdmaralisteApp/StudentskoOdmaralisteCommon/src/transfer/Receiver.java</file>
-            <file>file:/Users/lule/Developer/StudentskoOdmaralisteApp/StudentskoOdmaralisteCommon/src/transfer/Request.java</file>
-            <file>file:/Users/lule/Developer/StudentskoOdmaralisteApp/StudentskoOdmaralisteCommon/src/domain/FakturaOdmora.java</file>
-            <file>file:/Users/lule/Developer/StudentskoOdmaralisteApp/StudentskoOdmaralisteCommon/src/domain/Nocenje.java</file>
-            <file>file:/Users/lule/Developer/StudentskoOdmaralisteApp/StudentskoOdmaralisteCommon/src/domain/SluzbenikSmena.java</file>
-            <file>file:/Users/lule/Developer/StudentskoOdmaralisteApp/StudentskoOdmaralisteCommon/src/domain/Fakultet.java</file>
             <file>file:/Users/lule/Developer/StudentskoOdmaralisteApp/StudentskoOdmaralisteCommon/src/domain/Smena.java</file>
-            <file>file:/Users/lule/Developer/StudentskoOdmaralisteApp/StudentskoOdmaralisteCommon/src/domain/Student.java</file>
-            <file>file:/Users/lule/Developer/StudentskoOdmaralisteApp/StudentskoOdmaralisteCommon/build/built-jar.properties</file>
-            <file>file:/Users/lule/Developer/StudentskoOdmaralisteApp/StudentskoOdmaralisteCommon/src/domain/StavkaFakture.java</file>
+            <file>file:/Users/lule/Developer/StudentskoOdmaralisteApp/StudentskoOdmaralisteCommon/src/domain/FakturaOdmora.java</file>
         </group>
     </open-files>
 </project-private>

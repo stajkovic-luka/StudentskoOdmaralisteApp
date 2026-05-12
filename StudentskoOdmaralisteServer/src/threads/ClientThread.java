@@ -108,7 +108,7 @@ public class ClientThread extends Thread {
                             response.setServerResponse(students);
                         }
                         
-                        // SK5
+                        // SK7
                         case DELETE_STUDENT -> {
                             Student student = (Student) request.getArgument();
                             controller.deleteStudent(student);
@@ -122,18 +122,20 @@ public class ClientThread extends Thread {
                             response.setServerResponse("Sistem je zapamtio studenta.");
                         }
                         
-                        // TODO: SK7
+                        // SK5 - Pretraži student
                         case FIND_STUDENT -> {
+                            Student searchStudent = (Student) request.getArgument();
+                            List<DomainObject> searchResults = controller.searchStudents(searchStudent);
+                            response.setServerResponse(searchResults);
+                        }
+                        
+                        // TODO: SK1 - Kreiraj fakturu odmora
+                        case CREATE_INVOICE -> {
                             throw new Exception("Operacija nije implementirana.");
                         }
                         
-                        // TODO: SK1
-                        case CREATE_RESERVATION -> {
-                            throw new Exception("Operacija nije implementirana.");
-                        }
-                        
-                        // TODO: SK3
-                        case FIND_RESERVATION -> {
+                        // TODO: SK2 - Pretraži fakturu odmora
+                        case FIND_INVOICE -> {
                             throw new Exception("Operacija nije implementirana.");
                         }
                         

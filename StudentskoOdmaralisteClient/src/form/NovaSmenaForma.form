@@ -71,7 +71,7 @@
                   <Component id="jLabelTipSmene" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jComboBoxTipSmene" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace pref="15" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jButtonSacuvaj" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jButtonOdustani" alignment="3" min="-2" max="-2" attributes="0"/>

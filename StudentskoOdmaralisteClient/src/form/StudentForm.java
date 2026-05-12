@@ -30,6 +30,12 @@ public class StudentForm extends javax.swing.JDialog {
     private void initComponents() {
 
         jLabelNaslov = new javax.swing.JLabel();
+        jPanelSearch = new javax.swing.JPanel();
+        jLabelPretraga = new javax.swing.JLabel();
+        jComboKriterijum = new javax.swing.JComboBox();
+        jTextFieldPretraga = new javax.swing.JTextField();
+        jButtonPretrazi = new javax.swing.JButton();
+        jButtonPrikaziSve = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableStudenti = new javax.swing.JTable();
         jButtonNoviStudent = new javax.swing.JButton();
@@ -43,6 +49,36 @@ public class StudentForm extends javax.swing.JDialog {
 
         jLabelNaslov.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabelNaslov.setText("Pregled studenata");
+
+        jPanelSearch.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 8, 4));
+
+        jLabelPretraga.setText("Pretraga:");
+        jPanelSearch.add(jLabelPretraga);
+
+        jComboKriterijum.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Ime", "Prezime", "Broj telefona", "Fakultet" }));
+        jComboKriterijum.setPreferredSize(new java.awt.Dimension(130, 28));
+        jPanelSearch.add(jComboKriterijum);
+
+        jTextFieldPretraga.setPreferredSize(new java.awt.Dimension(180, 28));
+        jPanelSearch.add(jTextFieldPretraga);
+
+        jButtonPretrazi.setText("Pretrazi");
+        jButtonPretrazi.setPreferredSize(new java.awt.Dimension(100, 30));
+        jButtonPretrazi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonPretraziActionPerformed(evt);
+            }
+        });
+        jPanelSearch.add(jButtonPretrazi);
+
+        jButtonPrikaziSve.setText("Prikazi sve");
+        jButtonPrikaziSve.setPreferredSize(new java.awt.Dimension(100, 30));
+        jButtonPrikaziSve.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonPrikaziSveActionPerformed(evt);
+            }
+        });
+        jPanelSearch.add(jButtonPrikaziSve);
 
         jTableStudenti.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -101,11 +137,6 @@ public class StudentForm extends javax.swing.JDialog {
                 .addGap(22, 22, 22)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabelNaslov, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButtonNazad))
-                        .addContainerGap())
-                    .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 756, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(12, 12, 12)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -116,14 +147,22 @@ public class StudentForm extends javax.swing.JDialog {
                                 .addGap(16, 16, 16))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jButtonObrisiStudenta, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabelNaslov, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButtonNazad)
+                            .addComponent(jPanelSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 912, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(18, 18, 18)
                 .addComponent(jLabelNaslov)
-                .addGap(18, 18, 18)
+                .addGap(10, 10, 10)
+                .addComponent(jPanelSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jButtonNoviStudent)
@@ -153,12 +192,7 @@ public class StudentForm extends javax.swing.JDialog {
     private void jButtonIzmeniStudentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonIzmeniStudentaActionPerformed
         int selektovaniRed = jTableStudenti.getSelectedRow();
         if (selektovaniRed == -1) {
-            JOptionPane.showMessageDialog(
-                    this,
-                    "Izaberite studenta kojeg zelite da izmenite.",
-                    "Greska",
-                    JOptionPane.ERROR_MESSAGE
-            );
+            JOptionPane.showMessageDialog(this, "Izaberite studenta kojeg zelite da izmenite.", "Greska", JOptionPane.ERROR_MESSAGE);
             return;
         }
 
@@ -172,43 +206,57 @@ public class StudentForm extends javax.swing.JDialog {
     private void jButtonObrisiStudentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonObrisiStudentaActionPerformed
         int selektovaniRed = jTableStudenti.getSelectedRow();
         if (selektovaniRed == -1) {
-            JOptionPane.showMessageDialog(
-                    this,
-                    "Izaberite studenta kojeg zelite da obrisete.",
-                    "Greska",
-                    JOptionPane.ERROR_MESSAGE
-            );
+            JOptionPane.showMessageDialog(this, "Izaberite studenta kojeg zelite da obrisete.", "Greska", JOptionPane.ERROR_MESSAGE);
             return;
         }
 
-        int potvrda = JOptionPane.showConfirmDialog(
-                this,
-                "Da li ste sigurni da zelite da obrisete studenta?",
-                "Potvrda brisanja",
-                JOptionPane.YES_NO_OPTION
-        );
-
+        int potvrda = JOptionPane.showConfirmDialog(this, "Da li ste sigurni da zelite da obrisete studenta?", "Potvrda brisanja", JOptionPane.YES_NO_OPTION);
         if (potvrda == JOptionPane.YES_OPTION) {
             try {
                 Student selektovani = students.get(selektovaniRed);
                 Controller.getInstance().deleteStudent(selektovani);
-                JOptionPane.showMessageDialog(
-                        this,
-                        "Sistem je obrisao studenta.",
-                        "Brisanje studenta",
-                        JOptionPane.INFORMATION_MESSAGE
-                );
+                JOptionPane.showMessageDialog(this, "Sistem je obrisao studenta.", "Brisanje studenta", JOptionPane.INFORMATION_MESSAGE);
                 popuniTabeluStudenti();
             } catch (Exception e) {
-                JOptionPane.showMessageDialog(
-                        this,
-                        "Sistem ne moze da obrise studenta.\n" + e.getMessage(),
-                        "Greska",
-                        JOptionPane.ERROR_MESSAGE
-                );
+                JOptionPane.showMessageDialog(this, "Sistem ne moze da obrise studenta.\n" + e.getMessage(), "Greska", JOptionPane.ERROR_MESSAGE);
             }
         }
     }//GEN-LAST:event_jButtonObrisiStudentaActionPerformed
+
+    private void jButtonPretraziActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPretraziActionPerformed
+        String kriterijum = (String) jComboKriterijum.getSelectedItem();
+        String vrednost = jTextFieldPretraga.getText().trim();
+
+        if (vrednost.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Unesite vrednost za pretragu.", "Greska", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        try {
+            List<DomainObject> list = Controller.getInstance().searchStudents(kriterijum, vrednost);
+            students = new ArrayList<>();
+            for (DomainObject d : list) {
+                students.add((Student) d);
+            }
+
+            TableModelStudent model = (TableModelStudent) jTableStudenti.getModel();
+            model.setStudents(students);
+            TableUtils.autoResizeTable(jTableStudenti);
+
+            if (students.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Sistem ne moze da nadje studente po zadatim kriterijumima.", "Pretraga", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(this, "Sistem je nasao studente po zadatim kriterijumima.", "Pretraga", JOptionPane.INFORMATION_MESSAGE);
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Sistem ne moze da nadje studente po zadatim kriterijumima.\n" + e.getMessage(), "Greska", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_jButtonPretraziActionPerformed
+
+    private void jButtonPrikaziSveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPrikaziSveActionPerformed
+        jTextFieldPretraga.setText("");
+        popuniTabeluStudenti();
+    }//GEN-LAST:event_jButtonPrikaziSveActionPerformed
 
     private void popuniTabeluStudenti() {
         try {
@@ -229,6 +277,14 @@ public class StudentForm extends javax.swing.JDialog {
     private void dodajStil() {
         getContentPane().setBackground(new Color(0x1C2B3A));
 
+        jPanelSearch.setBackground(new Color(0x1C2B3A));
+
+        jLabelPretraga.setForeground(new Color(0xE07B00));
+        jLabelPretraga.setFont(jLabelPretraga.getFont().deriveFont(java.awt.Font.BOLD, 13f));
+
+        jComboKriterijum.setFont(jComboKriterijum.getFont().deriveFont(13f));
+        jTextFieldPretraga.setFont(jTextFieldPretraga.getFont().deriveFont(13f));
+
         jLabelNaslov.setForeground(new Color(0xE07B00));
         jLabelNaslov.setFont(jLabelNaslov.getFont().deriveFont(java.awt.Font.BOLD, 18f));
 
@@ -240,8 +296,11 @@ public class StudentForm extends javax.swing.JDialog {
         jTableStudenti.setRowHeight(24);
         jTableStudenti.setSelectionBackground(new Color(0xE07B00));
         jTableStudenti.setSelectionForeground(Color.WHITE);
-        jScrollPane1.getViewport().setBackground(Color.WHITE);
+        jTableStudenti.setBackground(new Color(0xF5F0E8));
+        jScrollPane1.getViewport().setBackground(new Color(0xF5F0E8));
 
+        stilizujDugme(jButtonPretrazi, new Color(0xE07B00));
+        stilizujDugme(jButtonPrikaziSve, new Color(0x34495E));
         stilizujDugme(jButtonNoviStudent, new Color(0xE07B00));
         stilizujDugme(jButtonIzmeniStudenta, new Color(0xE07B00));
         stilizujDugme(jButtonObrisiStudenta, new Color(0xC0392B));
@@ -262,8 +321,14 @@ public class StudentForm extends javax.swing.JDialog {
     private javax.swing.JButton jButtonNazad;
     private javax.swing.JButton jButtonNoviStudent;
     private javax.swing.JButton jButtonObrisiStudenta;
+    private javax.swing.JButton jButtonPretrazi;
+    private javax.swing.JButton jButtonPrikaziSve;
+    private javax.swing.JComboBox jComboKriterijum;
     private javax.swing.JLabel jLabelNaslov;
+    private javax.swing.JLabel jLabelPretraga;
+    private javax.swing.JPanel jPanelSearch;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTableStudenti;
+    private javax.swing.JTextField jTextFieldPretraga;
     // End of variables declaration//GEN-END:variables
 }

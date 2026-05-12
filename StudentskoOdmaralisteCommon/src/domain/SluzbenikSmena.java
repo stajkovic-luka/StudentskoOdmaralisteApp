@@ -98,17 +98,25 @@ public class SluzbenikSmena extends DomainObject{
     }
 
     @Override
+    public boolean hasAutoIncrementPrimaryKey() {
+        return false;
+    }
+
+    @Override
     public String insertColumns() {
-        return "";
+        return "idSluzbenik, idSmena, datumSmene";
     }
 
     @Override
     public String insertValuesClause() {
-        return "";
+        return "?, ?, ?";
     }
 
     @Override
     public void bindInsertParams(PreparedStatement ps) throws SQLException {
+        ps.setLong(1, sluzbenik.getIdSluzbenik());
+        ps.setLong(2, smena.getIdSmena());
+        ps.setDate(3, Date.valueOf(datumSmene));
     }
 
     @Override

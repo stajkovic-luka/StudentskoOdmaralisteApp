@@ -134,7 +134,7 @@ public class Controller {
         return (List<DomainObject>) response.getServerResponse();
     }
 
-    // SK5
+    // SK7
     public void deleteStudent(Student student) throws Exception {
         Request request = new Request(Operation.DELETE_STUDENT, student);
         sender.send(request);
@@ -156,5 +156,23 @@ public class Controller {
         if (response.getException() != null) {
             throw response.getException();
         }
+    }
+
+    // SK5
+    public List<DomainObject> searchStudents(String kriterijum, String vrednost) throws Exception {
+        Student student = new Student();
+        student.setSearchKriterijum(kriterijum);
+        student.setSearchVrednost(vrednost);
+
+        Request request = new Request(Operation.FIND_STUDENT, student);
+        sender.send(request);
+
+        Response response = (Response) receiver.receive();
+
+        if (response.getException() != null) {
+            throw response.getException();
+        }
+
+        return (List<DomainObject>) response.getServerResponse();
     }
 }

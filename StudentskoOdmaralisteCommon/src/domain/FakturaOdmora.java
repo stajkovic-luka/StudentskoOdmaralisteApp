@@ -6,8 +6,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+public class FakturaOdmora extends DomainObject {
 
-public class FakturaOdmora extends DomainObject{
     private long idFaktura;
     private double popust;
     private double iznosNakonPopusta;
@@ -29,8 +29,6 @@ public class FakturaOdmora extends DomainObject{
         this.student = student;
         this.sluzbenik = sluzbenik;
     }
-    
-    
 
     public long getIdFaktura() {
         return idFaktura;
@@ -135,30 +133,43 @@ public class FakturaOdmora extends DomainObject{
 
     @Override
     public String insertColumns() {
-        return "";
+        return "popust, iznosNakonPopusta, ukupanIznos, napomena, idSluzbenik, idStudent";
     }
 
     @Override
     public String insertValuesClause() {
-        return "";
+        return "?, ?, ?, ?, ?, ?";
     }
 
     @Override
     public void bindInsertParams(PreparedStatement ps) throws SQLException {
+        ps.setDouble(1, popust);
+        ps.setDouble(2, iznosNakonPopusta);
+        ps.setDouble(3, ukupanIznos);
+        ps.setString(4, napomena);
+        ps.setLong(5, sluzbenik.getIdSluzbenik());
+        ps.setLong(6, student.getIdStudent());
     }
 
     @Override
     public String updateSetClause() {
-        return "";
+        return "popust=?, iznosNakonPopusta=?, ukupanIznos=?, napomena=?, idSluzbenik=?, idStudent=?";
     }
 
     @Override
     public String updateWhereClause() {
-        return "";
+        return "idFaktura=?";
     }
 
     @Override
     public void bindUpdateParams(PreparedStatement ps) throws SQLException {
+        ps.setDouble(1, popust);
+        ps.setDouble(2, iznosNakonPopusta);
+        ps.setDouble(3, ukupanIznos);
+        ps.setString(4, napomena);
+        ps.setLong(5, sluzbenik.getIdSluzbenik());
+        ps.setLong(6, student.getIdStudent());
+        ps.setLong(7, idFaktura);
     }
 
     @Override
@@ -182,8 +193,19 @@ public class FakturaOdmora extends DomainObject{
     }
 
     @Override
+    public String selectJoinColumns() {
+        return "fo.idFaktura, fo.popust, fo.iznosNakonPopusta, fo.ukupanIznos, fo.napomena, "
+                + "fo.idSluzbenik, fo.idStudent, "
+                + "sl.ime AS slIme, sl.prezime AS slPrezime, sl.korisnickoIme AS slKorisnickoIme, "
+                + "st.ime AS stIme, st.prezime AS stPrezime, st.brTelefona AS stBrTelefona, "
+                + "st.budzet AS stBudzet, st.idFakultet AS stIdFakultet";
+    }
+
+    @Override
     public String joinFromClause() {
-        return tableName();
+        return "fakturaodmora fo "
+                + "JOIN sluzbenik sl ON fo.idSluzbenik = sl.idSluzbenik "
+                + "JOIN student st ON fo.idStudent = st.idStudent";
     }
 
     @Override
@@ -198,7 +220,40 @@ public class FakturaOdmora extends DomainObject{
 
     @Override
     public List<DomainObject> mapJoined(ResultSet rs) throws SQLException {
-        return mapMany(rs);
+        List<DomainObject> fakture = new ArrayList<>();
+        while (rs.next()) {
+            fakture.add(mapFakturaJoined(rs));
+        }
+        return fakture;
+    }
+
+    private FakturaOdmora mapFakturaJoined(ResultSet rs) throws SQLException {
+        FakturaOdmora faktura = new FakturaOdmora();
+        faktura.setIdFaktura(rs.getLong("idFaktura"));
+        faktura.setPopust(rs.getDouble("popust"));
+        faktura.setIznosNakonPopusta(rs.getDouble("iznosNakonPopusta"));
+        faktura.setUkupanIznos(rs.getDouble("ukupanIznos"));
+        faktura.setNapomena(rs.getString("napomena"));
+
+        Sluzbenik fakturaSluzbenik = new Sluzbenik();
+        fakturaSluzbenik.setIdSluzbenik(rs.getInt("idSluzbenik"));
+        fakturaSluzbenik.setIme(rs.getString("slIme"));
+        fakturaSluzbenik.setPrezime(rs.getString("slPrezime"));
+        fakturaSluzbenik.setKorisnickoIme(rs.getString("slKorisnickoIme"));
+        faktura.setSluzbenik(fakturaSluzbenik);
+
+        Student fakturaStudent = new Student();
+        fakturaStudent.setIdStudent(rs.getLong("idStudent"));
+        fakturaStudent.setIme(rs.getString("stIme"));
+        fakturaStudent.setPrezime(rs.getString("stPrezime"));
+        fakturaStudent.setBrTelefona(rs.getLong("stBrTelefona"));
+        fakturaStudent.setBudzet(rs.getBoolean("stBudzet"));
+        Fakultet f = new Fakultet();
+        f.setIdFakultet(rs.getInt("stIdFakultet"));
+        fakturaStudent.setFakultet(f);
+        faktura.setStudent(fakturaStudent);
+
+        return faktura;
     }
 
     private FakturaOdmora mapFakturaOdmora(ResultSet rs) throws SQLException {

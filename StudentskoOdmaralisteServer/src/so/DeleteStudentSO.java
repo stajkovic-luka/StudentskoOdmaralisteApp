@@ -1,6 +1,6 @@
 package so;
 
-// SK5
+// SK7
 import domain.Student;
 
 public class DeleteStudentSO extends AbstractSO {

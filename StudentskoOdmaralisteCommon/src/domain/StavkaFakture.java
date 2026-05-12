@@ -8,8 +8,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+public class StavkaFakture extends DomainObject {
 
-public class StavkaFakture extends DomainObject{
     private int rb;
     private boolean dorucakUkljucen;
     private LocalDate datumOd;
@@ -36,8 +36,6 @@ public class StavkaFakture extends DomainObject{
         this.nocenje = nocenje;
         this.fakturaOdmora = fakturaOdmora;
     }
-    
-    
 
     public int getRb() {
         return rb;
@@ -162,31 +160,56 @@ public class StavkaFakture extends DomainObject{
     }
 
     @Override
+    public boolean hasAutoIncrementPrimaryKey() {
+        return false;
+    }
+
+    @Override
     public String insertColumns() {
-        return "";
+        return "idFaktura, rb, idNocenje, datumOd, datumDo, brojDana, dorucakUkljucen, cena, iznos, dodatniTroskovi";
     }
 
     @Override
     public String insertValuesClause() {
-        return "";
+        return "?, ?, ?, ?, ?, ?, ?, ?, ?, ?";
     }
 
     @Override
     public void bindInsertParams(PreparedStatement ps) throws SQLException {
+        ps.setLong(1, fakturaOdmora.getIdFaktura());
+        ps.setInt(2, rb);
+        ps.setLong(3, nocenje.getIdNocenje());
+        ps.setDate(4, Date.valueOf(datumOd));
+        ps.setDate(5, Date.valueOf(datumDo));
+        ps.setInt(6, brojDana);
+        ps.setBoolean(7, dorucakUkljucen);
+        ps.setDouble(8, cena);
+        ps.setDouble(9, iznos);
+        ps.setDouble(10, dodatniTroskovi);
     }
 
     @Override
     public String updateSetClause() {
-        return "";
+        return "idNocenje=?, datumOd=?, datumDo=?, brojDana=?, dorucakUkljucen=?, cena=?, iznos=?, dodatniTroskovi=?";
     }
 
     @Override
     public String updateWhereClause() {
-        return "";
+        return "idFaktura=? AND rb=?";
     }
 
     @Override
     public void bindUpdateParams(PreparedStatement ps) throws SQLException {
+        ps.setLong(1, nocenje.getIdNocenje());
+        ps.setDate(2, Date.valueOf(datumOd));
+        ps.setDate(3, Date.valueOf(datumDo));
+        ps.setInt(4, brojDana);
+        ps.setBoolean(5, dorucakUkljucen);
+        ps.setDouble(6, cena);
+        ps.setDouble(7, iznos);
+        ps.setDouble(8, dodatniTroskovi);
+        ps.setLong(9, fakturaOdmora.getIdFaktura());
+        ps.setInt(10, rb);
     }
 
     @Override
@@ -210,8 +233,15 @@ public class StavkaFakture extends DomainObject{
     }
 
     @Override
+    public String selectJoinColumns() {
+        return "sf.idFaktura, sf.rb, sf.idNocenje, sf.datumOd, sf.datumDo, sf.brojDana, "
+                + "sf.dorucakUkljucen, sf.cena, sf.iznos, sf.dodatniTroskovi, "
+                + "n.cena AS nCena, n.opis AS nOpis";
+    }
+
+    @Override
     public String joinFromClause() {
-        return tableName();
+        return "stavkafakture sf JOIN nocenje n ON sf.idNocenje = n.idNocenje";
     }
 
     @Override
@@ -226,7 +256,44 @@ public class StavkaFakture extends DomainObject{
 
     @Override
     public List<DomainObject> mapJoined(ResultSet rs) throws SQLException {
-        return mapMany(rs);
+        List<DomainObject> stavke = new ArrayList<>();
+        while (rs.next()) {
+            stavke.add(mapStavkaJoined(rs));
+        }
+        return stavke;
+    }
+
+    private StavkaFakture mapStavkaJoined(ResultSet rs) throws SQLException {
+        StavkaFakture stavka = new StavkaFakture();
+        stavka.setRb(rs.getInt("rb"));
+        stavka.setDorucakUkljucen(rs.getBoolean("dorucakUkljucen"));
+
+        Date datumOdVrednost = rs.getDate("datumOd");
+        if (datumOdVrednost != null) {
+            stavka.setDatumOd(datumOdVrednost.toLocalDate());
+        }
+
+        Date datumDoVrednost = rs.getDate("datumDo");
+        if (datumDoVrednost != null) {
+            stavka.setDatumDo(datumDoVrednost.toLocalDate());
+        }
+
+        stavka.setBrojDana(rs.getInt("brojDana"));
+        stavka.setCena(rs.getDouble("cena"));
+        stavka.setIznos(rs.getDouble("iznos"));
+        stavka.setDodatniTroskovi(rs.getDouble("dodatniTroskovi"));
+
+        Nocenje stavkaNocenje = new Nocenje();
+        stavkaNocenje.setIdNocenje(rs.getLong("idNocenje"));
+        stavkaNocenje.setCena(rs.getDouble("nCena"));
+        stavkaNocenje.setOpis(rs.getString("nOpis"));
+        stavka.setNocenje(stavkaNocenje);
+
+        FakturaOdmora stavkaFaktura = new FakturaOdmora();
+        stavkaFaktura.setIdFaktura(rs.getLong("idFaktura"));
+        stavka.setFakturaOdmora(stavkaFaktura);
+
+        return stavka;
     }
 
     private StavkaFakture mapStavkaFakture(ResultSet rs) throws SQLException {
