@@ -151,16 +151,22 @@ public class Student extends DomainObject {
 
     @Override
     public String updateSetClause() {
-        return "";
+        return "ime=?, prezime=?, brTelefona=?, budzet=?, idFakultet=?";
     }
 
     @Override
     public String updateWhereClause() {
-        return "";
+        return "idStudent=?";
     }
 
     @Override
     public void bindUpdateParams(PreparedStatement ps) throws SQLException {
+        ps.setString(1, ime);
+        ps.setString(2, prezime);
+        ps.setLong(3, brTelefona);
+        ps.setBoolean(4, budzet);
+        ps.setLong(5, fakultet.getIdFakultet());
+        ps.setLong(6, idStudent);
     }
 
     @Override

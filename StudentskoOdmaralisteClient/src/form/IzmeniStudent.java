@@ -159,13 +159,31 @@ public class IzmeniStudent extends javax.swing.JDialog {
             return;
         }
 
-        JOptionPane.showMessageDialog(
-                this,
-                "TODO",
-                "TODO",
-                JOptionPane.INFORMATION_MESSAGE
-        );
-        dispose();
+        Fakultet selektovaniFakultet = fakulteti.get(selected);
+
+        selektovaniStudent.setIme(ime);
+        selektovaniStudent.setPrezime(prezime);
+        selektovaniStudent.setBrTelefona(Long.parseLong(telefon));
+        selektovaniStudent.setBudzet(jCheckBoxBudzet.isSelected());
+        selektovaniStudent.setFakultet(selektovaniFakultet);
+
+        try {
+            Controller.getInstance().updateStudent(selektovaniStudent);
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Sistem je zapamtio studenta.",
+                    "Izmena studenta",
+                    JOptionPane.INFORMATION_MESSAGE
+            );
+            dispose();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Sistem ne moze da zapamti studenta.\n" + e.getMessage(),
+                    "Greska",
+                    JOptionPane.ERROR_MESSAGE
+            );
+        }
     }//GEN-LAST:event_jButtonSacuvajActionPerformed
 
     private void jButtonOdustaniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOdustaniActionPerformed

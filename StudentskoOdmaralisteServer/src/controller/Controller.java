@@ -12,6 +12,7 @@ import so.GetAllFacultiesSO;
 import so.GetAllShiftsSO;
 import so.GetAllStudentsSO;
 import so.LoginSO;
+import so.UpdateStudentSO;
 
 
 public class Controller {
@@ -59,6 +60,12 @@ public class Controller {
     // SK5
     public void deleteStudent(Student student) throws Exception {
         DeleteStudentSO so = new DeleteStudentSO();
+        so.execute(student);
+    }
+
+    // SK6
+    public void updateStudent(Student student) throws Exception {
+        UpdateStudentSO so = new UpdateStudentSO();
         so.execute(student);
     }
 }

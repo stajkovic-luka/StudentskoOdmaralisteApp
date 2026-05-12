@@ -145,4 +145,16 @@ public class Controller {
             throw response.getException();
         }
     }
+
+    // SK6
+    public void updateStudent(Student student) throws Exception {
+        Request request = new Request(Operation.UPDATE_STUDENT, student);
+        sender.send(request);
+
+        Response response = (Response) receiver.receive();
+
+        if (response.getException() != null) {
+            throw response.getException();
+        }
+    }
 }

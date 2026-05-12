@@ -115,6 +115,13 @@ public class ClientThread extends Thread {
                             response.setServerResponse("Sistem je obrisao studenta.");
                         }
                         
+                        // SK6
+                        case UPDATE_STUDENT -> {
+                            Student student = (Student) request.getArgument();
+                            controller.updateStudent(student);
+                            response.setServerResponse("Sistem je zapamtio studenta.");
+                        }
+                        
                         // TODO: SK7
                         case FIND_STUDENT -> {
                             throw new Exception("Operacija nije implementirana.");
