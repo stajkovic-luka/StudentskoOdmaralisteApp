@@ -19,6 +19,7 @@ public class StudentForm extends javax.swing.JDialog {
     public StudentForm(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        jTableStudenti.setModel(new table.model.TableModelStudent());
         setLocationRelativeTo(parent);
         dodajStil();
         popuniTabeluStudenti();
@@ -188,13 +189,24 @@ public class StudentForm extends javax.swing.JDialog {
         );
 
         if (potvrda == JOptionPane.YES_OPTION) {
-            // TODO: SK5 - implementirati brisanje studenta
-            JOptionPane.showMessageDialog(
-                    this,
-                    "TODO",
-                    "TODO",
-                    JOptionPane.INFORMATION_MESSAGE
-            );
+            try {
+                Student selektovani = students.get(selektovaniRed);
+                Controller.getInstance().deleteStudent(selektovani);
+                JOptionPane.showMessageDialog(
+                        this,
+                        "Sistem je obrisao studenta.",
+                        "Brisanje studenta",
+                        JOptionPane.INFORMATION_MESSAGE
+                );
+                popuniTabeluStudenti();
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(
+                        this,
+                        "Sistem ne moze da obrise studenta.\n" + e.getMessage(),
+                        "Greska",
+                        JOptionPane.ERROR_MESSAGE
+                );
+            }
         }
     }//GEN-LAST:event_jButtonObrisiStudentaActionPerformed
 

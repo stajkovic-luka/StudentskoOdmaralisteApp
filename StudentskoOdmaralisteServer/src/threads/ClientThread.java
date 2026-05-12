@@ -108,9 +108,11 @@ public class ClientThread extends Thread {
                             response.setServerResponse(students);
                         }
                         
-                        // TODO: SK5
+                        // SK5
                         case DELETE_STUDENT -> {
-                            throw new Exception("Operacija nije implementirana.");
+                            Student student = (Student) request.getArgument();
+                            controller.deleteStudent(student);
+                            response.setServerResponse("Sistem je obrisao studenta.");
                         }
                         
                         // TODO: SK7

@@ -133,4 +133,16 @@ public class Controller {
 
         return (List<DomainObject>) response.getServerResponse();
     }
+
+    // SK5
+    public void deleteStudent(Student student) throws Exception {
+        Request request = new Request(Operation.DELETE_STUDENT, student);
+        sender.send(request);
+
+        Response response = (Response) receiver.receive();
+
+        if (response.getException() != null) {
+            throw response.getException();
+        }
+    }
 }

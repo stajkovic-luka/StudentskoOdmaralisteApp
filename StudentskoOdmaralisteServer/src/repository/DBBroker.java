@@ -16,6 +16,7 @@ public class DBBroker {
         return connection;
     }
 
+    // Vraca jedan objekat iz baze na osnovu primarnog kljuca (SELECT ... WHERE)
     public DomainObject getSingleInstance(DomainObject domainObject) throws SQLException {
         try {
             String query = "SELECT " + domainObject.selectColumns()
@@ -42,6 +43,7 @@ public class DBBroker {
         }
     }
 
+    // Vraca sve objekte jedne tabele (SELECT bez WHERE)
     public List<DomainObject> getAll(DomainObject domainObject) throws SQLException {
         try {
             String query = "SELECT " + domainObject.selectColumns()
@@ -61,6 +63,7 @@ public class DBBroker {
         }
     }
 
+    // Ubacuje novi objekat u bazu (INSERT INTO ... VALUES)
     public boolean add(DomainObject domainObject) throws SQLException {
         try {
             String query = "INSERT INTO " + domainObject.tableName()
@@ -89,6 +92,7 @@ public class DBBroker {
         }
     }
 
+    // Azurira postojeci objekat u bazi (UPDATE ... SET ... WHERE)
     public boolean update(DomainObject domainObject) throws SQLException {
         try {
             String query = "UPDATE " + domainObject.tableName()
@@ -108,6 +112,7 @@ public class DBBroker {
         }
     }
 
+    // Brise objekat iz baze (DELETE FROM ... WHERE)
     public void delete(DomainObject domainObject) throws SQLException, Exception {
         try {
             String query = "DELETE FROM " + domainObject.tableName()
@@ -130,6 +135,7 @@ public class DBBroker {
         }
     }
 
+    // Pretrazuje objekte po kriterijumu (SELECT ... WHERE sa opcionim uslovom)
     public List<DomainObject> search(DomainObject domainObject) throws SQLException {
         try {
             String whereClause = domainObject.searchWhereClause();
@@ -161,6 +167,7 @@ public class DBBroker {
         }
     }
 
+    // Vraca sve objekte sa JOIN-om nad vise tabela (bez WHERE)
     public List<DomainObject> getAllJoinTables(DomainObject domainObject) throws SQLException {
         try {
             String query = "SELECT " + domainObject.selectJoinColumns()
@@ -181,6 +188,7 @@ public class DBBroker {
         }
     }
 
+    // Vraca sve objekte sa JOIN-om nad vise tabela (sa WHERE uslovom)
     public List<DomainObject> getAllJoinTablesWhere(DomainObject domainObject) throws SQLException {
         try {
             String whereClause = domainObject.joinWhereClause();

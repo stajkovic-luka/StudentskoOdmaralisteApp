@@ -19,6 +19,7 @@ public class SmenaForma extends javax.swing.JDialog {
     public SmenaForma(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        jTableSmene.setModel(new TableModelSmena());
         setLocationRelativeTo(parent);
         dodajStil();
         popuniTabeluSmene();
@@ -41,7 +42,25 @@ public class SmenaForma extends javax.swing.JDialog {
         jLabelNaslov.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabelNaslov.setText("Pregled smena");
 
-        jTableSmene.setModel(new TableModelSmena());
+        jTableSmene.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "ID", "Prostorija", "Komentar", "Tip smene"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(jTableSmene);
 
         jButtonDodajSmenu.setText("Dodaj smenu");

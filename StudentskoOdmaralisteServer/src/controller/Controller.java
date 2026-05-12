@@ -7,6 +7,7 @@ import domain.Student;
 import java.util.List;
 import so.AddShiftSO;
 import so.AddStudentSO;
+import so.DeleteStudentSO;
 import so.GetAllFacultiesSO;
 import so.GetAllShiftsSO;
 import so.GetAllStudentsSO;
@@ -53,5 +54,11 @@ public class Controller {
         GetAllStudentsSO so = new GetAllStudentsSO();
         so.execute(new Student());
         return so.getStudents();
+    }
+
+    // SK5
+    public void deleteStudent(Student student) throws Exception {
+        DeleteStudentSO so = new DeleteStudentSO();
+        so.execute(student);
     }
 }
