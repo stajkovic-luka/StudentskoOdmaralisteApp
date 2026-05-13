@@ -7,7 +7,9 @@ import domain.Student;
 import java.util.List;
 import so.AddShiftSO;
 import so.AddStudentSO;
+import so.CreateStudentSO;
 import so.DeleteStudentSO;
+import so.FindStudentByIdSO;
 import so.GetAllFacultiesSO;
 import so.GetAllShiftsSO;
 import so.GetAllStudentsSO;
@@ -75,5 +77,19 @@ public class Controller {
         SearchStudentsSO so = new SearchStudentsSO();
         so.execute(student);
         return so.getStudents();
+    }
+
+    // SK5, SK6, SK7
+    public DomainObject findStudentById(Student student) throws Exception {
+        FindStudentByIdSO so = new FindStudentByIdSO();
+        so.execute(student);
+        return so.getStudent();
+    }
+
+    // SK4
+    public Student createStudent() throws Exception {
+        CreateStudentSO so = new CreateStudentSO();
+        so.execute(new Student());
+        return so.getStudent();
     }
 }

@@ -179,7 +179,7 @@ public class IzmeniStudent extends javax.swing.JDialog {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(
                     this,
-                    "Sistem ne moze da zapamti studenta.\n" + e.getMessage(),
+                    "Sistem ne moze da zapamti studenta\n" + e.getMessage(),
                     "Greska",
                     JOptionPane.ERROR_MESSAGE
             );

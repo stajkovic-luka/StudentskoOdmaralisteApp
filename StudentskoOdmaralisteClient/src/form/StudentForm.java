@@ -180,9 +180,15 @@ public class StudentForm extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonNoviStudentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNoviStudentActionPerformed
-        NoviStudentForm forma = new NoviStudentForm((java.awt.Frame) getParent(), true);
-        forma.setVisible(true);
-        popuniTabeluStudenti();
+        try {
+            Controller.getInstance().createStudent();
+            JOptionPane.showMessageDialog(this, "Sistem je kreirao studenta.", "Uspeh", JOptionPane.INFORMATION_MESSAGE);
+            NoviStudentForm forma = new NoviStudentForm((java.awt.Frame) getParent(), true);
+            forma.setVisible(true);
+            popuniTabeluStudenti();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Sistem ne moze da kreira studenta", "Greska", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_jButtonNoviStudentActionPerformed
 
     private void jButtonNazadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNazadActionPerformed
@@ -196,11 +202,21 @@ public class StudentForm extends javax.swing.JDialog {
             return;
         }
 
-        Student selektovani = students.get(selektovaniRed);
-        IzmeniStudent forma = new IzmeniStudent((java.awt.Frame) getParent(), true, selektovani);
-        forma.setLocationRelativeTo(this);
-        forma.setVisible(true);
-        popuniTabeluStudenti();
+        try {
+            Student selektovani = students.get(selektovaniRed);
+            Student nadjeni = Controller.getInstance().findStudentById(selektovani.getIdStudent());
+            if (nadjeni == null) {
+                JOptionPane.showMessageDialog(this, "Sistem ne moze da nadje studenta", "Greska", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+            JOptionPane.showMessageDialog(this, "Sistem je nasao studenta", "Pretraga", JOptionPane.INFORMATION_MESSAGE);
+            IzmeniStudent forma = new IzmeniStudent((java.awt.Frame) getParent(), true, nadjeni);
+            forma.setLocationRelativeTo(this);
+            forma.setVisible(true);
+            popuniTabeluStudenti();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Sistem ne moze da nadje studenta", "Greska", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_jButtonIzmeniStudentaActionPerformed
 
     private void jButtonObrisiStudentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonObrisiStudentaActionPerformed
@@ -210,16 +226,23 @@ public class StudentForm extends javax.swing.JDialog {
             return;
         }
 
-        int potvrda = JOptionPane.showConfirmDialog(this, "Da li ste sigurni da zelite da obrisete studenta?", "Potvrda brisanja", JOptionPane.YES_NO_OPTION);
-        if (potvrda == JOptionPane.YES_OPTION) {
-            try {
-                Student selektovani = students.get(selektovaniRed);
-                Controller.getInstance().deleteStudent(selektovani);
+        try {
+            Student selektovani = students.get(selektovaniRed);
+            Student nadjeni = Controller.getInstance().findStudentById(selektovani.getIdStudent());
+            if (nadjeni == null) {
+                JOptionPane.showMessageDialog(this, "Sistem ne moze da nadje studenta", "Greska", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+            JOptionPane.showMessageDialog(this, "Sistem je nasao studenta", "Pretraga", JOptionPane.INFORMATION_MESSAGE);
+
+            int potvrda = JOptionPane.showConfirmDialog(this, "Da li ste sigurni da zelite da obrisete studenta?", "Potvrda brisanja", JOptionPane.YES_NO_OPTION);
+            if (potvrda == JOptionPane.YES_OPTION) {
+                Controller.getInstance().deleteStudent(nadjeni);
                 JOptionPane.showMessageDialog(this, "Sistem je obrisao studenta.", "Brisanje studenta", JOptionPane.INFORMATION_MESSAGE);
                 popuniTabeluStudenti();
-            } catch (Exception e) {
-                JOptionPane.showMessageDialog(this, "Sistem ne moze da obrise studenta.\n" + e.getMessage(), "Greska", JOptionPane.ERROR_MESSAGE);
             }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Sistem ne moze da obrisati studenta\n" + e.getMessage(), "Greska", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jButtonObrisiStudentaActionPerformed
 
@@ -244,12 +267,12 @@ public class StudentForm extends javax.swing.JDialog {
             TableUtils.autoResizeTable(jTableStudenti);
 
             if (students.isEmpty()) {
-                JOptionPane.showMessageDialog(this, "Sistem ne moze da nadje studente po zadatim kriterijumima.", "Pretraga", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Sistem ne moze da nadje studente po zadatim kriterijumima", "Pretraga", JOptionPane.INFORMATION_MESSAGE);
             } else {
-                JOptionPane.showMessageDialog(this, "Sistem je nasao studente po zadatim kriterijumima.", "Pretraga", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Sistem je nasao studente po zadatim kriterijumima", "Pretraga", JOptionPane.INFORMATION_MESSAGE);
             }
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Sistem ne moze da nadje studente po zadatim kriterijumima.\n" + e.getMessage(), "Greska", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Sistem ne moze da nadje studente po zadatim kriterijumima\n" + e.getMessage(), "Greska", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jButtonPretraziActionPerformed
 

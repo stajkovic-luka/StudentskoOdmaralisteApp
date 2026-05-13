@@ -147,7 +147,7 @@ CREATE TABLE `stavkafakture` (
 
 LOCK TABLES `stavkafakture` WRITE;
 /*!40000 ALTER TABLE `stavkafakture` DISABLE KEYS */;
-INSERT INTO `stavkafakture` (`idFaktura`, `rb`, `idNocenje`, `datumOd`, `datumDo`, `brojDana`, `dorucakUkljucen`, `cena`, `iznos`, `dodatniTroskovi`) VALUES (1,1,1,'2026-06-01','2026-06-04',3,1,2500,7500,0),(2,1,3,'2026-06-10','2026-06-13',3,1,5000,15000,0),(3,1,2,'2026-06-05','2026-06-10',5,1,3000,15000,0),(4,1,1,'2026-06-15','2026-06-18',3,0,2500,7500,500),(4,2,5,'2026-06-15','2026-06-16',1,1,3000,3000,0),(5,1,4,'2026-06-20','2026-06-24',4,1,4000,16000,0),(5,2,1,'2026-06-24','2026-06-25',1,0,2500,2500,200);
+INSERT INTO `stavkafakture` (`idFaktura`, `rb`, `idNocenje`, `datumOd`, `datumDo`, `brojDana`, `dorucakUkljucen`, `cena`, `iznos`, `dodatniTroskovi`) VALUES (1,1,1,'2026-06-01','2026-06-04',3,1,2500,7500,0),(2,1,3,'2026-06-10','2026-06-13',3,1,5000,15000,0),(3,1,2,'2026-06-05','2026-06-10',5,1,3000,15000,0),(4,1,1,'2026-06-15','2026-06-18',3,0,2500,8000,500),(4,2,5,'2026-06-15','2026-06-16',1,1,3000,3000,0),(5,1,4,'2026-06-20','2026-06-24',4,1,4000,16000,0),(5,2,1,'2026-06-24','2026-06-25',1,0,2500,2500,200);
 /*!40000 ALTER TABLE `stavkafakture` ENABLE KEYS */;
 UNLOCK TABLES;
 DROP TABLE IF EXISTS `student`;

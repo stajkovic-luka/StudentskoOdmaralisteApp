@@ -17,9 +17,11 @@ public enum Operation {
 
     // SK4 - Kreiraj student
     CREATE_STUDENT,
+    CREATE_STUDENT_OBJECT,
 
     // SK5 - Pretraži student
     FIND_STUDENT,
+    FIND_STUDENT_BY_ID,
 
     // SK6 - Promeni student
     UPDATE_STUDENT,

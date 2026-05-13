@@ -236,7 +236,7 @@ public class FakturaOdmora extends DomainObject {
         faktura.setNapomena(rs.getString("napomena"));
 
         Sluzbenik fakturaSluzbenik = new Sluzbenik();
-        fakturaSluzbenik.setIdSluzbenik(rs.getInt("idSluzbenik"));
+        fakturaSluzbenik.setIdSluzbenik(rs.getLong("idSluzbenik"));
         fakturaSluzbenik.setIme(rs.getString("slIme"));
         fakturaSluzbenik.setPrezime(rs.getString("slPrezime"));
         fakturaSluzbenik.setKorisnickoIme(rs.getString("slKorisnickoIme"));
@@ -249,7 +249,7 @@ public class FakturaOdmora extends DomainObject {
         fakturaStudent.setBrTelefona(rs.getLong("stBrTelefona"));
         fakturaStudent.setBudzet(rs.getBoolean("stBudzet"));
         Fakultet f = new Fakultet();
-        f.setIdFakultet(rs.getInt("stIdFakultet"));
+        f.setIdFakultet(rs.getLong("stIdFakultet"));
         fakturaStudent.setFakultet(f);
         faktura.setStudent(fakturaStudent);
 
@@ -265,7 +265,7 @@ public class FakturaOdmora extends DomainObject {
         faktura.setNapomena(rs.getString("napomena"));
 
         Sluzbenik fakturaSluzbenik = new Sluzbenik();
-        fakturaSluzbenik.setIdSluzbenik(rs.getInt("idSluzbenik"));
+        fakturaSluzbenik.setIdSluzbenik(rs.getLong("idSluzbenik"));
         faktura.setSluzbenik(fakturaSluzbenik);
 
         Student fakturaStudent = new Student();

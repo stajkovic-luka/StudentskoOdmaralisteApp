@@ -8,7 +8,7 @@ import java.util.List;
 
 
 public class Fakultet extends DomainObject{
-    private int idFakultet;
+    private long idFakultet;
     private String naziv;
     private String mesto;
     private boolean akreditovan;
@@ -16,18 +16,18 @@ public class Fakultet extends DomainObject{
     public Fakultet() {
     }
 
-    public Fakultet(int idFakultet, String naziv, String mesto, boolean akreditovan) {
+    public Fakultet(long idFakultet, String naziv, String mesto, boolean akreditovan) {
         this.idFakultet = idFakultet;
         this.naziv = naziv;
         this.mesto = mesto;
         this.akreditovan = akreditovan;
     }
 
-    public int getIdFakultet() {
+    public long getIdFakultet() {
         return idFakultet;
     }
 
-    public void setIdFakultet(int idFakultet) {
+    public void setIdFakultet(long idFakultet) {
         this.idFakultet = idFakultet;
     }
 
@@ -94,7 +94,7 @@ public class Fakultet extends DomainObject{
 
     @Override
     public void bindSelectParams(PreparedStatement ps) throws SQLException {
-        ps.setInt(1, idFakultet);
+        ps.setLong(1, idFakultet);
     }
 
     @Override
@@ -167,7 +167,7 @@ public class Fakultet extends DomainObject{
 
     private Fakultet mapFakultet(ResultSet rs) throws SQLException {
         Fakultet fakultet = new Fakultet();
-        fakultet.setIdFakultet(rs.getInt("idFakultet"));
+        fakultet.setIdFakultet(rs.getLong("idFakultet"));
         fakultet.setNaziv(rs.getString("naziv"));
         fakultet.setMesto(rs.getString("mesto"));
         fakultet.setAkreditovan(rs.getBoolean("akreditovan"));

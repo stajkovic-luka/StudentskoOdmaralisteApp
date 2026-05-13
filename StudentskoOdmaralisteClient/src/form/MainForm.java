@@ -39,6 +39,7 @@ public class MainForm extends javax.swing.JFrame {
     private void initComponents() {
 
         jMenuItem1 = new javax.swing.JMenuItem();
+        jSeparator1 = new javax.swing.JSeparator();
         jLabelUlogovan = new javax.swing.JLabel();
         jLabelUlogovaniSluzbenik = new javax.swing.JLabel();
         jLabelLogo = new javax.swing.JLabel();
@@ -61,7 +62,6 @@ public class MainForm extends javax.swing.JFrame {
         jMenuItem1.setText("jMenuItem1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setResizable(false);
 
         jLabelUlogovan.setText("Ulogovan:");
 
@@ -315,5 +315,6 @@ public class MainForm extends javax.swing.JFrame {
     private javax.swing.JMenu jMenuPrimalacUsluge;
     private javax.swing.JMenu jMenuPruzalacUsluge;
     private javax.swing.JMenu jMenuSifranici;
+    private javax.swing.JSeparator jSeparator1;
     // End of variables declaration//GEN-END:variables
 }

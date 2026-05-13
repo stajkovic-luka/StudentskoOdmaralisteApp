@@ -120,10 +120,10 @@ public class NovaSmenaForma extends javax.swing.JDialog {
         try {
             TipSmene tipSmene = TipSmene.valueOf(tipStr);
             Controller.getInstance().addShift(prostorija, komentar, tipSmene);
-            JOptionPane.showMessageDialog(this, "Sistem je kreirao novu smenu.", "Uspeh", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Sistem je zapamtio smenu.", "Uspeh", JOptionPane.INFORMATION_MESSAGE);
             dispose();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Sistem ne moze da kreira novu smenu.\n" + e.getMessage(), "Greska", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Sistem ne moze da zapamti smenu.\n" + e.getMessage(), "Greska", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jButtonSacuvajActionPerformed
 

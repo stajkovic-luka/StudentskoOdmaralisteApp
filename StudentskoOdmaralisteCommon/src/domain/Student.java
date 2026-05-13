@@ -252,7 +252,7 @@ public class Student extends DomainObject {
         student.setBudzet(rs.getBoolean("budzet"));
 
         Fakultet studentFakultet = new Fakultet();
-        studentFakultet.setIdFakultet(rs.getInt("idFakultet"));
+        studentFakultet.setIdFakultet(rs.getLong("idFakultet"));
         student.setFakultet(studentFakultet);
 
         return student;
@@ -267,7 +267,7 @@ public class Student extends DomainObject {
         student.setBudzet(rs.getBoolean("budzet"));
 
         Fakultet studentFakultet = new Fakultet();
-        studentFakultet.setIdFakultet(rs.getInt("idFakultet"));
+        studentFakultet.setIdFakultet(rs.getLong("idFakultet"));
         studentFakultet.setNaziv(rs.getString("fNaziv"));
         studentFakultet.setMesto(rs.getString("fMesto"));
         studentFakultet.setAkreditovan(rs.getBoolean("fAkreditovan"));

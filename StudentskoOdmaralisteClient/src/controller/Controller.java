@@ -175,4 +175,35 @@ public class Controller {
 
         return (List<DomainObject>) response.getServerResponse();
     }
+
+    // SK5, SK6, SK7
+    public Student findStudentById(long idStudent) throws Exception {
+        Student student = new Student();
+        student.setIdStudent(idStudent);
+
+        Request request = new Request(Operation.FIND_STUDENT_BY_ID, student);
+        sender.send(request);
+
+        Response response = (Response) receiver.receive();
+
+        if (response.getException() != null) {
+            throw response.getException();
+        }
+
+        return (Student) response.getServerResponse();
+    }
+
+    // SK4
+    public Student createStudent() throws Exception {
+        Request request = new Request(Operation.CREATE_STUDENT_OBJECT, new Student());
+        sender.send(request);
+
+        Response response = (Response) receiver.receive();
+
+        if (response.getException() != null) {
+            throw response.getException();
+        }
+
+        return (Student) response.getServerResponse();
+    }
 }

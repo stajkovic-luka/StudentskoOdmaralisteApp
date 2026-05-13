@@ -177,7 +177,7 @@ public class SluzbenikSmena extends DomainObject{
         SluzbenikSmena raspored = new SluzbenikSmena();
 
         Sluzbenik rasporedSluzbenik = new Sluzbenik();
-        rasporedSluzbenik.setIdSluzbenik(rs.getInt("idSluzbenik"));
+        rasporedSluzbenik.setIdSluzbenik(rs.getLong("idSluzbenik"));
         raspored.setSluzbenik(rasporedSluzbenik);
 
         Smena rasporedSmena = new Smena();

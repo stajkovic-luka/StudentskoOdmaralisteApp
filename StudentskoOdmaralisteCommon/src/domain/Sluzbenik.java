@@ -37,7 +37,7 @@ public class Sluzbenik extends DomainObject {
         this.korisnickoIme = korisnickoIme;
     }
     
-    public Sluzbenik(int idSluzbenik, String ime, String prezime, String korisnickoIme, String lozinka) {
+    public Sluzbenik(long idSluzbenik, String ime, String prezime, String korisnickoIme, String lozinka) {
         this.idSluzbenik = idSluzbenik;
         this.ime = ime;
         this.prezime = prezime;
@@ -49,7 +49,7 @@ public class Sluzbenik extends DomainObject {
         return idSluzbenik;
     }
 
-    public void setIdSluzbenik(int idSluzbenik) {
+    public void setIdSluzbenik(long idSluzbenik) {
         this.idSluzbenik = idSluzbenik;
     }
 
@@ -145,7 +145,7 @@ public class Sluzbenik extends DomainObject {
 
         if (rs.next()) {
             sluzbenik = new Sluzbenik();
-            sluzbenik.setIdSluzbenik(rs.getInt("idSluzbenik"));
+            sluzbenik.setIdSluzbenik(rs.getLong("idSluzbenik"));
             sluzbenik.setIme(rs.getString("ime"));
             sluzbenik.setPrezime(rs.getString("prezime"));
             sluzbenik.setKorisnickoIme(rs.getString("korisnickoIme"));
@@ -172,7 +172,7 @@ public class Sluzbenik extends DomainObject {
 
         while (rs.next()) {
             Sluzbenik sluzbenikIzBaze = new Sluzbenik();
-            sluzbenikIzBaze.setIdSluzbenik(rs.getInt("idSluzbenik"));
+            sluzbenikIzBaze.setIdSluzbenik(rs.getLong("idSluzbenik"));
             sluzbenikIzBaze.setIme(rs.getString("ime"));
             sluzbenikIzBaze.setPrezime(rs.getString("prezime"));
             sluzbenikIzBaze.setKorisnickoIme(rs.getString("korisnickoIme"));

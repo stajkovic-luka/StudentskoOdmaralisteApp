@@ -163,10 +163,10 @@ public class NoviStudentForm extends javax.swing.JDialog {
             student.setFakultet(fakulteti.get(selected));
 
             Controller.getInstance().addStudent(student);
-            JOptionPane.showMessageDialog(this, "Sistem je kreirao novog studenta.", "Uspeh", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Sistem je zapamtio studenta.", "Uspeh", JOptionPane.INFORMATION_MESSAGE);
             dispose();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Sistem ne moze da kreira novog studenta.\n" + e.getMessage(), "Greska", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Sistem ne moze da zapamti studenta\n" + e.getMessage(), "Greska", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jButtonSacuvajActionPerformed
 

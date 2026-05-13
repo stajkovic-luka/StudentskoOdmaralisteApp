@@ -86,7 +86,7 @@ public class ClientThread extends Thread {
                         case INSERT_SHIFT -> {
                             Smena smena = (Smena) request.getArgument();
                             controller.addShift(smena);
-                            response.setServerResponse("Sistem je kreirao novu smenu.");
+                            response.setServerResponse("Sistem je zapamtio smenu.");
                         }
                         
                         // SK4
@@ -99,7 +99,7 @@ public class ClientThread extends Thread {
                         case CREATE_STUDENT -> {
                             Student student = (Student) request.getArgument();
                             controller.addStudent(student);
-                            response.setServerResponse("Sistem je kreirao novog studenta.");
+                            response.setServerResponse("Sistem je kreirao studenta.");
                         }
                         
                         // SK4, SK5, SK6, SK7
@@ -127,6 +127,22 @@ public class ClientThread extends Thread {
                             Student searchStudent = (Student) request.getArgument();
                             List<DomainObject> searchResults = controller.searchStudents(searchStudent);
                             response.setServerResponse(searchResults);
+                        }
+                        
+                        // SK5, SK6, SK7 - Nadji studenta po ID-u
+                        case FIND_STUDENT_BY_ID -> {
+                            Student studentById = (Student) request.getArgument();
+                            DomainObject found = controller.findStudentById(studentById);
+                            if (found == null) {
+                                throw new Exception("Sistem ne moze da nadje studenta");
+                            }
+                            response.setServerResponse(found);
+                        }
+                        
+                        // SK4 - Kreiraj prazan student objekat
+                        case CREATE_STUDENT_OBJECT -> {
+                            Student created = controller.createStudent();
+                            response.setServerResponse(created);
                         }
                         
                         // TODO: SK1 - Kreiraj fakturu odmora

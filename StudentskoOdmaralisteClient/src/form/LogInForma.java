@@ -175,10 +175,19 @@ public class LogInForma extends javax.swing.JFrame {
                         "Operacija uspesna",
                         JOptionPane.INFORMATION_MESSAGE
                 );
-                MainForm mf = new MainForm(ulogovaniSluzbenik);
-                mf.setVisible(true);
-
-                this.dispose();
+                try {
+                    MainForm mf = new MainForm(ulogovaniSluzbenik);
+                    mf.setVisible(true);
+                    this.dispose();
+                } catch (Exception mainEx) {
+                    mainEx.printStackTrace();
+                    JOptionPane.showMessageDialog(
+                            this,
+                            "Ne moze da se otvori glavna forma i meni",
+                            "Greska",
+                            JOptionPane.ERROR_MESSAGE
+                    );
+                }
             }
         } catch (EOFException eofex) {
             eofex.printStackTrace();
