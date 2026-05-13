@@ -5,8 +5,10 @@ import domain.DomainObject;
 import domain.Student;
 import java.awt.Color;
 import java.awt.Cursor;
+import java.awt.Frame;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.table.JTableHeader;
 import table.model.TableModelStudent;
@@ -62,8 +64,11 @@ public class StudentForm extends javax.swing.JDialog {
         jTextFieldPretraga.setPreferredSize(new java.awt.Dimension(180, 28));
         jPanelSearch.add(jTextFieldPretraga);
 
-        jButtonPretrazi.setText("Pretrazi");
-        jButtonPretrazi.setPreferredSize(new java.awt.Dimension(100, 30));
+        jButtonPretrazi.setIcon(new javax.swing.ImageIcon(
+                new javax.swing.ImageIcon(getClass().getResource("/image/lupa.png"))
+                        .getImage().getScaledInstance(16, 16, java.awt.Image.SCALE_SMOOTH)));
+        jButtonPretrazi.setPreferredSize(new java.awt.Dimension(50, 30));
+        jButtonPretrazi.setToolTipText("Pretrazi");
         jButtonPretrazi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonPretraziActionPerformed(evt);
@@ -71,8 +76,11 @@ public class StudentForm extends javax.swing.JDialog {
         });
         jPanelSearch.add(jButtonPretrazi);
 
-        jButtonPrikaziSve.setText("Prikazi sve");
-        jButtonPrikaziSve.setPreferredSize(new java.awt.Dimension(100, 30));
+        jButtonPrikaziSve.setIcon(new javax.swing.ImageIcon(
+                new javax.swing.ImageIcon(getClass().getResource("/image/strelica.png"))
+                        .getImage().getScaledInstance(24, 24, java.awt.Image.SCALE_SMOOTH)));
+        jButtonPrikaziSve.setPreferredSize(new java.awt.Dimension(50, 30));
+        jButtonPrikaziSve.setToolTipText("Prikazi sve");
         jButtonPrikaziSve.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonPrikaziSveActionPerformed(evt);
@@ -139,21 +147,14 @@ public class StudentForm extends javax.swing.JDialog {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 756, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(12, 12, 12)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jButtonIzmeniStudenta, javax.swing.GroupLayout.DEFAULT_SIZE, 144, Short.MAX_VALUE)
-                                    .addComponent(jButtonNoviStudent, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(16, 16, 16))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jButtonObrisiStudenta, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabelNaslov, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButtonNazad)
-                            .addComponent(jPanelSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 912, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap())))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jButtonObrisiStudenta, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButtonIzmeniStudenta, javax.swing.GroupLayout.DEFAULT_SIZE, 189, Short.MAX_VALUE)
+                            .addComponent(jButtonNoviStudent, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(jLabelNaslov, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonNazad)
+                    .addComponent(jPanelSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 977, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -183,7 +184,7 @@ public class StudentForm extends javax.swing.JDialog {
         try {
             Controller.getInstance().createStudent();
             JOptionPane.showMessageDialog(this, "Sistem je kreirao studenta.", "Uspeh", JOptionPane.INFORMATION_MESSAGE);
-            NoviStudentForm forma = new NoviStudentForm((java.awt.Frame) getParent(), true);
+            NoviStudentForm forma = new NoviStudentForm((Frame) getParent(), true);
             forma.setVisible(true);
             popuniTabeluStudenti();
         } catch (Exception e) {

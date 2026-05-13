@@ -31,29 +31,17 @@
                   <Group type="102" attributes="0">
                       <Component id="jScrollPane1" min="-2" pref="756" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jButtonIzmeniStudenta" pref="144" max="32767" attributes="0"/>
-                                  <Component id="jButtonNoviStudent" alignment="1" max="32767" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" attributes="0">
-                              <Component id="jButtonObrisiStudenta" min="-2" pref="144" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
-                          </Group>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="jButtonObrisiStudenta" min="-2" pref="144" max="-2" attributes="0"/>
+                          <Component id="jButtonIzmeniStudenta" alignment="0" pref="189" max="32767" attributes="0"/>
+                          <Component id="jButtonNoviStudent" alignment="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>
-                  <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jLabelNaslov" min="-2" pref="220" max="-2" attributes="0"/>
-                          <Component id="jButtonNazad" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="jPanelSearch" min="-2" pref="912" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="32767" attributes="0"/>
-                  </Group>
+                  <Component id="jLabelNaslov" min="-2" pref="220" max="-2" attributes="0"/>
+                  <Component id="jButtonNazad" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="jPanelSearch" alignment="0" min="-2" pref="977" max="-2" attributes="0"/>
               </Group>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -128,10 +116,13 @@
         </Component>
         <Component class="javax.swing.JButton" name="jButtonPretrazi">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Pretrazi"/>
-            <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-              <Dimension value="[100, 30]"/>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/image/lupa.png"/>
             </Property>
+            <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+              <Dimension value="[50, 30]"/>
+            </Property>
+            <Property name="toolTipText" type="java.lang.String" value="Pretrazi"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonPretraziActionPerformed"/>
@@ -139,10 +130,13 @@
         </Component>
         <Component class="javax.swing.JButton" name="jButtonPrikaziSve">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Prikazi sve"/>
-            <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-              <Dimension value="[100, 30]"/>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/image/strelica.png"/>
             </Property>
+            <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+              <Dimension value="[48, 30]"/>
+            </Property>
+            <Property name="toolTipText" type="java.lang.String" value="Prikazi sve"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonPrikaziSveActionPerformed"/>
