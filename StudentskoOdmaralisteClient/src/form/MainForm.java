@@ -38,8 +38,6 @@ public class MainForm extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jSeparator1 = new javax.swing.JSeparator();
         jLabelUlogovan = new javax.swing.JLabel();
         jLabelUlogovaniSluzbenik = new javax.swing.JLabel();
         jLabelLogo = new javax.swing.JLabel();
@@ -48,18 +46,9 @@ public class MainForm extends javax.swing.JFrame {
         jLabelVreme = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenuOperacije = new javax.swing.JMenu();
-        jMenuDokumenti = new javax.swing.JMenu();
         jMenuItemFaktura = new javax.swing.JMenuItem();
-        jMenuPruzalacUsluge = new javax.swing.JMenu();
-        jMenuItemSluzbenik = new javax.swing.JMenuItem();
-        jMenuPrimalacUsluge = new javax.swing.JMenu();
         jMenuItemStudent = new javax.swing.JMenuItem();
-        jMenuSifranici = new javax.swing.JMenu();
-        jMenuItemNocenje = new javax.swing.JMenuItem();
         jMenuItemSmena = new javax.swing.JMenuItem();
-        jMenuItemFakultet = new javax.swing.JMenuItem();
-
-        jMenuItem1.setText("jMenuItem1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -87,31 +76,13 @@ public class MainForm extends javax.swing.JFrame {
 
         jMenuOperacije.setText("Operacije");
 
-        jMenuDokumenti.setText("Dokumenti");
-
         jMenuItemFaktura.setText("Faktura odmora");
         jMenuItemFaktura.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItemFakturaActionPerformed(evt);
             }
         });
-        jMenuDokumenti.add(jMenuItemFaktura);
-
-        jMenuOperacije.add(jMenuDokumenti);
-
-        jMenuPruzalacUsluge.setText("Pruzalac usluge");
-
-        jMenuItemSluzbenik.setText("Sluzbenik");
-        jMenuItemSluzbenik.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItemSluzbenikActionPerformed(evt);
-            }
-        });
-        jMenuPruzalacUsluge.add(jMenuItemSluzbenik);
-
-        jMenuOperacije.add(jMenuPruzalacUsluge);
-
-        jMenuPrimalacUsluge.setText("Primalac usluge");
+        jMenuOperacije.add(jMenuItemFaktura);
 
         jMenuItemStudent.setText("Student");
         jMenuItemStudent.addActionListener(new java.awt.event.ActionListener() {
@@ -119,19 +90,7 @@ public class MainForm extends javax.swing.JFrame {
                 jMenuItemStudentActionPerformed(evt);
             }
         });
-        jMenuPrimalacUsluge.add(jMenuItemStudent);
-
-        jMenuOperacije.add(jMenuPrimalacUsluge);
-
-        jMenuSifranici.setText("Šifarnici");
-
-        jMenuItemNocenje.setText("Noćenje");
-        jMenuItemNocenje.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItemNocenjeActionPerformed(evt);
-            }
-        });
-        jMenuSifranici.add(jMenuItemNocenje);
+        jMenuOperacije.add(jMenuItemStudent);
 
         jMenuItemSmena.setText("Smena");
         jMenuItemSmena.addActionListener(new java.awt.event.ActionListener() {
@@ -139,12 +98,7 @@ public class MainForm extends javax.swing.JFrame {
                 jMenuItemSmenaActionPerformed(evt);
             }
         });
-        jMenuSifranici.add(jMenuItemSmena);
-
-        jMenuItemFakultet.setText("Fakultet");
-        jMenuSifranici.add(jMenuItemFakultet);
-
-        jMenuOperacije.add(jMenuSifranici);
+        jMenuOperacije.add(jMenuItemSmena);
 
         jMenuBar1.add(jMenuOperacije);
 
@@ -214,17 +168,6 @@ public class MainForm extends javax.swing.JFrame {
 //GEN-FIRST:event_jMenuItemFakturaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItemFakturaActionPerformed
-
-    private void jMenuItemNocenjeActionPerformed(
-            java.awt.event.ActionEvent evt
-    ) {
-//GEN-FIRST:event_jMenuItemNocenjeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItemNocenjeActionPerformed
-
-    private void jMenuItemSluzbenikActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemSluzbenikActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItemSluzbenikActionPerformed
 
     private void jMenuItemStudentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemStudentActionPerformed
         StudentForm sf = new StudentForm(this, true);
@@ -303,18 +246,9 @@ public class MainForm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelUlogovaniSluzbenik;
     private javax.swing.JLabel jLabelVreme;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenu jMenuDokumenti;
-    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItemFaktura;
-    private javax.swing.JMenuItem jMenuItemFakultet;
-    private javax.swing.JMenuItem jMenuItemNocenje;
-    private javax.swing.JMenuItem jMenuItemSluzbenik;
     private javax.swing.JMenuItem jMenuItemSmena;
     private javax.swing.JMenuItem jMenuItemStudent;
     private javax.swing.JMenu jMenuOperacije;
-    private javax.swing.JMenu jMenuPrimalacUsluge;
-    private javax.swing.JMenu jMenuPruzalacUsluge;
-    private javax.swing.JMenu jMenuSifranici;
-    private javax.swing.JSeparator jSeparator1;
     // End of variables declaration//GEN-END:variables
 }
