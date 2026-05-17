@@ -1,6 +1,8 @@
 package controller;
 
 import domain.DomainObject;
+import domain.FakturaOdmora;
+import domain.Nocenje;
 import domain.Sluzbenik;
 import domain.Smena;
 import domain.Student;
@@ -11,9 +13,12 @@ import so.CreateStudentSO;
 import so.DeleteStudentSO;
 import so.FindStudentByIdSO;
 import so.GetAllFacultiesSO;
+import so.GetAllInvoicesSO;
+import so.GetAllNocenjeSO;
 import so.GetAllShiftsSO;
 import so.GetAllStudentsSO;
 import so.LoginSO;
+import so.SearchInvoiceSO;
 import so.SearchStudentsSO;
 import so.UpdateStudentSO;
 
@@ -91,5 +96,26 @@ public class Controller {
         CreateStudentSO so = new CreateStudentSO();
         so.execute(new Student());
         return so.getStudent();
+    }
+
+    // SK2
+    public List<DomainObject> searchInvoices(FakturaOdmora faktura) throws Exception {
+        SearchInvoiceSO so = new SearchInvoiceSO();
+        so.execute(faktura);
+        return so.getFakture();
+    }
+
+    // SK2
+    public List<DomainObject> getAllInvoices() throws Exception {
+        GetAllInvoicesSO so = new GetAllInvoicesSO();
+        so.execute(new FakturaOdmora());
+        return so.getFakture();
+    }
+
+    // SK1, SK2, SK3
+    public List<DomainObject> getAllNocenje() throws Exception {
+        GetAllNocenjeSO so = new GetAllNocenjeSO();
+        so.execute(new Nocenje());
+        return so.getNocenja();
     }
 }

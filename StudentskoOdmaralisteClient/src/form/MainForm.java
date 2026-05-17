@@ -44,6 +44,7 @@ public class MainForm extends javax.swing.JFrame {
         jButtonUgasi = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabelVreme = new javax.swing.JLabel();
+        jLabelDobrodosli = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenuOperacije = new javax.swing.JMenu();
         jMenuItemFaktura = new javax.swing.JMenuItem();
@@ -73,6 +74,9 @@ public class MainForm extends javax.swing.JFrame {
         jLabelVreme.setBackground(new java.awt.Color(0, 0, 0));
         jLabelVreme.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabelVreme.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+
+        jLabelDobrodosli.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabelDobrodosli.setText("Zdravo,");
 
         jMenuOperacije.setText("Operacije");
 
@@ -108,18 +112,21 @@ public class MainForm extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabelUlogovan, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabelDobrodosli, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabelUlogovan, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabelUlogovaniSluzbenik, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabelVreme, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabelUlogovaniSluzbenik, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jLabelVreme, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(15, 15, 15)))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabelLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButtonUgasi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -128,22 +135,24 @@ public class MainForm extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(19, Short.MAX_VALUE)
+                .addGap(19, 19, 19)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(jButtonUgasi, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jLabelLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(19, 19, 19))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jLabelVreme, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE))
+                        .addGap(0, 13, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabelDobrodosli)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabelUlogovaniSluzbenik, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabelUlogovan, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabelUlogovan, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
-                            .addComponent(jLabelUlogovaniSluzbenik, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addContainerGap())))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabelVreme, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap())
         );
 
         pack();
@@ -166,7 +175,8 @@ public class MainForm extends javax.swing.JFrame {
             java.awt.event.ActionEvent evt
     ) {
 //GEN-FIRST:event_jMenuItemFakturaActionPerformed
-        // TODO add your handling code here:
+        FakturaForm ff = new FakturaForm(this, true);
+        ff.setVisible(true);
     }//GEN-LAST:event_jMenuItemFakturaActionPerformed
 
     private void jMenuItemStudentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemStudentActionPerformed
@@ -175,7 +185,7 @@ public class MainForm extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItemStudentActionPerformed
 
     private void jMenuItemSmenaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemSmenaActionPerformed
-        SmenaForma sf = new SmenaForma(this, true);
+        SmenaForm sf = new SmenaForm(this, true);
         sf.setVisible(true);
     }//GEN-LAST:event_jMenuItemSmenaActionPerformed
 
@@ -184,11 +194,14 @@ public class MainForm extends javax.swing.JFrame {
         jLabelUlogovaniSluzbenik.setText(
                 ulogovaniSluzbenik.getIme() + " " + ulogovaniSluzbenik.getPrezime()
         );
+        jLabelDobrodosli.setText(
+                "Zdravo, " + ulogovaniSluzbenik.getIme() + " " + ulogovaniSluzbenik.getPrezime() + "!"
+        );
 
         // Pozadina
         getContentPane().setBackground(new Color(0x1C2B3A));
 
-        // Dugme Ugasi - opasna akcija
+        // Dugme Ugasi
         jButtonUgasi.setBackground(new Color(0xC0392B));
         jButtonUgasi.setForeground(Color.WHITE);
         jButtonUgasi.setFont(
@@ -206,6 +219,8 @@ public class MainForm extends javax.swing.JFrame {
                 jLabelUlogovan.getFont().deriveFont(java.awt.Font.BOLD, 14f)
         );
         jLabelUlogovaniSluzbenik.setForeground(new Color(0xE07B00));
+        jLabelDobrodosli.setForeground(new Color(0xE07B00));
+        jLabelDobrodosli.setFont(jLabelDobrodosli.getFont().deriveFont(java.awt.Font.BOLD, 18f));
         jLabel2.setForeground(Color.WHITE);
         jLabel2.setFont(jLabel2.getFont().deriveFont(java.awt.Font.BOLD, 14f));
         jLabelVreme.setForeground(new Color(0xE07B00));
@@ -241,6 +256,7 @@ public class MainForm extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonUgasi;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabelDobrodosli;
     private javax.swing.JLabel jLabelLogo;
     private javax.swing.JLabel jLabelUlogovan;
     private javax.swing.JLabel jLabelUlogovaniSluzbenik;

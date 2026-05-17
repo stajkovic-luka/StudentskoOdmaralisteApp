@@ -2,6 +2,8 @@ package threads;
 
 import controller.Controller;
 import domain.DomainObject;
+import domain.FakturaOdmora;
+import domain.Nocenje;
 import domain.Sluzbenik;
 import domain.Smena;
 import domain.Student;
@@ -145,14 +147,28 @@ public class ClientThread extends Thread {
                             response.setServerResponse(created);
                         }
                         
-                        // TODO: SK1 - Kreiraj fakturu odmora
+                        // SK1 - Kreiraj fakturu odmora
                         case CREATE_INVOICE -> {
                             throw new Exception("Operacija nije implementirana.");
                         }
                         
-                        // TODO: SK2 - Pretraži fakturu odmora
+                        // SK2 - Pretraži fakturu odmora
                         case FIND_INVOICE -> {
-                            throw new Exception("Operacija nije implementirana.");
+                            FakturaOdmora searchFaktura = (FakturaOdmora) request.getArgument();
+                            List<DomainObject> searchResults = controller.searchInvoices(searchFaktura);
+                            response.setServerResponse(searchResults);
+                        }
+                        
+                        // SK2 - Učitaj sve fakture
+                        case GET_ALL_INVOICES -> {
+                            List<DomainObject> invoices = controller.getAllInvoices();
+                            response.setServerResponse(invoices);
+                        }
+                        
+                        // SK1, SK2, SK3 - Učitaj sva noćenja
+                        case GET_ALL_NOCENJE -> {
+                            List<DomainObject> nocenja = controller.getAllNocenje();
+                            response.setServerResponse(nocenja);
                         }
                         
                         default -> {

@@ -18,14 +18,14 @@ import threads.ServerThread;
  *
  * @author lukas
  */
-public class ServerskaForma extends javax.swing.JFrame {
+public class ServerskaForm extends javax.swing.JFrame {
 
     private ServerThread server;
 
     /**
      * Creates new form ServerskaForma
      */
-    public ServerskaForma() {
+    public ServerskaForm() {
         initComponents();
         jButtonStop.setEnabled(false);
         stilizuj();
@@ -151,7 +151,7 @@ public class ServerskaForma extends javax.swing.JFrame {
             server.start();
             server.setForma(this);
         } catch (IOException ex) {
-            Logger.getLogger(ServerskaForma.class.getName()).log(
+            Logger.getLogger(ServerskaForm.class.getName()).log(
                 Level.SEVERE,
                 null,
                 ex
@@ -169,13 +169,13 @@ public class ServerskaForma extends javax.swing.JFrame {
                 server.stopServer();
             }
         } catch (IOException ex) {
-            Logger.getLogger(ServerskaForma.class.getName()).log(
+            Logger.getLogger(ServerskaForm.class.getName()).log(
                 Level.SEVERE,
                 null,
                 ex
             );
         } catch (InterruptedException ex) {
-            Logger.getLogger(ServerskaForma.class.getName()).log(
+            Logger.getLogger(ServerskaForm.class.getName()).log(
                 Level.SEVERE,
                 null,
                 ex
@@ -188,7 +188,7 @@ public class ServerskaForma extends javax.swing.JFrame {
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {
 //GEN-FIRST:event_jMenuItem1ActionPerformed
-        KonfiguracionaForma kf = new KonfiguracionaForma(this, true);
+        KonfiguracionaForm kf = new KonfiguracionaForm(this, true);
         kf.setVisible(true);
         kf.setResizable(false);
     }//GEN-LAST:event_jMenuItem1ActionPerformed

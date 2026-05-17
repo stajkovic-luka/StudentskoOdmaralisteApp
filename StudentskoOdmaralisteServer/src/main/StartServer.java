@@ -1,7 +1,7 @@
 package main;
 
 import com.formdev.flatlaf.FlatIntelliJLaf;
-import form.ServerskaForma;
+import form.ServerskaForm;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 
@@ -17,7 +17,7 @@ public class StartServer {
                 e.printStackTrace();
             }
             
-            ServerskaForma serverskaForma = new ServerskaForma();
+            ServerskaForm serverskaForma = new ServerskaForm();
             serverskaForma.setVisible(true);
         });
     }

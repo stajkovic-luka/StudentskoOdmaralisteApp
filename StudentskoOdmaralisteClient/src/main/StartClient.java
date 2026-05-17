@@ -1,7 +1,7 @@
 package main;
 
 import com.formdev.flatlaf.FlatIntelliJLaf;
-import form.LogInForma;
+import form.LogInForm;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 
@@ -26,7 +26,7 @@ public class StartClient {
                 e.printStackTrace();
             }
 
-            LogInForma loginForma = new LogInForma();
+            LogInForm loginForma = new LogInForm();
             loginForma.setVisible(true);
         });
     }

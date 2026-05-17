@@ -6,9 +6,9 @@ import java.awt.Color;
 import java.awt.Cursor;
 import javax.swing.JOptionPane;
 
-public class NovaSmenaForma extends javax.swing.JDialog {
+public class NovaSmenaForm extends javax.swing.JDialog {
 
-    public NovaSmenaForma(java.awt.Frame parent, boolean modal) {
+    public NovaSmenaForm(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(parent);

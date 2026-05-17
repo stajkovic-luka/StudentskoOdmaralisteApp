@@ -17,14 +17,14 @@ import javax.swing.JOptionPane;
  *
  * @author lukas
  */
-public class LogInForma extends javax.swing.JFrame {
+public class LogInForm extends javax.swing.JFrame {
 
     private System.Logger LOGGER = System.getLogger("LogInForma");
 
     /**
      * Creates new form LoginForma
      */
-    public LogInForma() {
+    public LogInForm() {
         initComponents();
         dodajStil();
     }
@@ -87,7 +87,6 @@ public class LogInForma extends javax.swing.JFrame {
         jButtonLogIn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setResizable(false);
 
         jLabelKorisnickoIme.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabelKorisnickoIme.setText("Korisnicko ime:");

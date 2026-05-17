@@ -35,5 +35,9 @@ public enum Operation {
 
     // SK4, SK5, SK6, SK7
     GET_ALL_FACULTIES,
-    GET_ALL_STUDENTS
+    GET_ALL_STUDENTS,
+
+    // SK1, SK2, SK3
+    GET_ALL_NOCENJE,
+    GET_ALL_INVOICES
 }

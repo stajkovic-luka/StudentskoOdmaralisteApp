@@ -22,7 +22,7 @@ import javax.swing.JTextField;
  *
  * @author lukas
  */
-public class KonfiguracionaForma extends javax.swing.JDialog {
+public class KonfiguracionaForm extends javax.swing.JDialog {
 
     private String curUrl;
     private String curPassword;
@@ -39,7 +39,7 @@ public class KonfiguracionaForma extends javax.swing.JDialog {
     /**
      * Creates new form KonfiguracionaForma
      */
-    public KonfiguracionaForma(java.awt.Frame parent, boolean modal) {
+    public KonfiguracionaForm(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         stilizuj();
@@ -351,14 +351,14 @@ public class KonfiguracionaForma extends javax.swing.JDialog {
             try {
                 properties.load(input);
             } catch (IOException ex) {
-                Logger.getLogger(KonfiguracionaForma.class.getName()).log(
+                Logger.getLogger(KonfiguracionaForm.class.getName()).log(
                     Level.SEVERE,
                     null,
                     ex
                 );
             }
         } catch (FileNotFoundException ex) {
-            Logger.getLogger(KonfiguracionaForma.class.getName()).log(
+            Logger.getLogger(KonfiguracionaForm.class.getName()).log(
                 Level.SEVERE,
                 null,
                 ex

@@ -2,6 +2,7 @@ package controller;
 
 import domain.DomainObject;
 import domain.Fakultet;
+import domain.FakturaOdmora;
 import domain.Sluzbenik;
 import domain.Smena;
 import domain.Student;
@@ -205,5 +206,52 @@ public class Controller {
         }
 
         return (Student) response.getServerResponse();
+    }
+
+    // SK2
+    public List<DomainObject> searchInvoices(String sluzbenik, String student, Long nocenjeId) throws Exception {
+        FakturaOdmora faktura = new FakturaOdmora();
+        faktura.setSearchSluzbenik(sluzbenik);
+        faktura.setSearchStudent(student);
+        faktura.setSearchNocenjeId(nocenjeId);
+
+        Request request = new Request(Operation.FIND_INVOICE, faktura);
+        sender.send(request);
+
+        Response response = (Response) receiver.receive();
+
+        if (response.getException() != null) {
+            throw response.getException();
+        }
+
+        return (List<DomainObject>) response.getServerResponse();
+    }
+
+    // SK2
+    public List<DomainObject> getAllInvoices() throws Exception {
+        Request request = new Request(Operation.GET_ALL_INVOICES, null);
+        sender.send(request);
+
+        Response response = (Response) receiver.receive();
+
+        if (response.getException() != null) {
+            throw response.getException();
+        }
+
+        return (List<DomainObject>) response.getServerResponse();
+    }
+
+    // SK1, SK2, SK3
+    public List<DomainObject> getAllNocenje() throws Exception {
+        Request request = new Request(Operation.GET_ALL_NOCENJE, null);
+        sender.send(request);
+
+        Response response = (Response) receiver.receive();
+
+        if (response.getException() != null) {
+            throw response.getException();
+        }
+
+        return (List<DomainObject>) response.getServerResponse();
     }
 }

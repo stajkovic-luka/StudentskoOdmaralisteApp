@@ -12,11 +12,11 @@ import javax.swing.table.JTableHeader;
 import table.model.TableModelSmena;
 import table.model.TableUtils;
 
-public class SmenaForma extends javax.swing.JDialog {
+public class SmenaForm extends javax.swing.JDialog {
 
     private List<Smena> smene = new ArrayList<>();
 
-    public SmenaForma(java.awt.Frame parent, boolean modal) {
+    public SmenaForm(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         jTableSmene.setModel(new TableModelSmena());
@@ -37,7 +37,6 @@ public class SmenaForma extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Smene");
-        setResizable(false);
 
         jLabelNaslov.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabelNaslov.setText("Pregled smena");
@@ -84,16 +83,16 @@ public class SmenaForma extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addGap(22, 22, 22)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabelNaslov, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 612, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButtonDodajSmenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jButtonNazad)
+                        .addComponent(jButtonDodajSmenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabelNaslov, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButtonNazad))
                         .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addGap(24, 24, 24))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -102,19 +101,18 @@ public class SmenaForma extends javax.swing.JDialog {
                 .addComponent(jLabelNaslov)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButtonDodajSmenu))
+                    .addComponent(jButtonDodajSmenu)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 291, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jButtonNazad)
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addGap(18, 18, 18))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonDodajSmenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDodajSmenuActionPerformed
-        NovaSmenaForma forma = new NovaSmenaForma((java.awt.Frame) getParent(), true);
+        NovaSmenaForm forma = new NovaSmenaForm((java.awt.Frame) getParent(), true);
         forma.setVisible(true);
         popuniTabeluSmene();
     }//GEN-LAST:event_jButtonDodajSmenuActionPerformed

@@ -17,6 +17,10 @@ public class FakturaOdmora extends DomainObject {
     private Sluzbenik sluzbenik;
     private List<StavkaFakture> stavkeFakture = new ArrayList<>();
 
+    private String searchSluzbenik;
+    private String searchStudent;
+    private Long searchNocenjeId;
+
     public FakturaOdmora() {
     }
 
@@ -92,6 +96,66 @@ public class FakturaOdmora extends DomainObject {
 
     public void setStavkeFakture(List<StavkaFakture> stavkeFakture) {
         this.stavkeFakture = stavkeFakture;
+    }
+
+    public String getSearchSluzbenik() {
+        return searchSluzbenik;
+    }
+
+    public void setSearchSluzbenik(String searchSluzbenik) {
+        this.searchSluzbenik = searchSluzbenik;
+    }
+
+    public String getSearchStudent() {
+        return searchStudent;
+    }
+
+    public void setSearchStudent(String searchStudent) {
+        this.searchStudent = searchStudent;
+    }
+
+    public Long getSearchNocenjeId() {
+        return searchNocenjeId;
+    }
+
+    public void setSearchNocenjeId(Long searchNocenjeId) {
+        this.searchNocenjeId = searchNocenjeId;
+    }
+
+    @Override
+    public String searchWhereClause() {
+        List<String> conditions = new ArrayList<>();
+        if (searchSluzbenik != null && !searchSluzbenik.isBlank()) {
+            conditions.add("(sl.ime LIKE ? OR sl.prezime LIKE ?)");
+        }
+        if (searchStudent != null && !searchStudent.isBlank()) {
+            conditions.add("(st.ime LIKE ? OR st.prezime LIKE ?)");
+        }
+        if (searchNocenjeId != null) {
+            conditions.add("fo.idFaktura IN (SELECT sf.idFaktura FROM stavkafakture sf WHERE sf.idNocenje = ?)");
+        }
+        if (conditions.isEmpty()) {
+            return "";
+        }
+        return String.join(" AND ", conditions);
+    }
+
+    @Override
+    public void bindSearchParams(PreparedStatement ps) throws SQLException {
+        int index = 1;
+        if (searchSluzbenik != null && !searchSluzbenik.isBlank()) {
+            String val = "%" + searchSluzbenik + "%";
+            ps.setString(index++, val);
+            ps.setString(index++, val);
+        }
+        if (searchStudent != null && !searchStudent.isBlank()) {
+            String val = "%" + searchStudent + "%";
+            ps.setString(index++, val);
+            ps.setString(index++, val);
+        }
+        if (searchNocenjeId != null) {
+            ps.setLong(index++, searchNocenjeId);
+        }
     }
 
     @Override
@@ -179,16 +243,6 @@ public class FakturaOdmora extends DomainObject {
 
     @Override
     public void bindDeleteParams(PreparedStatement ps) throws SQLException {
-        bindSelectParams(ps);
-    }
-
-    @Override
-    public String searchWhereClause() {
-        return selectWhereClause();
-    }
-
-    @Override
-    public void bindSearchParams(PreparedStatement ps) throws SQLException {
         bindSelectParams(ps);
     }
 

@@ -2,7 +2,7 @@ package threads;
 
 import controller.Controller;
 import domain.Sluzbenik;
-import form.ServerskaForma;
+import form.ServerskaForm;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -14,7 +14,7 @@ import java.util.logging.Logger;
 
 public class ServerThread extends Thread {
 
-    private ServerskaForma serverForm;
+    private ServerskaForm serverForm;
     private List<ClientThread> listaKlijenata;
     private List<Sluzbenik> ulogovaniSluzbenici = new ArrayList<>();
 
@@ -80,7 +80,7 @@ public class ServerThread extends Thread {
         return listaKlijenata;
     }
 
-    public void setForma(ServerskaForma serverForm) {
+    public void setForma(ServerskaForm serverForm) {
         this.serverForm = serverForm;
     }
 
