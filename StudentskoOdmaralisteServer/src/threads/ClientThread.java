@@ -159,6 +159,16 @@ public class ClientThread extends Thread {
                             response.setServerResponse(searchResults);
                         }
                         
+                        // SK2 - Nadji fakturu po ID-u (sa stavkama)
+                        case FIND_INVOICE_BY_ID -> {
+                            FakturaOdmora fakturaById = (FakturaOdmora) request.getArgument();
+                            FakturaOdmora found = controller.findInvoiceById(fakturaById);
+                            if (found == null) {
+                                throw new Exception("Sistem ne moze da nadje fakturu odmora.");
+                            }
+                            response.setServerResponse(found);
+                        }
+                        
                         // SK2 - Učitaj sve fakture
                         case GET_ALL_INVOICES -> {
                             List<DomainObject> invoices = controller.getAllInvoices();

@@ -11,6 +11,7 @@ public enum Operation {
 
     // SK2 - Pretraži fakturu odmora
     FIND_INVOICE,
+    FIND_INVOICE_BY_ID,
 
     // SK3 - Promeni fakturu odmora
     UPDATE_INVOICE,

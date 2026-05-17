@@ -20,6 +20,7 @@ public class StavkaFakture extends DomainObject {
     private double dodatniTroskovi;
     private Nocenje nocenje;
     private FakturaOdmora fakturaOdmora;
+    private boolean searchByFakturaOnly;
 
     public StavkaFakture() {
     }
@@ -115,6 +116,14 @@ public class StavkaFakture extends DomainObject {
 
     public void setFakturaOdmora(FakturaOdmora fakturaOdmora) {
         this.fakturaOdmora = fakturaOdmora;
+    }
+
+    public boolean isSearchByFakturaOnly() {
+        return searchByFakturaOnly;
+    }
+
+    public void setSearchByFakturaOnly(boolean searchByFakturaOnly) {
+        this.searchByFakturaOnly = searchByFakturaOnly;
     }
 
     @Override
@@ -224,12 +233,21 @@ public class StavkaFakture extends DomainObject {
 
     @Override
     public String searchWhereClause() {
+        if (searchByFakturaOnly) {
+            return "idFaktura=?";
+        }
         return selectWhereClause();
     }
 
     @Override
     public void bindSearchParams(PreparedStatement ps) throws SQLException {
-        bindSelectParams(ps);
+        if (fakturaOdmora == null) {
+            throw new SQLException("Faktura odmora mora biti postavljena za pretragu stavke.");
+        }
+        ps.setLong(1, fakturaOdmora.getIdFaktura());
+        if (!searchByFakturaOnly) {
+            ps.setInt(2, rb);
+        }
     }
 
     @Override
@@ -246,12 +264,21 @@ public class StavkaFakture extends DomainObject {
 
     @Override
     public String joinWhereClause() {
-        return searchWhereClause();
+        if (searchByFakturaOnly) {
+            return "sf.idFaktura=?";
+        }
+        return "sf." + selectWhereClause();
     }
 
     @Override
     public void bindJoinParams(PreparedStatement ps) throws SQLException {
-        bindSearchParams(ps);
+        if (fakturaOdmora == null) {
+            throw new SQLException("Faktura odmora mora biti postavljena za pretragu stavke.");
+        }
+        ps.setLong(1, fakturaOdmora.getIdFaktura());
+        if (!searchByFakturaOnly) {
+            ps.setInt(2, rb);
+        }
     }
 
     @Override

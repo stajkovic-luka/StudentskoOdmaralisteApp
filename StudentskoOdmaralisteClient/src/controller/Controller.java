@@ -241,6 +241,23 @@ public class Controller {
         return (List<DomainObject>) response.getServerResponse();
     }
 
+    // SK2
+    public FakturaOdmora findInvoiceById(long idFaktura) throws Exception {
+        FakturaOdmora faktura = new FakturaOdmora();
+        faktura.setIdFaktura(idFaktura);
+
+        Request request = new Request(Operation.FIND_INVOICE_BY_ID, faktura);
+        sender.send(request);
+
+        Response response = (Response) receiver.receive();
+
+        if (response.getException() != null) {
+            throw response.getException();
+        }
+
+        return (FakturaOdmora) response.getServerResponse();
+    }
+
     // SK1, SK2, SK3
     public List<DomainObject> getAllNocenje() throws Exception {
         Request request = new Request(Operation.GET_ALL_NOCENJE, null);

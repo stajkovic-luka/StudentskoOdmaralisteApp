@@ -279,8 +279,13 @@ public class FakturaForm extends javax.swing.JDialog {
     private void jTableFaktureMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableFaktureMouseClicked
         int row = jTableFakture.getSelectedRow();
         if (row == -1) return;
-        FakturaOdmora selected = fakture.get(row);
-        prikaziStavke(selected);
+        try {
+            FakturaOdmora selected = fakture.get(row);
+            FakturaOdmora loaded = Controller.getInstance().findInvoiceById(selected.getIdFaktura());
+            prikaziStavke(loaded);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Sistem ne moze da ucita stavke fakture.\n" + e.getMessage(), "Greska", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_jTableFaktureMouseClicked
 
     private void jButtonPrikaziSveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPrikaziSveActionPerformed

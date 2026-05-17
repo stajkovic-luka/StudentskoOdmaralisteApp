@@ -21,6 +21,7 @@ import so.LoginSO;
 import so.SearchInvoiceSO;
 import so.SearchStudentsSO;
 import so.UpdateStudentSO;
+import so.FindInvoiceByIdSO;
 
 
 public class Controller {
@@ -110,6 +111,13 @@ public class Controller {
         GetAllInvoicesSO so = new GetAllInvoicesSO();
         so.execute(new FakturaOdmora());
         return so.getFakture();
+    }
+
+    // SK2
+    public FakturaOdmora findInvoiceById(FakturaOdmora faktura) throws Exception {
+        FindInvoiceByIdSO so = new FindInvoiceByIdSO();
+        so.execute(faktura);
+        return so.getFaktura();
     }
 
     // SK1, SK2, SK3
