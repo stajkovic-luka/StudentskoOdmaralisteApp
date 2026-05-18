@@ -135,7 +135,7 @@ public class DBBroker {
         }
     }
 
-    // Pretrazuje objekte po kriterijumu (SELECT ... WHERE sa opcionim uslovom)
+    // Pretrazuje objekte po kriterijumu (SELECT ... WHERE - SA opcionim uslovom)
     public List<DomainObject> search(DomainObject domainObject) throws SQLException {
         try {
             String whereClause = domainObject.searchWhereClause();
@@ -167,7 +167,7 @@ public class DBBroker {
         }
     }
 
-    // Vraca sve objekte sa JOIN-om nad vise tabela (bez WHERE)
+    // Vraca sve objekte sa JOIN-om nad vise tabela - bez WHERE
     public List<DomainObject> getAllJoinTables(DomainObject domainObject) throws SQLException {
         try {
             String query = "SELECT " + domainObject.selectJoinColumns()
@@ -188,7 +188,7 @@ public class DBBroker {
         }
     }
 
-    // Vraca sve objekte sa JOIN-om nad vise tabela (sa WHERE uslovom)
+    // Vraca sve objekte sa JOIN-om nad vise tabela - SA WHERE
     public List<DomainObject> getAllJoinTablesWhere(DomainObject domainObject) throws SQLException {
         try {
             String whereClause = domainObject.joinWhereClause();

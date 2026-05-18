@@ -175,7 +175,7 @@ public class MainForm extends javax.swing.JFrame {
             java.awt.event.ActionEvent evt
     ) {
 //GEN-FIRST:event_jMenuItemFakturaActionPerformed
-        FakturaForm ff = new FakturaForm(this, true);
+        FakturaForm ff = new FakturaForm(this, true, ulogovaniSluzbenik);
         ff.setVisible(true);
     }//GEN-LAST:event_jMenuItemFakturaActionPerformed
 

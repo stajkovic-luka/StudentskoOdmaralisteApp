@@ -4,6 +4,7 @@ import controller.Controller;
 import domain.DomainObject;
 import domain.FakturaOdmora;
 import domain.Nocenje;
+import domain.Sluzbenik;
 import domain.StavkaFakture;
 import java.awt.Color;
 import java.awt.Cursor;
@@ -22,9 +23,11 @@ public class FakturaForm extends javax.swing.JDialog {
 
     private List<FakturaOdmora> fakture = new ArrayList<>();
     private List<Nocenje> nocenja = new ArrayList<>();
+    private Sluzbenik ulogovaniSluzbenik;
 
-    public FakturaForm(java.awt.Frame parent, boolean modal) {
+    public FakturaForm(java.awt.Frame parent, boolean modal, Sluzbenik sluzbenik) {
         super(parent, modal);
+        this.ulogovaniSluzbenik = sluzbenik;
         initComponents();
         jTableFakture.setModel(new TableModelFaktura());
         jTableStavke.setModel(new TableModelStavke());
@@ -306,7 +309,15 @@ public class FakturaForm extends javax.swing.JDialog {
     }//GEN-LAST:event_jButtonPrikaziSveActionPerformed
 
     private void jButtonNoviActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNoviActionPerformed
-        JOptionPane.showMessageDialog(this, "TODO: SK1 - Kreiraj fakturu odmora", "Info", JOptionPane.INFORMATION_MESSAGE);
+        try {
+            Controller.getInstance().createInvoiceObject();
+            JOptionPane.showMessageDialog(this, "Sistem je kreirao fakturu odmora.", "Uspeh", JOptionPane.INFORMATION_MESSAGE);
+            NovaFakturaForm nf = new NovaFakturaForm(this, true, ulogovaniSluzbenik);
+            nf.setVisible(true);
+            jButtonPrikaziSveActionPerformed(evt);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Sistem ne moze da kreira fakturu odmora.", "Greska", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_jButtonNoviActionPerformed
 
     private void jButtonIzmeniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonIzmeniActionPerformed

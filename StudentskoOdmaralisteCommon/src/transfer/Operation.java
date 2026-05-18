@@ -7,6 +7,7 @@ public enum Operation {
     LOGOUT,
 
     // SK1 - Kreiraj fakturu odmora
+    CREATE_INVOICE_OBJECT,
     CREATE_INVOICE,
 
     // SK2 - Pretraži fakturu odmora

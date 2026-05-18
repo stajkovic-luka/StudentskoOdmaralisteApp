@@ -271,4 +271,44 @@ public class Controller {
 
         return (List<DomainObject>) response.getServerResponse();
     }
+
+    // SK1
+    public FakturaOdmora createInvoiceObject() throws Exception {
+        Request request = new Request(Operation.CREATE_INVOICE_OBJECT, new FakturaOdmora());
+        sender.send(request);
+
+        Response response = (Response) receiver.receive();
+
+        if (response.getException() != null) {
+            throw response.getException();
+        }
+
+        return (FakturaOdmora) response.getServerResponse();
+    }
+
+    // SK1
+    public void createInvoice(FakturaOdmora faktura) throws Exception {
+        Request request = new Request(Operation.CREATE_INVOICE, faktura);
+        sender.send(request);
+
+        Response response = (Response) receiver.receive();
+
+        if (response.getException() != null) {
+            throw response.getException();
+        }
+    }
+
+    // SK1, SK4
+    public List<DomainObject> getAllStudentsForCombo() throws Exception {
+        Request request = new Request(Operation.GET_ALL_STUDENTS, null);
+        sender.send(request);
+
+        Response response = (Response) receiver.receive();
+
+        if (response.getException() != null) {
+            throw response.getException();
+        }
+
+        return (List<DomainObject>) response.getServerResponse();
+    }
 }

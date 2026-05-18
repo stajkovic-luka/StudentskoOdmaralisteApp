@@ -159,6 +159,11 @@ public class FakturaOdmora extends DomainObject {
     }
 
     @Override
+    public void setGeneratedPrimaryKey(long generatedPrimaryKey) {
+        this.idFaktura = generatedPrimaryKey;
+    }
+
+    @Override
     public String tableName() {
         return "fakturaodmora";
     }

@@ -48,28 +48,27 @@ public class ClientThread extends Thread {
 
                 try {
                     switch (request.getOperation()) {
-                        
+
                         // SK8
                         case LOGIN -> {
                             Sluzbenik tempSluzbenik = (Sluzbenik) request.getArgument();
-                            vecUlogovan = server.getListaKlijenata().stream().anyMatch(thread -> { 
-                                Sluzbenik s = thread.getUlogovaniSluzbenik(); 
-                                return s != null && s.getKorisnickoIme().equals(tempSluzbenik.getKorisnickoIme()); 
-                            }); 
-                                    
+                            vecUlogovan = server.getListaKlijenata().stream().anyMatch(thread -> {
+                                Sluzbenik s = thread.getUlogovaniSluzbenik();
+                                return s != null && s.getKorisnickoIme().equals(tempSluzbenik.getKorisnickoIme());
+                            });
+
                             if (vecUlogovan) {
                                 throw new Exception("Korisnik je vec ulogovan!");
                             }
-                            
+
                             Sluzbenik sluzbenikIzBaze = controller.login(tempSluzbenik);
 
                             response.setServerResponse(sluzbenikIzBaze);
 
-                           
                             sluzbenik = sluzbenikIzBaze;
                             server.osveziFormu();
                         }
-                        
+
                         // SK8
                         case LOGOUT -> {
                             if (Operation.LOGOUT.equals(request.getOperation())) {
@@ -77,60 +76,60 @@ public class ClientThread extends Thread {
                                 return;
                             }
                         }
-                        
+
                         // SK21
                         case GET_ALL_SHIFT -> {
                             List<DomainObject> shifts = controller.getAllShifts();
                             response.setServerResponse(shifts);
                         }
-                        
+
                         // SK21
                         case INSERT_SHIFT -> {
                             Smena smena = (Smena) request.getArgument();
                             controller.addShift(smena);
                             response.setServerResponse("Sistem je zapamtio smenu.");
                         }
-                        
+
                         // SK4
                         case GET_ALL_FACULTIES -> {
                             List<DomainObject> faculties = controller.getAllFaculties();
                             response.setServerResponse(faculties);
                         }
-                        
+
                         // SK4
                         case CREATE_STUDENT -> {
                             Student student = (Student) request.getArgument();
                             controller.addStudent(student);
                             response.setServerResponse("Sistem je kreirao studenta.");
                         }
-                        
+
                         // SK4, SK5, SK6, SK7
                         case GET_ALL_STUDENTS -> {
                             List<DomainObject> students = controller.getAllStudents();
                             response.setServerResponse(students);
                         }
-                        
+
                         // SK7
                         case DELETE_STUDENT -> {
                             Student student = (Student) request.getArgument();
                             controller.deleteStudent(student);
                             response.setServerResponse("Sistem je obrisao studenta.");
                         }
-                        
+
                         // SK6
                         case UPDATE_STUDENT -> {
                             Student student = (Student) request.getArgument();
                             controller.updateStudent(student);
                             response.setServerResponse("Sistem je zapamtio studenta.");
                         }
-                        
+
                         // SK5 - Pretraži student
                         case FIND_STUDENT -> {
                             Student searchStudent = (Student) request.getArgument();
                             List<DomainObject> searchResults = controller.searchStudents(searchStudent);
                             response.setServerResponse(searchResults);
                         }
-                        
+
                         // SK5, SK6, SK7 - Nadji studenta po ID-u
                         case FIND_STUDENT_BY_ID -> {
                             Student studentById = (Student) request.getArgument();
@@ -140,25 +139,33 @@ public class ClientThread extends Thread {
                             }
                             response.setServerResponse(found);
                         }
-                        
+
                         // SK4 - Kreiraj prazan student objekat
                         case CREATE_STUDENT_OBJECT -> {
                             Student created = controller.createStudent();
                             response.setServerResponse(created);
                         }
-                        
-                        // SK1 - Kreiraj fakturu odmora
-                        case CREATE_INVOICE -> {
-                            throw new Exception("Operacija nije implementirana.");
+
+                        // SK1 - Kreiraj prazan objekat fakture odmora
+                        case CREATE_INVOICE_OBJECT -> {
+                            FakturaOdmora created = controller.createInvoiceObject();
+                            response.setServerResponse(created);
                         }
-                        
+
+                        // SK1 - Zapamti fakturu odmora
+                        case CREATE_INVOICE -> {
+                            FakturaOdmora novaFaktura = (FakturaOdmora) request.getArgument();
+                            controller.createInvoice(novaFaktura);
+                            response.setServerResponse("Sistem je kreirao fakturu odmora.");
+                        }
+
                         // SK2 - Pretraži fakturu odmora
                         case FIND_INVOICE -> {
                             FakturaOdmora searchFaktura = (FakturaOdmora) request.getArgument();
                             List<DomainObject> searchResults = controller.searchInvoices(searchFaktura);
                             response.setServerResponse(searchResults);
                         }
-                        
+
                         // SK2 - Nadji fakturu po ID-u (sa stavkama)
                         case FIND_INVOICE_BY_ID -> {
                             FakturaOdmora fakturaById = (FakturaOdmora) request.getArgument();
@@ -168,19 +175,19 @@ public class ClientThread extends Thread {
                             }
                             response.setServerResponse(found);
                         }
-                        
+
                         // SK2 - Učitaj sve fakture
                         case GET_ALL_INVOICES -> {
                             List<DomainObject> invoices = controller.getAllInvoices();
                             response.setServerResponse(invoices);
                         }
-                        
+
                         // SK1, SK2, SK3 - Učitaj sva noćenja
                         case GET_ALL_NOCENJE -> {
                             List<DomainObject> nocenja = controller.getAllNocenje();
                             response.setServerResponse(nocenja);
                         }
-                        
+
                         default -> {
                             throw new Exception("Nepoznata operacija!");
                         }
@@ -190,7 +197,7 @@ public class ClientThread extends Thread {
                     e.printStackTrace();
                     response.setException(e);
                 }
-                
+
                 sender.send(response);
             }
         } catch (IOException ioe) {

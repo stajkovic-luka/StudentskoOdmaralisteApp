@@ -22,6 +22,8 @@ import so.SearchInvoiceSO;
 import so.SearchStudentsSO;
 import so.UpdateStudentSO;
 import so.FindInvoiceByIdSO;
+import so.CreateInvoiceObjectSO;
+import so.CreateInvoiceSO;
 
 
 public class Controller {
@@ -125,5 +127,18 @@ public class Controller {
         GetAllNocenjeSO so = new GetAllNocenjeSO();
         so.execute(new Nocenje());
         return so.getNocenja();
+    }
+
+    // SK1
+    public void createInvoice(FakturaOdmora faktura) throws Exception {
+        CreateInvoiceSO so = new CreateInvoiceSO();
+        so.execute(faktura);
+    }
+
+    // SK1
+    public FakturaOdmora createInvoiceObject() throws Exception {
+        CreateInvoiceObjectSO so = new CreateInvoiceObjectSO();
+        so.execute(new FakturaOdmora());
+        return so.getFaktura();
     }
 }
