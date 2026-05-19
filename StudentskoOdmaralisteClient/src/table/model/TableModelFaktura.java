@@ -47,11 +47,13 @@ public class TableModelFaktura extends AbstractTableModel {
                         ? faktura.getStudent().getIme() + " " + faktura.getStudent().getPrezime()
                         : "n/a";
             case 3:
-                return faktura.getUkupanIznos();
+                return String.format("%.2f", faktura.getUkupanIznos());
             case 4:
-                return (faktura.getPopust() * 100) + "%";
+                return faktura.getPopust() > 0
+                        ? (int)(faktura.getPopust() * 100) + "%"
+                        : "NE";
             case 5:
-                return faktura.getIznosNakonPopusta();
+                return String.format("%.2f", faktura.getIznosNakonPopusta());
             case 6:
                 return faktura.getNapomena() != null ? faktura.getNapomena() : "";
             default:

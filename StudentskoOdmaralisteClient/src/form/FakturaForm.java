@@ -326,7 +326,20 @@ public class FakturaForm extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(this, "Izaberite fakturu koju zelite da izmenite.", "Greska", JOptionPane.ERROR_MESSAGE);
             return;
         }
-        JOptionPane.showMessageDialog(this, "TODO: SK3 - Promeni fakturu odmora", "Info", JOptionPane.INFORMATION_MESSAGE);
+        try {
+            FakturaOdmora selected = fakture.get(row);
+            FakturaOdmora loaded = Controller.getInstance().findInvoiceById(selected.getIdFaktura());
+            if (loaded == null) {
+                JOptionPane.showMessageDialog(this, "Sistem ne moze da nadje fakturu odmora.", "Greska", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+            JOptionPane.showMessageDialog(this, "Sistem je nasao fakturu odmora.", "Faktura", JOptionPane.INFORMATION_MESSAGE);
+            IzmeniFakturuForm izf = new IzmeniFakturuForm(this, true, loaded, ulogovaniSluzbenik);
+            izf.setVisible(true);
+            jButtonPrikaziSveActionPerformed(evt);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Sistem ne moze da nadje fakturu odmora.\n" + e.getMessage(), "Greska", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_jButtonIzmeniActionPerformed
 
     private void jButtonNazadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNazadActionPerformed

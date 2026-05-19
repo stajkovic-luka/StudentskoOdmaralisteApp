@@ -41,10 +41,10 @@ public class TableModelStavke extends AbstractTableModel {
             case 2: return s.getDatumOd() != null ? s.getDatumOd().toString() : "";
             case 3: return s.getDatumDo() != null ? s.getDatumDo().toString() : "";
             case 4: return s.isDorucakUkljucen() ? "Da" : "Ne";
-            case 5: return s.getCena();
+            case 5: return String.format("%.2f", s.getCena());
             case 6: return s.getBrojDana();
-            case 7: return s.getDodatniTroskovi();
-            case 8: return s.getIznos();
+            case 7: return String.format("%.2f", s.getDodatniTroskovi());
+            case 8: return String.format("%.2f", s.getIznos());
             default: return "n/a";
         }
     }

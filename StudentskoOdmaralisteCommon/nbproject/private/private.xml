@@ -14,7 +14,11 @@
             <file>file:/Users/lule/Developer/StudentskoOdmaralisteApp/StudentskoOdmaralisteCommon/src/domain/Sluzbenik.java</file>
         </group>
         <group>
-            <file>file:/Users/lule/Developer/StudentskoOdmaralisteApp/StudentskoOdmaralisteCommon/src/domain/Smena.java</file>
+            <file>file:/Users/lule/Developer/StudentskoOdmaralisteApp/StudentskoOdmaralisteCommon/src/domain/Student.java</file>
+            <file>file:/Users/lule/Developer/StudentskoOdmaralisteApp/StudentskoOdmaralisteCommon/src/domain/Nocenje.java</file>
+            <file>file:/Users/lule/Developer/StudentskoOdmaralisteApp/StudentskoOdmaralisteCommon/src/domain/StavkaFakture.java</file>
+            <file>file:/Users/lule/Developer/StudentskoOdmaralisteApp/StudentskoOdmaralisteCommon/src/transfer/Operation.java</file>
+            <file>file:/Users/lule/Developer/StudentskoOdmaralisteApp/StudentskoOdmaralisteCommon/src/domain/DomainObject.java</file>
             <file>file:/Users/lule/Developer/StudentskoOdmaralisteApp/StudentskoOdmaralisteCommon/src/domain/FakturaOdmora.java</file>
         </group>
     </open-files>

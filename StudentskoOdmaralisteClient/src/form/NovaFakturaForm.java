@@ -36,6 +36,7 @@ public class NovaFakturaForm extends javax.swing.JDialog {
         dodajStil();
         ucitajStudente();
         ucitajNocenja();
+        jComboStudent.addActionListener(e -> preracunajUkupno());
     }
 
     @SuppressWarnings("unchecked")

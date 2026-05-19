@@ -24,6 +24,7 @@ import so.UpdateStudentSO;
 import so.FindInvoiceByIdSO;
 import so.CreateInvoiceObjectSO;
 import so.CreateInvoiceSO;
+import so.UpdateInvoiceSO;
 
 
 public class Controller {
@@ -140,5 +141,11 @@ public class Controller {
         CreateInvoiceObjectSO so = new CreateInvoiceObjectSO();
         so.execute(new FakturaOdmora());
         return so.getFaktura();
+    }
+
+    // SK3
+    public void updateInvoice(FakturaOdmora faktura) throws Exception {
+        UpdateInvoiceSO so = new UpdateInvoiceSO();
+        so.execute(faktura);
     }
 }

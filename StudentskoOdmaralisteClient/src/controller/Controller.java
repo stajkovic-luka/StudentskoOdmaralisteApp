@@ -298,6 +298,18 @@ public class Controller {
         }
     }
 
+    // SK3
+    public void updateInvoice(FakturaOdmora faktura) throws Exception {
+        Request request = new Request(Operation.UPDATE_INVOICE, faktura);
+        sender.send(request);
+
+        Response response = (Response) receiver.receive();
+
+        if (response.getException() != null) {
+            throw response.getException();
+        }
+    }
+
     // SK1, SK4
     public List<DomainObject> getAllStudentsForCombo() throws Exception {
         Request request = new Request(Operation.GET_ALL_STUDENTS, null);

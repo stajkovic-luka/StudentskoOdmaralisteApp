@@ -182,6 +182,13 @@ public class ClientThread extends Thread {
                             response.setServerResponse(invoices);
                         }
 
+                        // SK3 - Promeni fakturu odmora
+                        case UPDATE_INVOICE -> {
+                            FakturaOdmora faktura = (FakturaOdmora) request.getArgument();
+                            controller.updateInvoice(faktura);
+                            response.setServerResponse("Sistem je zapamtio fakturu odmora.");
+                        }
+
                         // SK1, SK2, SK3 - Učitaj sva noćenja
                         case GET_ALL_NOCENJE -> {
                             List<DomainObject> nocenja = controller.getAllNocenje();
