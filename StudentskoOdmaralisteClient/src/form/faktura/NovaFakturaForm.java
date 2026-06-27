@@ -570,9 +570,8 @@ public class NovaFakturaForm extends javax.swing.JDialog {
             jTextFieldEmail.setText("");
         }
         
-        if(jCheckBoxPosalji.isEnabled()){
-            sendEmail = true;
-        }
+        sendEmail = jCheckBoxPosalji.isSelected();
+        
         
         System.out.println("FLAG ZA MAIL: " + sendEmail);
         
