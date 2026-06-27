@@ -15,6 +15,7 @@ import transfer.Receiver;
 import transfer.Request;
 import transfer.Response;
 import transfer.Sender;
+import transfer.request.SaveInvoiceData;
 
 public class Controller {
 
@@ -182,7 +183,7 @@ public class Controller {
         return (Student) response.getServerResponse();
     }
 
-    // SK4 - Kreiraj student (placeholder INSERT → vraća studenta sa ID)
+    // SK4 - Kreiraj student
     public Student createStudent() throws Exception {
         Request request = new Request(Operation.CREATE_STUDENT, new Student());
         sender.send(request);
@@ -275,8 +276,11 @@ public class Controller {
     }
 
     // SK1 - Zapamti fakturu (UPDATE placeholder + INSERT stavki)
-    public void saveInvoice(FakturaOdmora faktura) throws Exception {
-        Request request = new Request(Operation.SAVE_INVOICE, faktura);
+    public void saveInvoice(FakturaOdmora faktura, Boolean sendEmail, String recipientEmail) throws Exception {
+        // Cuvamo fakturu, flag da li se mejl salje i mejl primaoca
+        SaveInvoiceData data = new SaveInvoiceData(faktura, sendEmail, recipientEmail);
+        
+        Request request = new Request(Operation.SAVE_INVOICE, data);
         sender.send(request);
 
         Response response = (Response) receiver.receive();
@@ -286,7 +290,7 @@ public class Controller {
         }
     }
 
-    // SK1 - Odustani od kreiranja (DELETE placeholder po ID)
+    // SK1 - Odustani od kreiranja
     public void cancelInvoice(FakturaOdmora faktura) throws Exception {
         Request request = new Request(Operation.DELETE_INVOICE, faktura);
         sender.send(request);

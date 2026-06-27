@@ -29,6 +29,10 @@ public class NovaFakturaForm extends javax.swing.JDialog {
     private int rbCounter = 1;
     private int selectedStavkaIndex = -1;
     private boolean saved = false;
+    private javax.swing.JCheckBox jCheckBoxPosalji;
+    private javax.swing.JLabel jLabelEmail;
+    private javax.swing.JTextField jTextFieldEmail;
+    private Boolean sendEmail = false;
 
     public NovaFakturaForm(java.awt.Dialog parent, boolean modal, FakturaOdmora faktura, Sluzbenik sluzbenik) {
         super(parent, modal);
@@ -40,6 +44,7 @@ public class NovaFakturaForm extends javax.swing.JDialog {
         dodajStil();
         ucitajStudente();
         ucitajNocenja();
+        
         jComboStudent.addActionListener(e -> preracunajUkupno());
 
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -66,6 +71,9 @@ public class NovaFakturaForm extends javax.swing.JDialog {
         jLabelNapomena = new javax.swing.JLabel();
         jScrollPaneNapomena = new javax.swing.JScrollPane();
         jTextAreaNapomena = new javax.swing.JTextArea();
+        jCheckBoxPosalji = new javax.swing.JCheckBox();
+        jLabelEmail = new javax.swing.JLabel();
+        jTextFieldEmail = new javax.swing.JTextField();
         jPanelStavke = new javax.swing.JPanel();
         jLabelNocenje = new javax.swing.JLabel();
         jComboNocenje = new javax.swing.JComboBox();
@@ -106,6 +114,18 @@ public class NovaFakturaForm extends javax.swing.JDialog {
         jTextAreaNapomena.setLineWrap(true);
         jTextAreaNapomena.setWrapStyleWord(true);
         jScrollPaneNapomena.setViewportView(jTextAreaNapomena);
+
+        jCheckBoxPosalji.setText("Pošalji potvrdu na email");
+        jCheckBoxPosalji.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBoxPosaljiActionPerformed(evt);
+            }
+        });
+
+        jLabelEmail.setText("Email:");
+
+        jTextFieldEmail.setEnabled(false);
+        jTextFieldEmail.setToolTipText("Email adresa za potvrdu");
 
         jPanelStavke.setBorder(javax.swing.BorderFactory.createTitledBorder("Stavke fakture"));
 
@@ -263,6 +283,11 @@ public class NovaFakturaForm extends javax.swing.JDialog {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jScrollPaneNapomena, javax.swing.GroupLayout.DEFAULT_SIZE, 340, Short.MAX_VALUE)
                             .addComponent(jComboStudent, 0, 340, Short.MAX_VALUE)))
+                    .addComponent(jCheckBoxPosalji)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabelEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jPanelStavke, javax.swing.GroupLayout.PREFERRED_SIZE, 750, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabelUkupno, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -291,6 +316,12 @@ public class NovaFakturaForm extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabelNapomena, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPaneNapomena, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(12, 12, 12)
+                .addComponent(jCheckBoxPosalji, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(8, 8, 8)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextFieldEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jPanelStavke, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -487,7 +518,10 @@ public class NovaFakturaForm extends javax.swing.JDialog {
         faktura.setStavkeFakture(stavke);
 
         try {
-            Controller.getInstance().saveInvoice(faktura);
+            // DEBUG
+            System.out.println(faktura.getIdFaktura() + sendEmail.toString() + jTextFieldEmail.getText());
+            
+            Controller.getInstance().saveInvoice(faktura, sendEmail, jTextFieldEmail.getText());
             saved = true;
             JOptionPane.showMessageDialog(this, "Sistem je zapamtio fakturu odmora.", "Faktura", JOptionPane.INFORMATION_MESSAGE);
             dispose();
@@ -529,18 +563,38 @@ public class NovaFakturaForm extends javax.swing.JDialog {
         jTextFieldDodatni.setText("0");
     }
 
+    private void jCheckBoxPosaljiActionPerformed(java.awt.event.ActionEvent evt) {
+        jTextFieldEmail.setEnabled(jCheckBoxPosalji.isSelected());
+        
+        if (!jCheckBoxPosalji.isSelected()) {
+            jTextFieldEmail.setText("");
+        }
+        
+        if(jCheckBoxPosalji.isEnabled()){
+            sendEmail = true;
+        }
+        
+        System.out.println("FLAG ZA MAIL: " + sendEmail);
+        
+    }
+
     private void ucitajStudente() {
         try {
             List<DomainObject> list = Controller.getInstance().getAllStudentsForCombo();
             studenti = new ArrayList<>();
+            
             for (DomainObject d : list) {
                 studenti.add((Student) d);
             }
+            
             jComboStudent.removeAllItems();
+            
             for (Student s : studenti) {
                 jComboStudent.addItem(s);
             }
+            
             jComboStudent.setSelectedIndex(-1);
+            
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Greska pri ucitavanju studenata.", "Greska", JOptionPane.ERROR_MESSAGE);
         }
@@ -605,6 +659,14 @@ public class NovaFakturaForm extends javax.swing.JDialog {
 
         jTextAreaNapomena.setBackground(new Color(0xF5F0E8));
         jTextAreaNapomena.setFont(jTextAreaNapomena.getFont().deriveFont(13f));
+
+        jLabelEmail.setForeground(Color.WHITE);
+        jCheckBoxPosalji.setForeground(Color.WHITE);
+        jCheckBoxPosalji.setBackground(new Color(0x1C2B3A));
+        jCheckBoxPosalji.setOpaque(true);
+        
+        jTextFieldEmail.setBackground(new Color(0xF5F0E8));
+        jTextFieldEmail.setFont(jTextFieldEmail.getFont().deriveFont(13f));
 
         stilizujDugme(jButtonDodaj, new Color(0xE07B00));
         stilizujDugme(jButtonIzmeni, new Color(0x27AE60));

@@ -25,6 +25,7 @@ import so.invoice.CreateInvoiceSO;
 import so.invoice.SaveInvoiceSO;
 import so.invoice.DeleteInvoiceSO;
 import so.invoice.UpdateInvoiceSO;
+import transfer.request.SaveInvoiceData;
 
 
 public class Controller {
@@ -56,7 +57,7 @@ public class Controller {
         return so.getFaculties();
     }
     
-    // SK4 - Kreiraj student (placeholder INSERT → rezervacija ID-a)
+    // SK4 - Kreiraj student 
     public Student createStudent() throws Exception {
         CreateStudentSO so = new CreateStudentSO();
         so.execute(new Student());
@@ -124,20 +125,20 @@ public class Controller {
         return so.getNocenja();
     }
 
-    // SK1 - Kreiraj fakturu (placeholder INSERT → rezervacija ID-a)
+    // SK1 - Kreiraj fakturu 
     public FakturaOdmora createInvoice(Sluzbenik sluzbenik) throws Exception {
         CreateInvoiceSO so = new CreateInvoiceSO();
         so.execute(sluzbenik);
         return so.getFaktura();
     }
 
-    // SK1 - Zapamti fakturu (UPDATE placeholder + INSERT stavki)
-    public void saveInvoice(FakturaOdmora faktura) throws Exception {
+    // SK1 - Zapamti fakturu
+    public void saveInvoice(SaveInvoiceData data) throws Exception {
         SaveInvoiceSO so = new SaveInvoiceSO();
-        so.execute(faktura);
+        so.execute(data);
     }
 
-    // SK1 - Odustani od kreiranja (DELETE placeholder po ID-u)
+    // SK1 - Odustani od kreiranja 
     public void deleteInvoice(FakturaOdmora faktura) throws Exception {
         DeleteInvoiceSO so = new DeleteInvoiceSO();
         so.execute(faktura);

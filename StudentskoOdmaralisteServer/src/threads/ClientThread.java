@@ -17,6 +17,7 @@ import transfer.Sender;
 import transfer.Operation;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import transfer.request.SaveInvoiceData;
 
 public class ClientThread extends Thread {
 
@@ -96,7 +97,7 @@ public class ClientThread extends Thread {
                             response.setServerResponse(faculties);
                         }
 
-                        // SK4 - Kreiraj student (placeholder INSERT → rezervacija ID-a)
+                        // SK4 - Kreiraj student 
                         case CREATE_STUDENT -> {
                             Student created = controller.createStudent();
                             response.setServerResponse(created);
@@ -139,21 +140,22 @@ public class ClientThread extends Thread {
                             response.setServerResponse(found);
                         }
 
-                        // SK1 - Kreiraj fakturu (placeholder INSERT → rezervacija ID-a)
+                        // SK1 - Kreiraj fakturu
                         case CREATE_INVOICE -> {
                             Sluzbenik sluzbenikArg = (Sluzbenik) request.getArgument();
                             FakturaOdmora created = controller.createInvoice(sluzbenikArg);
                             response.setServerResponse(created);
                         }
 
-                        // SK1 - Zapamti fakturu (UPDATE placeholder + INSERT stavki)
+                        // SK1 - Zapamti fakturu 
                         case SAVE_INVOICE -> {
-                            FakturaOdmora faktura = (FakturaOdmora) request.getArgument();
-                            controller.saveInvoice(faktura);
+                            SaveInvoiceData data = (SaveInvoiceData) request.getArgument();
+                            controller.saveInvoice(data);
+                            
                             response.setServerResponse("Sistem je zapamtio fakturu odmora.");
                         }
 
-                        // SK1 - Odustani od kreiranja (DELETE placeholder)
+                        // SK1 - Odustani od kreiranja 
                         case DELETE_INVOICE -> {
                             FakturaOdmora faktura = (FakturaOdmora) request.getArgument();
                             controller.deleteInvoice(faktura);
