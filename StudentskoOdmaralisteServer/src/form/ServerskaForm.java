@@ -69,7 +69,7 @@ public class ServerskaForm extends javax.swing.JFrame {
             }
         });
 
-        jLabelLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/logo.png"))); // NOI18N
+        jLabelLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/logo-wh.png"))); // NOI18N
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {

@@ -7,24 +7,24 @@ import domain.Sluzbenik;
 import domain.Smena;
 import domain.Student;
 import java.util.List;
-import so.AddShiftSO;
-import so.AddStudentSO;
-import so.CreateStudentSO;
-import so.DeleteStudentSO;
-import so.FindStudentByIdSO;
-import so.GetAllFacultiesSO;
-import so.GetAllInvoicesSO;
-import so.GetAllNocenjeSO;
-import so.GetAllShiftsSO;
-import so.GetAllStudentsSO;
-import so.LoginSO;
-import so.SearchInvoiceSO;
-import so.SearchStudentsSO;
-import so.UpdateStudentSO;
-import so.FindInvoiceByIdSO;
-import so.CreateInvoiceObjectSO;
-import so.CreateInvoiceSO;
-import so.UpdateInvoiceSO;
+import so.shift.AddShiftSO;
+import so.student.DeleteStudentSO;
+import so.student.FindStudentByIdSO;
+import so.faculty.GetAllFacultiesSO;
+import so.invoice.GetAllInvoicesSO;
+import so.nocenje.GetAllNocenjeSO;
+import so.shift.GetAllShiftsSO;
+import so.student.GetAllStudentsSO;
+import so.auth.LoginSO;
+import so.invoice.SearchInvoiceSO;
+import so.student.SearchStudentsSO;
+import so.student.UpdateStudentSO;
+import so.invoice.FindInvoiceByIdSO;
+import so.student.CreateStudentSO;
+import so.invoice.CreateInvoiceSO;
+import so.invoice.SaveInvoiceSO;
+import so.invoice.DeleteInvoiceSO;
+import so.invoice.UpdateInvoiceSO;
 
 
 public class Controller {
@@ -56,10 +56,11 @@ public class Controller {
         return so.getFaculties();
     }
     
-    // SK4
-    public void addStudent(Student student) throws Exception {
-        AddStudentSO so = new AddStudentSO();
-        so.execute(student);
+    // SK4 - Kreiraj student (placeholder INSERT → rezervacija ID-a)
+    public Student createStudent() throws Exception {
+        CreateStudentSO so = new CreateStudentSO();
+        so.execute(new Student());
+        return so.getStudent();
     }
     
     // SK4, SK5, SK6, SK7
@@ -95,13 +96,6 @@ public class Controller {
         return so.getStudent();
     }
 
-    // SK4
-    public Student createStudent() throws Exception {
-        CreateStudentSO so = new CreateStudentSO();
-        so.execute(new Student());
-        return so.getStudent();
-    }
-
     // SK2
     public List<DomainObject> searchInvoices(FakturaOdmora faktura) throws Exception {
         SearchInvoiceSO so = new SearchInvoiceSO();
@@ -130,17 +124,23 @@ public class Controller {
         return so.getNocenja();
     }
 
-    // SK1
-    public void createInvoice(FakturaOdmora faktura) throws Exception {
+    // SK1 - Kreiraj fakturu (placeholder INSERT → rezervacija ID-a)
+    public FakturaOdmora createInvoice(Sluzbenik sluzbenik) throws Exception {
         CreateInvoiceSO so = new CreateInvoiceSO();
+        so.execute(sluzbenik);
+        return so.getFaktura();
+    }
+
+    // SK1 - Zapamti fakturu (UPDATE placeholder + INSERT stavki)
+    public void saveInvoice(FakturaOdmora faktura) throws Exception {
+        SaveInvoiceSO so = new SaveInvoiceSO();
         so.execute(faktura);
     }
 
-    // SK1
-    public FakturaOdmora createInvoiceObject() throws Exception {
-        CreateInvoiceObjectSO so = new CreateInvoiceObjectSO();
-        so.execute(new FakturaOdmora());
-        return so.getFaktura();
+    // SK1 - Odustani od kreiranja (DELETE placeholder po ID-u)
+    public void deleteInvoice(FakturaOdmora faktura) throws Exception {
+        DeleteInvoiceSO so = new DeleteInvoiceSO();
+        so.execute(faktura);
     }
 
     // SK3

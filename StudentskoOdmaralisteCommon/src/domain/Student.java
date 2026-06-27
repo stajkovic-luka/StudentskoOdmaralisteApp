@@ -43,6 +43,11 @@ public class Student extends DomainObject {
         this.idStudent = idStudent;
     }
 
+    @Override
+    public void setGeneratedPrimaryKey(long generatedPrimaryKey) {
+        this.idStudent = generatedPrimaryKey;
+    }
+
     public String getIme() {
         return ime;
     }
@@ -245,6 +250,7 @@ public class Student extends DomainObject {
 
     private Student mapStudent(ResultSet rs) throws SQLException {
         Student student = new Student();
+        
         student.setIdStudent(rs.getLong("idStudent"));
         student.setIme(rs.getString("ime"));
         student.setPrezime(rs.getString("prezime"));
@@ -260,6 +266,7 @@ public class Student extends DomainObject {
 
     private Student mapStudentJoined(ResultSet rs) throws SQLException {
         Student student = new Student();
+        
         student.setIdStudent(rs.getLong("idStudent"));
         student.setIme(rs.getString("ime"));
         student.setPrezime(rs.getString("prezime"));

@@ -96,11 +96,10 @@ public class ClientThread extends Thread {
                             response.setServerResponse(faculties);
                         }
 
-                        // SK4
+                        // SK4 - Kreiraj student (placeholder INSERT → rezervacija ID-a)
                         case CREATE_STUDENT -> {
-                            Student student = (Student) request.getArgument();
-                            controller.addStudent(student);
-                            response.setServerResponse("Sistem je kreirao studenta.");
+                            Student created = controller.createStudent();
+                            response.setServerResponse(created);
                         }
 
                         // SK4, SK5, SK6, SK7
@@ -140,23 +139,25 @@ public class ClientThread extends Thread {
                             response.setServerResponse(found);
                         }
 
-                        // SK4 - Kreiraj prazan student objekat
-                        case CREATE_STUDENT_OBJECT -> {
-                            Student created = controller.createStudent();
-                            response.setServerResponse(created);
-                        }
-
-                        // SK1 - Kreiraj prazan objekat fakture odmora
-                        case CREATE_INVOICE_OBJECT -> {
-                            FakturaOdmora created = controller.createInvoiceObject();
-                            response.setServerResponse(created);
-                        }
-
-                        // SK1 - Zapamti fakturu odmora
+                        // SK1 - Kreiraj fakturu (placeholder INSERT → rezervacija ID-a)
                         case CREATE_INVOICE -> {
-                            FakturaOdmora novaFaktura = (FakturaOdmora) request.getArgument();
-                            controller.createInvoice(novaFaktura);
-                            response.setServerResponse("Sistem je kreirao fakturu odmora.");
+                            Sluzbenik sluzbenikArg = (Sluzbenik) request.getArgument();
+                            FakturaOdmora created = controller.createInvoice(sluzbenikArg);
+                            response.setServerResponse(created);
+                        }
+
+                        // SK1 - Zapamti fakturu (UPDATE placeholder + INSERT stavki)
+                        case SAVE_INVOICE -> {
+                            FakturaOdmora faktura = (FakturaOdmora) request.getArgument();
+                            controller.saveInvoice(faktura);
+                            response.setServerResponse("Sistem je zapamtio fakturu odmora.");
+                        }
+
+                        // SK1 - Odustani od kreiranja (DELETE placeholder)
+                        case DELETE_INVOICE -> {
+                            FakturaOdmora faktura = (FakturaOdmora) request.getArgument();
+                            controller.deleteInvoice(faktura);
+                            response.setServerResponse("Sistem je otkazao kreiranje fakture.");
                         }
 
                         // SK2 - Pretraži fakturu odmora

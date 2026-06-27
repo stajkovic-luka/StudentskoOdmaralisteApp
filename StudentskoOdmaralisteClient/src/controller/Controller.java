@@ -109,18 +109,6 @@ public class Controller {
         return (List<DomainObject>) response.getServerResponse();
     }
 
-    // SK4
-    public void addStudent(Student student) throws Exception {
-        Request request = new Request(Operation.CREATE_STUDENT, student);
-        sender.send(request);
-
-        Response response = (Response) receiver.receive();
-
-        if (response.getException() != null) {
-            throw response.getException();
-        }
-    }
-
     // SK4, SK5, SK6, SK7
     public List<DomainObject> getAllStudents() throws Exception {
         Request request = new Request(Operation.GET_ALL_STUDENTS, null);
@@ -194,9 +182,9 @@ public class Controller {
         return (Student) response.getServerResponse();
     }
 
-    // SK4
+    // SK4 - Kreiraj student (placeholder INSERT → vraća studenta sa ID)
     public Student createStudent() throws Exception {
-        Request request = new Request(Operation.CREATE_STUDENT_OBJECT, new Student());
+        Request request = new Request(Operation.CREATE_STUDENT, new Student());
         sender.send(request);
 
         Response response = (Response) receiver.receive();
@@ -272,9 +260,9 @@ public class Controller {
         return (List<DomainObject>) response.getServerResponse();
     }
 
-    // SK1
-    public FakturaOdmora createInvoiceObject() throws Exception {
-        Request request = new Request(Operation.CREATE_INVOICE_OBJECT, new FakturaOdmora());
+    // SK1 - Kreiraj fakturu (placeholder INSERT → vraća fakturu sa ID)
+    public FakturaOdmora createInvoice(Sluzbenik sluzbenik) throws Exception {
+        Request request = new Request(Operation.CREATE_INVOICE, sluzbenik);
         sender.send(request);
 
         Response response = (Response) receiver.receive();
@@ -286,9 +274,21 @@ public class Controller {
         return (FakturaOdmora) response.getServerResponse();
     }
 
-    // SK1
-    public void createInvoice(FakturaOdmora faktura) throws Exception {
-        Request request = new Request(Operation.CREATE_INVOICE, faktura);
+    // SK1 - Zapamti fakturu (UPDATE placeholder + INSERT stavki)
+    public void saveInvoice(FakturaOdmora faktura) throws Exception {
+        Request request = new Request(Operation.SAVE_INVOICE, faktura);
+        sender.send(request);
+
+        Response response = (Response) receiver.receive();
+
+        if (response.getException() != null) {
+            throw response.getException();
+        }
+    }
+
+    // SK1 - Odustani od kreiranja (DELETE placeholder po ID)
+    public void cancelInvoice(FakturaOdmora faktura) throws Exception {
+        Request request = new Request(Operation.DELETE_INVOICE, faktura);
         sender.send(request);
 
         Response response = (Response) receiver.receive();

@@ -1,7 +1,7 @@
 package main;
 
 import com.formdev.flatlaf.FlatIntelliJLaf;
-import form.LogInForm;
+import form.auth.LogInForm;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 
