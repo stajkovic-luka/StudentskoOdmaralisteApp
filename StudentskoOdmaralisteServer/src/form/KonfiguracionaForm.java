@@ -18,10 +18,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-/**
- *
- * @author lukas
- */
+
 public class KonfiguracionaForm extends javax.swing.JDialog {
 
     private String curUrl;

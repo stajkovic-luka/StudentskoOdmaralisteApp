@@ -210,7 +210,8 @@ public class LogInForm extends javax.swing.JFrame {
                     JOptionPane.ERROR_MESSAGE
             );
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, "Neuspešan login! " + ex.getMessage() ," Greska", JOptionPane.ERROR_MESSAGE);
+//            JOptionPane.showMessageDialog(this, "Neuspesan login! " + ex.getMessage() ," Greska", JOptionPane.ERROR_MESSAGE);
+              JOptionPane.showMessageDialog(this,"Korisnicko ime i sifra nisu ispravni" ," Greska", JOptionPane.ERROR_MESSAGE);
             jTextFieldKorisnickoIme.setText("");
             jPasswordField.setText("");
         }

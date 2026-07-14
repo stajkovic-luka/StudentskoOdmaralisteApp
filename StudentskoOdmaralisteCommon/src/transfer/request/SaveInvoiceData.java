@@ -7,10 +7,7 @@ package transfer.request;
 import domain.FakturaOdmora;
 import java.io.Serializable;
 
-/**
- *
- * @author lule
- */
+// DTO
 public class SaveInvoiceData implements Serializable {
     private FakturaOdmora faktura;
     private Boolean sendEmail;

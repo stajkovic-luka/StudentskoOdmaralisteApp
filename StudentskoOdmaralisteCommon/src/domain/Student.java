@@ -10,10 +10,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- *
- * @author lukas
- */
+
 public class Student extends DomainObject {
 
     private long idStudent;

@@ -8,11 +8,31 @@
             <file>file:/Users/lule/Developer/StudentskoOdmaralisteApp/StudentskoOdmaralisteServer/src/threads/ClientThread.java</file>
             <file>file:/Users/lule/Developer/StudentskoOdmaralisteApp/StudentskoOdmaralisteServer/src/threads/ServerThread.java</file>
             <file>file:/Users/lule/Developer/StudentskoOdmaralisteApp/StudentskoOdmaralisteServer/src/so/AbstractSO.java</file>
-            <file>file:/Users/lule/Developer/StudentskoOdmaralisteApp/StudentskoOdmaralisteServer/src/so/AddStudentSO.java</file>
-            <file>file:/Users/lule/Developer/StudentskoOdmaralisteApp/StudentskoOdmaralisteServer/src/so/CreateStudentSO.java</file>
-            <file>file:/Users/lule/Developer/StudentskoOdmaralisteApp/StudentskoOdmaralisteServer/src/so/CreateInvoiceObjectSO.java</file>
-            <file>file:/Users/lule/Developer/StudentskoOdmaralisteApp/StudentskoOdmaralisteServer/src/so/CreateInvoiceSO.java</file>
-            <file>file:/Users/lule/Developer/StudentskoOdmaralisteApp/StudentskoOdmaralisteServer/src/so/UpdateInvoiceSO.java</file>
+            <file>file:/Users/lule/Developer/StudentskoOdmaralisteApp/StudentskoOdmaralisteServer/src/so/student/CreateStudentSO.java</file>
+            <file>file:/Users/lule/Developer/StudentskoOdmaralisteApp/StudentskoOdmaralisteServer/src/so/invoice/CreateInvoiceSO.java</file>
+            <file>file:/Users/lule/Developer/StudentskoOdmaralisteApp/StudentskoOdmaralisteServer/src/so/shift/AddShiftSO.java</file>
+            <file>file:/Users/lule/Developer/StudentskoOdmaralisteApp/StudentskoOdmaralisteServer/src/so/invoice/SaveInvoiceSO.java</file>
+            <file>file:/Users/lule/Developer/StudentskoOdmaralisteApp/StudentskoOdmaralisteServer/src/so/invoice/DeleteInvoiceSO.java</file>
+            <file>file:/Users/lule/Developer/StudentskoOdmaralisteApp/StudentskoOdmaralisteServer/src/controller/Controller.java</file>
+            <file>file:/Users/lule/Developer/StudentskoOdmaralisteApp/StudentskoOdmaralisteServer/src/so/nocenje/GetAllNocenjeSO.java</file>
+            <file>file:/Users/lule/Developer/StudentskoOdmaralisteApp/StudentskoOdmaralisteServer/src/so/faculty/GetAllFacultiesSO.java</file>
+            <file>file:/Users/lule/Developer/StudentskoOdmaralisteApp/StudentskoOdmaralisteServer/src/so/invoice/FindInvoiceByIdSO.java</file>
+            <file>file:/Users/lule/Developer/StudentskoOdmaralisteApp/StudentskoOdmaralisteServer/src/so/student/SearchStudentsSO.java</file>
+            <file>file:/Users/lule/Developer/StudentskoOdmaralisteApp/StudentskoOdmaralisteServer/src/so/invoice/SearchInvoiceSO.java</file>
+            <file>file:/Users/lule/Developer/StudentskoOdmaralisteApp/StudentskoOdmaralisteServer/src/so/student/UpdateStudentSO.java</file>
+            <file>file:/Users/lule/Developer/StudentskoOdmaralisteApp/StudentskoOdmaralisteServer/src/so/invoice/GetAllInvoicesSO.java</file>
+            <file>file:/Users/lule/Developer/StudentskoOdmaralisteApp/StudentskoOdmaralisteServer/src/image/logo.png</file>
+            <file>file:/Users/lule/Developer/StudentskoOdmaralisteApp/StudentskoOdmaralisteServer/src/image/logo-wh.png</file>
+            <file>file:/Users/lule/Developer/StudentskoOdmaralisteApp/StudentskoOdmaralisteServer/src/so/shift/GetAllShiftsSO.java</file>
+            <file>file:/Users/lule/Developer/StudentskoOdmaralisteApp/StudentskoOdmaralisteServer/src/so/student/FindStudentByIdSO.java</file>
+            <file>file:/Users/lule/Developer/StudentskoOdmaralisteApp/StudentskoOdmaralisteServer/src/so/student/GetAllStudentsSO.java</file>
+            <file>file:/Users/lule/Developer/StudentskoOdmaralisteApp/StudentskoOdmaralisteServer/src/service/mail/MailSender.java</file>
+            <file>file:/Users/lule/Developer/StudentskoOdmaralisteApp/StudentskoOdmaralisteServer/src/service/mail/InvoiceMailService.java</file>
+            <file>file:/Users/lule/Developer/StudentskoOdmaralisteApp/StudentskoOdmaralisteServer/src/form/KonfiguracionaForm.java</file>
+            <file>file:/Users/lule/Developer/StudentskoOdmaralisteApp/StudentskoOdmaralisteServer/src/config/MailConfig.java</file>
+            <file>file:/Users/lule/Developer/StudentskoOdmaralisteApp/StudentskoOdmaralisteServer/src/so/invoice/UpdateInvoiceSO.java</file>
+            <file>file:/Users/lule/Developer/StudentskoOdmaralisteApp/StudentskoOdmaralisteServer/src/form/ServerskaForm.java</file>
+            <file>file:/Users/lule/Developer/StudentskoOdmaralisteApp/StudentskoOdmaralisteServer/src/so/student/DeleteStudentSO.java</file>
         </group>
     </open-files>
 </project-private>

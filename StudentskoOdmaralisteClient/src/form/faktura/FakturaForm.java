@@ -302,6 +302,7 @@ public class FakturaForm extends javax.swing.JDialog {
             TableModelFaktura model = (TableModelFaktura) jTableFakture.getModel();
             model.setFakture(fakture);
             TableUtils.autoResizeTable(jTableFakture);
+            
             ocistiStavke();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Sistem ne moze da ucita fakture.", "Greska", JOptionPane.ERROR_MESSAGE);

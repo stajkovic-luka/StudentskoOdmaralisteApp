@@ -167,10 +167,12 @@ public class Fakultet extends DomainObject{
 
     private Fakultet mapFakultet(ResultSet rs) throws SQLException {
         Fakultet fakultet = new Fakultet();
+        
         fakultet.setIdFakultet(rs.getLong("idFakultet"));
         fakultet.setNaziv(rs.getString("naziv"));
         fakultet.setMesto(rs.getString("mesto"));
         fakultet.setAkreditovan(rs.getBoolean("akreditovan"));
+        
         return fakultet;
     }
 }

@@ -18,6 +18,7 @@ public class DeleteInvoiceSO extends AbstractSO {
         FakturaOdmora faktura = (FakturaOdmora) object;
 
         StavkaFakture stavkaSearch = new StavkaFakture();
+        
         stavkaSearch.setFakturaOdmora(faktura);
         stavkaSearch.setSearchByFakturaOnly(true);
 

@@ -243,7 +243,7 @@ public class StudentForm extends javax.swing.JDialog {
                 popuniTabeluStudenti();
             }
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Sistem ne moze da obrisati studenta\n" + e.getMessage(), "Greska", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Sistem ne moze da obrise studenta\n" + e.getMessage(), "Greska", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jButtonObrisiStudentaActionPerformed
 

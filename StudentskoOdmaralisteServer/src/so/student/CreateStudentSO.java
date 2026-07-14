@@ -16,6 +16,7 @@ public class CreateStudentSO extends AbstractSO {
     @Override
     protected void executeOperation(Object object) throws Exception {
         student = new Student();
+        
         student.setIme("placeholder");
         student.setPrezime("placeholder");
         student.setBrTelefona(0);

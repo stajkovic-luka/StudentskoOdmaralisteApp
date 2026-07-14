@@ -14,10 +14,6 @@ import table.ServerTableModel;
 import threads.ClientThread;
 import threads.ServerThread;
 
-/**
- *
- * @author lukas
- */
 public class ServerskaForm extends javax.swing.JFrame {
 
     private ServerThread server;

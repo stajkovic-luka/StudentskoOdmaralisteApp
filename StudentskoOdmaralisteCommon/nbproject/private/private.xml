@@ -17,6 +17,14 @@
             <file>file:/Users/lule/Developer/StudentskoOdmaralisteApp/StudentskoOdmaralisteCommon/src/domain/StavkaFakture.java</file>
             <file>file:/Users/lule/Developer/StudentskoOdmaralisteApp/StudentskoOdmaralisteCommon/src/domain/DomainObject.java</file>
             <file>file:/Users/lule/Developer/StudentskoOdmaralisteApp/StudentskoOdmaralisteCommon/src/domain/Student.java</file>
+            <file>file:/Users/lule/Developer/StudentskoOdmaralisteApp/StudentskoOdmaralisteCommon/src/transfer/Request.java</file>
+            <file>file:/Users/lule/Developer/StudentskoOdmaralisteApp/StudentskoOdmaralisteCommon/src/transfer/request/SaveInvoiceData.java</file>
+            <file>file:/Users/lule/Developer/StudentskoOdmaralisteApp/StudentskoOdmaralisteCommon/src/domain/FakturaOdmora.java</file>
+            <file>file:/Users/lule/Developer/StudentskoOdmaralisteApp/StudentskoOdmaralisteCommon/src/transfer/Response.java</file>
+            <file>file:/Users/lule/Developer/StudentskoOdmaralisteApp/StudentskoOdmaralisteCommon/src/transfer/Operation.java</file>
+            <file>file:/Users/lule/Developer/StudentskoOdmaralisteApp/StudentskoOdmaralisteCommon/src/transfer/Sender.java</file>
+            <file>file:/Users/lule/Developer/StudentskoOdmaralisteApp/StudentskoOdmaralisteCommon/src/transfer/Receiver.java</file>
+            <file>file:/Users/lule/Developer/StudentskoOdmaralisteApp/StudentskoOdmaralisteCommon/src/domain/Fakultet.java</file>
         </group>
     </open-files>
 </project-private>

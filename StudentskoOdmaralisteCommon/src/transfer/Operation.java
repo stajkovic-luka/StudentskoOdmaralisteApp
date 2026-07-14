@@ -6,11 +6,11 @@ public enum Operation {
     LOGIN,
     LOGOUT,
 
-    // SK1 - Kreiraj fakturu odmora (placeholder INSERT → dobijanje ID)
+    // SK1 - Kreiraj fakturu odmora
     CREATE_INVOICE,
-    // SK1 - Zapamti fakturu (UPDATE placeholder + INSERT stavki)
+    // SK1 - Zapamti fakturu 
     SAVE_INVOICE,
-    // SK1 - Odustani od kreiranja (DELETE placeholder)
+    // SK1 - Odustani od kreiranja
     DELETE_INVOICE,
 
     // SK2 - Pretraži fakturu odmora
@@ -20,7 +20,7 @@ public enum Operation {
     // SK3 - Promeni fakturu odmora
     UPDATE_INVOICE,
 
-    // SK4 - Kreiraj student (placeholder INSERT → dobijanje ID)
+    // SK4 - Kreiraj studenta
     CREATE_STUDENT,
 
     // SK5 - Pretraži student

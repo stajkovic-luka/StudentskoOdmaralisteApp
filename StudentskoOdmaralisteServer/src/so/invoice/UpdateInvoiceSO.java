@@ -4,6 +4,7 @@ package so.invoice;
 import domain.DomainObject;
 import domain.FakturaOdmora;
 import domain.StavkaFakture;
+import java.util.ArrayList;
 import java.util.List;
 import so.AbstractSO;
 
@@ -24,13 +25,31 @@ public class UpdateInvoiceSO extends AbstractSO {
         search.setSearchByFakturaOnly(true);
 
         List<DomainObject> existingStavke = dbb.getAllJoinTablesWhere(search);
-        for (DomainObject existing : existingStavke) {
-            dbb.delete(existing);
+        List<StavkaFakture> postojece = new ArrayList<>();
+        for (DomainObject d : existingStavke) {
+            postojece.add((StavkaFakture) d);
         }
 
-        for (StavkaFakture stavka : faktura.getStavkeFakture()) {
-            stavka.setFakturaOdmora(faktura);
-            dbb.add(stavka);
+        List<StavkaFakture> nove = faktura.getStavkeFakture();
+
+        for (StavkaFakture nova : nove) {
+            nova.setFakturaOdmora(faktura);
+            boolean postoji = postojece.stream()
+                    .anyMatch(p -> p.getRb() == nova.getRb());
+
+            if (postoji) {
+                dbb.update(nova);
+            } else {
+                dbb.add(nova);
+            }
+        }
+
+        for (StavkaFakture stara : postojece) {
+            boolean ostaje = nove.stream()
+                    .anyMatch(n -> n.getRb() == stara.getRb());
+            if (!ostaje) {
+                dbb.delete(stara);
+            }
         }
     }
 

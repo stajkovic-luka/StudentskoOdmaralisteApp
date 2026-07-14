@@ -61,6 +61,8 @@ public class IzmeniFakturuForm extends javax.swing.JDialog {
         jLabelDodatni = new javax.swing.JLabel();
         jTextFieldDodatni = new javax.swing.JTextField();
         jButtonIzmeniStavku = new javax.swing.JButton();
+        jButtonDodajStavku = new javax.swing.JButton();
+        jButtonUkloniStavku = new javax.swing.JButton();
         jScrollPaneStavke = new javax.swing.JScrollPane();
         jTableStavke = new javax.swing.JTable();
         jLabelUkupno = new javax.swing.JLabel();
@@ -74,8 +76,8 @@ public class IzmeniFakturuForm extends javax.swing.JDialog {
         setTitle("Izmena fakture odmora");
         setResizable(false);
 
-        jLabelNaslov.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabelNaslov.setText("Izmena fakture odmora");
+        jLabelNaslov.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
         jLabelStudent.setText("Student:");
 
@@ -101,10 +103,39 @@ public class IzmeniFakturuForm extends javax.swing.JDialog {
 
         jTextFieldDodatni.setText("0");
 
+        jButtonIzmeniStavku.setBackground(new java.awt.Color(39, 174, 96));
+        jButtonIzmeniStavku.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jButtonIzmeniStavku.setForeground(new java.awt.Color(255, 255, 255));
         jButtonIzmeniStavku.setText("Izmeni");
+        jButtonIzmeniStavku.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonIzmeniStavku.setOpaque(true);
         jButtonIzmeniStavku.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonIzmeniStavkuActionPerformed(evt);
+            }
+        });
+
+        jButtonDodajStavku.setBackground(new java.awt.Color(224, 123, 0));
+        jButtonDodajStavku.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jButtonDodajStavku.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonDodajStavku.setText("Dodaj");
+        jButtonDodajStavku.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonDodajStavku.setOpaque(true);
+        jButtonDodajStavku.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonDodajStavkuActionPerformed(evt);
+            }
+        });
+
+        jButtonUkloniStavku.setBackground(new java.awt.Color(192, 57, 43));
+        jButtonUkloniStavku.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jButtonUkloniStavku.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonUkloniStavku.setText("Ukloni");
+        jButtonUkloniStavku.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonUkloniStavku.setOpaque(true);
+        jButtonUkloniStavku.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonUkloniStavkuActionPerformed(evt);
             }
         });
 
@@ -157,9 +188,11 @@ public class IzmeniFakturuForm extends javax.swing.JDialog {
                             .addComponent(datePickerDo, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanelStavkeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButtonIzmeniStavku, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jButtonDodajStavku, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButtonIzmeniStavku, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButtonUkloniStavku, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jScrollPaneStavke, javax.swing.GroupLayout.PREFERRED_SIZE, 726, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(10, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanelStavkeLayout.setVerticalGroup(
             jPanelStavkeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -169,17 +202,19 @@ public class IzmeniFakturuForm extends javax.swing.JDialog {
                     .addComponent(jLabelNocenje, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jComboNocenje, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jCheckDorucak, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonIzmeniStavku, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButtonDodajStavku, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanelStavkeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelDatumOd, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(datePickerOd, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabelDatumDo, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(datePickerDo, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(datePickerDo, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonUkloniStavku, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanelStavkeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelDodatni, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextFieldDodatni, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextFieldDodatni, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonIzmeniStavku, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPaneStavke, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(10, Short.MAX_VALUE))
@@ -345,6 +380,79 @@ public class IzmeniFakturuForm extends javax.swing.JDialog {
         selectedStavkaIndex = -1;
         resetujStavkaPanel();
     }//GEN-LAST:event_jButtonIzmeniStavkuActionPerformed
+
+    private void jButtonDodajStavkuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDodajStavkuActionPerformed
+        if (jComboNocenje.getSelectedIndex() == -1) {
+            JOptionPane.showMessageDialog(this, "Izaberite nocenje.", "Greska", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        LocalDate datumOd = datePickerOd.getDate();
+        LocalDate datumDo = datePickerDo.getDate();
+        if (datumOd == null || datumDo == null) {
+            JOptionPane.showMessageDialog(this, "Izaberite datum od i datum do.", "Greska", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        if (!datumDo.isAfter(datumOd)) {
+            JOptionPane.showMessageDialog(this, "Datum do mora biti posle datuma od.", "Greska", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        double dodatniTroskovi = 0;
+        try {
+            String dodText = jTextFieldDodatni.getText().trim();
+            if (!dodText.isEmpty()) {
+                dodatniTroskovi = Double.parseDouble(dodText);
+            }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Dodatni troskovi moraju biti broj.", "Greska", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        Nocenje nocenje = (Nocenje) jComboNocenje.getSelectedItem();
+        boolean dorucak = jCheckDorucak.isSelected();
+        int brojDana = (int) ChronoUnit.DAYS.between(datumOd, datumDo);
+        double cena = nocenje.getCena() + (dorucak ? 200 : 0);
+        double iznos = brojDana * cena + dodatniTroskovi;
+
+        int noviRb = stavke.isEmpty() ? 1 : stavke.stream().mapToInt(StavkaFakture::getRb).max().getAsInt() + 1;
+
+        StavkaFakture novaStavka = new StavkaFakture();
+        novaStavka.setRb(noviRb);
+        novaStavka.setNocenje(nocenje);
+        novaStavka.setDorucakUkljucen(dorucak);
+        novaStavka.setDatumOd(datumOd);
+        novaStavka.setDatumDo(datumDo);
+        novaStavka.setBrojDana(brojDana);
+        novaStavka.setCena(cena);
+        novaStavka.setDodatniTroskovi(dodatniTroskovi);
+        novaStavka.setIznos(iznos);
+        novaStavka.setFakturaOdmora(faktura);
+
+        stavke.add(novaStavka);
+        osveziTabeluStavki();
+        preracunajUkupno();
+        resetujStavkaPanel();
+    }//GEN-LAST:event_jButtonDodajStavkuActionPerformed
+
+    private void jButtonUkloniStavkuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonUkloniStavkuActionPerformed
+        if (selectedStavkaIndex == -1) {
+            JOptionPane.showMessageDialog(this, "Izaberite stavku iz tabele koju zelite da uklonite.", "Greska", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        stavke.remove(selectedStavkaIndex);
+
+        for (int i = 0; i < stavke.size(); i++) {
+            stavke.get(i).setRb(i + 1);
+        }
+
+        osveziTabeluStavki();
+        preracunajUkupno();
+        selectedStavkaIndex = -1;
+        resetujStavkaPanel();
+    }//GEN-LAST:event_jButtonUkloniStavkuActionPerformed
 
     private void jButtonZapamtiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonZapamtiActionPerformed
         if (jComboStudent.getSelectedIndex() == -1) {
@@ -514,7 +622,9 @@ public class IzmeniFakturuForm extends javax.swing.JDialog {
         jTextAreaNapomena.setBackground(new Color(0xF5F0E8));
         jTextAreaNapomena.setFont(jTextAreaNapomena.getFont().deriveFont(13f));
 
-        stilizujDugme(jButtonIzmeniStavku, new Color(0xE07B00));
+        stilizujDugme(jButtonDodajStavku, new Color(0xE07B00));
+        stilizujDugme(jButtonIzmeniStavku, new Color(0x27AE60));
+        stilizujDugme(jButtonUkloniStavku, new Color(0xC0392B));
         stilizujDugme(jButtonZapamti, new Color(0xE07B00));
         stilizujDugme(jButtonOtkazi, new Color(0x34495E));
     }
@@ -531,8 +641,10 @@ public class IzmeniFakturuForm extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.github.lgooddatepicker.components.DatePicker datePickerDo;
     private com.github.lgooddatepicker.components.DatePicker datePickerOd;
+    private javax.swing.JButton jButtonDodajStavku;
     private javax.swing.JButton jButtonIzmeniStavku;
     private javax.swing.JButton jButtonOtkazi;
+    private javax.swing.JButton jButtonUkloniStavku;
     private javax.swing.JButton jButtonZapamti;
     private javax.swing.JCheckBox jCheckDorucak;
     private javax.swing.JComboBox jComboNocenje;

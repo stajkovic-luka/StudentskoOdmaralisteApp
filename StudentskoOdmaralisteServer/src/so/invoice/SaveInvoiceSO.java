@@ -28,7 +28,10 @@ public class SaveInvoiceSO extends AbstractSO {
             dbb.add(stavka);
         }
         
+        // debug
         System.out.println("DA LI SALJE MEJL? "+data.getSendEmail());
+        
+        // Ako je flag za mejl upaljen, zapocni slanje
         if(data.getSendEmail()){
             InvoiceMailService invoiceMailService = new InvoiceMailService(data.getFaktura(), data.getRecipientEmail(), sender);
         }
